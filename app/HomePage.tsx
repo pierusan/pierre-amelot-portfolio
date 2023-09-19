@@ -1,3 +1,7 @@
 export function HomePage() {
-  return <main />;
+  return (
+    <main>
+      <h1>Pierre Amelot&apos;s Portfolio</h1>
+    </main>
+  );
 }

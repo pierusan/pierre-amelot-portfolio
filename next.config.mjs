@@ -4,6 +4,16 @@ const nextConfig = {
   // the case. Enabling it to follow the best practices from React 18 (e.g.
   // mounting components twice to catch bugs)
   reactStrictMode: true,
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'storage.googleapis.com',
+        port: '',
+        pathname: '/pierre-portfolio-assets/pierre-portfolio-v2/**',
+      },
+    ],
+  },
   // The svgr docs don't seem to work with latest Next so we're using the fix
   // mentioned here:
   // https://github.com/vercel/next.js/issues/48177#issuecomment-1557354538

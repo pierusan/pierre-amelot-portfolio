@@ -29,5 +29,3 @@ export function RemoteImage({
   // eslint-disable-next-line jsx-a11y/alt-text
   return <Image {...remoteImages[id]} placeholder={placeholder ?? 'blur'} />;
 }
-
-export default RemoteImage;

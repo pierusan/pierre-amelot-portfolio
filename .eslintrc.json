@@ -15,7 +15,7 @@
     // Trying things out here. Rule-set looks interesting
     // https://github.com/sindresorhus/eslint-plugin-unicorn/tree/main
     "plugin:unicorn/recommended",
-    
+
     // No JSDoc for this project to code faster
     // "plugin:jsdoc/recommended"
 
@@ -25,13 +25,15 @@
   "rules": {
     // Still maybe a good practice for old browsers?
     "react/jsx-no-target-blank": "error",
-    "import/order":["error"],
+    "import/order": ["error"],
     "unicorn/filename-case": [
       "error",
-      {"cases": {
+      {
+        "cases": {
           "camelCase": true, // Regular TS
           "pascalCase": true // Components
-      }}
+        }
+      }
     ],
     "no-console": ["warn", { "allow": ["warn", "error"] }],
     "unicorn/no-null": "off",

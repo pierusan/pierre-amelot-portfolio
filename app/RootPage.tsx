@@ -1,6 +1,6 @@
 import { RemoteImage } from '@/components/RemoteImage';
 
-export function HomePage() {
+export function RootPage() {
   return (
     <main>
       <h1>Pierre Amelot&apos;s Portfolio</h1>

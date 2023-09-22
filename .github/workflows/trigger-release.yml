@@ -6,6 +6,9 @@ on:
 jobs:
   trigger-release:
     runs-on: ubuntu-latest
+    permissions:
+      # Allow job to create a release
+      contents: write
     steps:
       - name: Fail if branch is not main
         if: github.event_name == 'workflow_dispatch' && github.ref != 'refs/heads/main'
@@ -58,4 +61,4 @@ jobs:
       - name: Create Github Release
         run: gh release create $(git describe --tags) --generate-notes
         env:
-          GITHUB_TOKEN: ${{ secrets.TAG_PUSH_DEPLOY_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

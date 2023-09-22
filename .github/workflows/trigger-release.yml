@@ -55,7 +55,12 @@ jobs:
           git config user.name 'Pierre Amelot'
           git config user.email 'pierre.p.amelot@gmail.com'
       - name: Bump Version and Tag
-        run: npm version ${{ steps.get-release-version.outputs.new-version }}
+        # add [skip actions] to commit message to prevent unnecessary workflow
+        # run from this trivial automated commit
+        run: |
+          npm version ${{ steps.get-release-version.outputs.new-version }} -m "%s
+
+          [skip actions]"
       - name: Push to main
         run: git push origin main --follow-tags
       - name: Create Github Release

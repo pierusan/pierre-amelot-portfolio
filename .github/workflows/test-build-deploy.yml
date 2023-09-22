@@ -7,10 +7,6 @@ on:
   push:
     branches:
       - main
-    # No need to trigger the workflow again for automatically generated tags
-    # (from the trigger-release workflow)
-    tags-ignore:
-      - v**
   # Production
   release:
     types: [published]

@@ -10,7 +10,7 @@
     "format:check": "prettier --check .",
     "pull": "vercel pull",
     "pull:ci:preview": "vercel pull --yes --environment=preview",
-    "pull:ci:prod": "vercel pull --yes --environment=prod",
+    "pull:ci:prod": "vercel pull --yes --environment=production",
     "build:ci:preview": "vercel build",
     "build:ci:prod": "vercel build --prod",
     "deploy:ci:preview": "vercel --prebuilt",

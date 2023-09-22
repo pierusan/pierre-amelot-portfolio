@@ -15,7 +15,7 @@ npm run dev
 
 ## File Structure
 
-<details open>
+<details>
 <summary>Pages and Layouts</summary>
 
 I like Next.js 13 file-system based `app` router. You can set and remember
@@ -27,7 +27,7 @@ re-exported by `app/page` and `app/layout`).
 
 </details>
 
-<details open>
+<details>
 <summary>Reusable components</summary>
 
 I place components and hook reused throughout the app in root `components` and
@@ -41,6 +41,9 @@ are used in, and when I start reusing them I move them to the top-level
 </details>
 
 ## CI
+
+<details>
+<summary>Decisions</summary>
 
 My CI pipeline is definitely overkill since I'm alone on this project, but it
 was a good exercise to get familiar with Github Actions.
@@ -56,7 +59,12 @@ notes, and deploys the portfolio to production.
 I hooked the dev, staging, and prod deployments to Github Deployments for a nicer
 overview and links in the github UI.
 
+</details>
+
 ## Images
+
+<details>
+<summary>Decisions</summary>
 
 I host images on a public Google Cloud bucket rather than stored locally. I
 think this allows to easily recreate/deploy the project on another machine or in
@@ -64,6 +72,8 @@ CI without the hassle of Git LFS or custom download scripts. Next doesn't
 generate blurred image placeholders for remote images so I use
 [blurred.dev](https://blurred.dev) to generate the base64 image blur
 placeholders myself.
+
+</details>
 
 # Stack and Library Decisions
 

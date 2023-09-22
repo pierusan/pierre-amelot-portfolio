@@ -58,4 +58,4 @@ jobs:
       - name: Create Github Release
         run: gh release create $(git describe --tags) --generate-notes
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.TAG_PUSH_DEPLOY_KEY }}

@@ -167,3 +167,4 @@ placeholders myself.
 - Suspense for the Three.js scene
 - Hits and likes like Josh Comeau's website
 - Clean up this readme
+- Setup commit signing?

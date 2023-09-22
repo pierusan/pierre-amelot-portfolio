@@ -7,7 +7,14 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "pull": "vercel pull",
+    "pull:ci:preview": "vercel pull --yes --environment=preview",
+    "pull:ci:prod": "vercel pull --yes --environment=prod",
+    "build:ci:preview": "vercel build",
+    "build:ci:prod": "vercel build --prod",
+    "deploy:ci:preview": "vercel --prebuilt",
+    "deploy:ci:prod": "vercel --prebuilt --prod"
   },
   "dependencies": {
     "@svgr/webpack": "^8.1.0",
@@ -31,7 +38,8 @@
     "react-dom": "^18.2.0",
     "sharp": "^0.32.5",
     "tailwindcss": "^3.3.3",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "vercel": "^32.2.5"
   },
   "browserslist": [
     "defaults"

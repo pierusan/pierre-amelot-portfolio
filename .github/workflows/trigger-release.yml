@@ -6,6 +6,9 @@ on:
 jobs:
   trigger-release:
     runs-on: ubuntu-latest
+    permissions:
+      # Allow job to create a release
+      contents: write
     steps:
       - name: Fail if branch is not main
         if: github.event_name == 'workflow_dispatch' && github.ref != 'refs/heads/main'
@@ -52,10 +55,15 @@ jobs:
           git config user.name 'Pierre Amelot'
           git config user.email 'pierre.p.amelot@gmail.com'
       - name: Bump Version and Tag
-        run: npm version ${{ steps.get-release-version.outputs.new-version }}
+        # add [skip actions] to commit message to prevent unnecessary workflow
+        # run from this trivial automated commit
+        run: |
+          npm version ${{ steps.get-release-version.outputs.new-version }} -m "%s
+
+          [skip actions]"
       - name: Push to main
         run: git push origin main --follow-tags
       - name: Create Github Release
         run: gh release create $(git describe --tags) --generate-notes
         env:
-          GITHUB_TOKEN: ${{ secrets.TAG_PUSH_DEPLOY_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

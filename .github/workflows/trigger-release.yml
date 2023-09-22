@@ -1,0 +1,60 @@
+name: Trigger Release
+
+on:
+  workflow_dispatch:
+
+jobs:
+  trigger-release:
+    runs-on: ubuntu-latest
+    # Need GITHUB_TOKEN to be able push to main branch. In the future we could
+    # also use a deploy secret if we wanted the push to trigger further
+    # workflows
+    # https://docs.github.com/en/actions/using-workflows/triggering-a-workflow#triggering-a-workflow-from-a-workflow
+    permissions:
+      contents: write
+    steps:
+      - name: Fail if branch is not main
+        if: github.event_name == 'workflow_dispatch' && github.ref != 'refs/heads/main'
+        run: |
+          echo "This workflow should not be triggered with workflow_dispatch on a branch other than main"
+          exit 1
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+      - name: Get Date
+        id: get-date
+        run: echo "date=$(date +'%-Y.%-m.%-d')" | tee -a $GITHUB_OUTPUT
+      - name: Get Current Package Version
+        id: get-pkg-version
+        run: echo "pkg-version=$(npm pkg get version)" | tee -a $GITHUB_OUTPUT
+      - name: Get Version for Release
+        id: get-release-version
+        run: |
+          date=${{ steps.get-date.outputs.date }}
+          old_version=${{ steps.get-pkg-version.outputs.pkg-version }}
+          new_version=$date
+          if [[ $old_version == $date ]]; then
+            echo "There is already one package published under this date. Adding '-1' at the end"
+            new_version=$date-1
+          elif [[ $old_version =~ $date-.* ]]; then
+            echo "There are already multiple packages published under this date. Bumping last digit"
+            # https://stackoverflow.com/questions/4485399/how-can-i-bump-a-version-number-using-bash
+            new_version=$(echo $old_version | awk -F- '/[0-9]+\./{$NF++;print}' OFS=-)
+          fi
+          echo "new-version=$new_version" | tee -a $GITHUB_OUTPUT
+      # Pretend the push and tag were done by me
+      - name: Setup Git
+        run: |
+          git config user.name 'Pierre Amelot'
+          git config user.email 'pierre.p.amelot@gmail.com'
+      - name: Bump Version and Tag
+        run: npm version ${{ steps.get-release-version.outputs.new-version }}
+      - name: Push to main
+        run: git push origin main --follow-tags
+      - name: Create Github Release
+        run: gh release create $(git describe --tags) --generate-notes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,3 +1,58 @@
 {
-  "extends": "next/core-web-vitals"
+  // Configs used and rules overwritten by Next eslint plugin for reference
+  // https://github.com/vercel/next.js/blob/canary/packages/eslint-config-next/index.js
+  // https://github.com/vercel/next.js/blob/canary/packages/eslint-plugin-next/src/index.ts
+  "extends": [
+    // Not part of next, so adding it here
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/recommended",
+    "plugin:import/typescript",
+
+    // Strict Next config
+    "next/core-web-vitals",
+
+    // Trying things out here. Rule-set looks interesting
+    // https://github.com/sindresorhus/eslint-plugin-unicorn/tree/main
+    "plugin:unicorn/recommended",
+
+    // No JSDoc for this project to code faster
+    // "plugin:jsdoc/recommended"
+
+    // Turns off all rules that are unnecessary or might conflict with Prettier
+    "prettier"
+  ],
+  "rules": {
+    // Still maybe a good practice for old browsers?
+    "react/jsx-no-target-blank": "error",
+    "import/order": ["error"],
+    "unicorn/filename-case": [
+      "error",
+      {
+        "cases": {
+          "camelCase": true, // Regular TS
+          "pascalCase": true // Components
+        }
+      }
+    ],
+    "no-console": ["warn", { "allow": ["warn", "error"] }],
+    "unicorn/no-null": "off",
+    // Allow some abbreviations to accelerate reading time
+    "unicorn/prevent-abbreviations": [
+      "error",
+      {
+        "replacements": {
+          "fn": {
+            "function": false
+          },
+          "props": {
+            "properties": false
+          }
+        }
+      }
+    ]
+  }
+  // Plugins and parsers keys are included in the extended configuration files
+  // of the plugins (e.g. unicorn and @typescript-eslint) so no need to repeat
+  // them here
 }

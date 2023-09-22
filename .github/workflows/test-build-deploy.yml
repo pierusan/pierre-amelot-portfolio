@@ -1,0 +1,125 @@
+name: Test, Build, Deploy
+
+on:
+  # Development
+  pull_request:
+  # Staging
+  push:
+    branches:
+      - main
+  # Production
+  release:
+    types: [published]
+
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+jobs:
+  # Run install first before all other jobs to reuse caching afterwards
+  install:
+    name: Install
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+      - name: Install Project
+        uses: ./.github/actions/project-install
+
+  format:
+    name: Format
+    runs-on: ubuntu-latest
+    needs: install
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+      - name: Install Project
+        uses: ./.github/actions/project-install
+      - name: Check Format
+        run: npm run format:check
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    needs: install
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+      - name: Install Project
+        uses: ./.github/actions/project-install
+      - name: Check Lint
+        run: npm run lint
+
+  # Because we haven't linked the repo to Vercel we provide the commit info
+  # for this deployment ourselves. It makes easier to navigate Vercel's
+  # deployment dashboard
+  get-commit-info:
+    name: Get Commit Info
+    runs-on: ubuntu-latest
+    needs: install
+    outputs:
+      branch: ${{ steps.extract-commit-info.outputs.branch }}
+      sha: ${{ steps.extract-commit-info.outputs.sha }}
+      message: ${{ steps.extract-commit-info.outputs.message }}
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+        with:
+          # For PR events, we need the commit before the auto-generated merge
+          # commit so can view it on Vercel deployment dashboard
+          fetch-depth: 2
+      - name: Extract commit info
+        id: extract-commit-info
+        run: |
+          echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" | tee -a $GITHUB_OUTPUT
+          sha=$GITHUB_SHA
+          if [[ ${{ github.event_name }} == pull_request ]]; then
+            echo "Pull request event. Use sha from PR head instead of merge commit."
+            sha=${{ github.event.pull_request.head.sha }}
+          fi
+          echo "sha=$sha" | tee -a $GITHUB_OUTPUT
+          echo "message=$(git show $sha -s --pretty=%s)" | tee -a $GITHUB_OUTPUT
+
+  # CI build output (in .vercel/output) is quite large and cointains a lot of
+  # files (especially dependencies of serverless functions used for react server
+  # components), so sharing them across jobs with artifacts is slow. We prefer
+  # to build and deploy in the same job to avoid this but we could use the cache
+  # in the future if needed.
+  build-and-deploy-dev:
+    if: github.event_name == 'pull_request'
+    name: Dev
+    needs: [lint, format, get-commit-info]
+    uses: ./.github/workflows/build-and-deploy-reusable.yml
+    with:
+      gh-env: development
+      commit-sha: ${{needs.get-commit-info.outputs.sha}}
+      commit-branch: ${{needs.get-commit-info.outputs.branch}}
+      commit-message: ${{needs.get-commit-info.outputs.message}}
+    secrets:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+
+  build-and-deploy-staging:
+    if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'release'
+    name: Staging
+    needs: [lint, format, get-commit-info]
+    uses: ./.github/workflows/build-and-deploy-reusable.yml
+    with:
+      gh-env: staging
+      commit-sha: ${{needs.get-commit-info.outputs.sha}}
+      commit-branch: ${{needs.get-commit-info.outputs.branch}}
+      commit-message: ${{needs.get-commit-info.outputs.message}}
+    secrets:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+
+  build-and-deploy-production:
+    if: github.event_name == 'release'
+    name: Prod
+    needs: [build-and-deploy-staging, get-commit-info]
+    uses: ./.github/workflows/build-and-deploy-reusable.yml
+    with:
+      gh-env: production
+      commit-sha: ${{needs.get-commit-info.outputs.sha}}
+      commit-branch: ${{needs.get-commit-info.outputs.branch}}
+      commit-message: ${{needs.get-commit-info.outputs.message}}
+    secrets:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}

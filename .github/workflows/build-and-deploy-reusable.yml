@@ -1,0 +1,83 @@
+on:
+  workflow_call:
+    inputs:
+      gh-env:
+        required: true
+        type: string
+      commit-sha:
+        required: true
+        type: string
+      commit-branch:
+        required: true
+        type: string
+      commit-message:
+        required: true
+        type: string
+    secrets:
+      VERCEL_TOKEN:
+        required: true
+
+jobs:
+  build-and-deploy:
+    name: Build & Deploy
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ inputs.gh-env }}
+      # TODO: Switch to staging and prod URLs once the domains are set up
+      url: ${{ steps.get-deployment-info.outputs.deployment-url }}
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+      - name: Install Project
+        uses: ./.github/actions/project-install
+      - name: Get Script Names For This Environment
+        id: get-scripts
+        run: |
+          if [[ ${{ inputs.gh-env }} == production ]]; then
+            PULL_SCRIPT=pull:ci:prod
+            BUILD_SCRIPT=build:ci:prod
+            DEPLOY_SCRIPT=deploy:ci:prod
+          elif [[ ${{ inputs.gh-env }} == staging ]]; then
+            PULL_SCRIPT=pull:ci:preview
+            BUILD_SCRIPT=build:ci:preview
+            DEPLOY_SCRIPT=deploy:ci:preview
+          elif [[ ${{ inputs.gh-env }} == development ]]; then
+            PULL_SCRIPT=pull:ci:preview
+            BUILD_SCRIPT=build:ci:preview
+            DEPLOY_SCRIPT=deploy:ci:preview
+          fi
+          echo "pull=$PULL_SCRIPT" | tee -a $GITHUB_OUTPUT
+          echo "build=$BUILD_SCRIPT" | tee -a $GITHUB_OUTPUT
+          echo "deploy=$DEPLOY_SCRIPT" | tee -a $GITHUB_OUTPUT
+      - name: Pull Vercel Environment Variables and Project Info
+        run: npm run ${{steps.get-scripts.outputs.pull}} -- --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Build
+        run: npm run ${{steps.get-scripts.outputs.build}} -- --token=${{ secrets.VERCEL_TOKEN }}
+      # Commit info is passed with --meta parameters
+      # https://github.com/orgs/vercel/discussions/1246
+      # https://github.com/orgs/vercel/discussions/3142 -> list of all meta fields
+      - name: Deploy
+        id: deploy
+        run: |
+          npm run ${{steps.get-scripts.outputs.deploy}} -- \
+            --token=${{ secrets.VERCEL_TOKEN }} \
+            --meta githubCommitRef="${{inputs.commit-branch}}" \
+            --meta githubCommitSha=${{inputs.commit-sha}} \
+            --meta githubCommitMessage="${{inputs.commit-message}}" \
+            > deployment.txt
+      - name: Get Deployment Info
+        id: get-deployment-info
+        run: |
+          DEPLOYMENT_URL=$(tail -n 1 deployment.txt)
+          echo "deployment-url=$DEPLOYMENT_URL" | tee -a $GITHUB_OUTPUT
+          DEPLOYMENT_ID=$(vercel inspect $DEPLOYMENT_URL --token=${{ secrets.VERCEL_TOKEN }} 2>&1 | awk '/id.*dpl_/{sub(/dpl_/,"");print $2}')
+          DEPLOYMENT_PROJECT_NAME=$(vercel inspect $DEPLOYMENT_URL --token=${{ secrets.VERCEL_TOKEN }} 2>&1 | awk '/name/{print $2}')
+          DEPLOYMENT_USER=$(vercel whoami --token=${{ secrets.VERCEL_TOKEN }} 2>&1 | awk '/^[^Vercel]/{print}')
+          echo "deployment-vercel-info-page=https://vercel.com/$DEPLOYMENT_USER/$DEPLOYMENT_PROJECT_NAME/$DEPLOYMENT_ID" | tee -a $GITHUB_OUTPUT
+      - name: Display Deployment Info on Job Summary
+        run: |
+          echo "### :rocket: Succesfully deployed" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Deployed at - ${{ steps.get-deployment-info.outputs.deployment-url }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Vercel Deployment Page - ${{ steps.get-deployment-info.outputs.deployment-vercel-info-page }}" >> $GITHUB_STEP_SUMMARY

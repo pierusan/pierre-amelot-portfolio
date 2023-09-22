@@ -6,12 +6,6 @@ on:
 jobs:
   trigger-release:
     runs-on: ubuntu-latest
-    # Need GITHUB_TOKEN to be able push to main branch. In the future we could
-    # also use a deploy secret if we wanted the push to trigger further
-    # workflows
-    # https://docs.github.com/en/actions/using-workflows/triggering-a-workflow#triggering-a-workflow-from-a-workflow
-    permissions:
-      contents: write
     steps:
       - name: Fail if branch is not main
         if: github.event_name == 'workflow_dispatch' && github.ref != 'refs/heads/main'
@@ -20,6 +14,13 @@ jobs:
           exit 1
       - name: Checkout Repo
         uses: actions/checkout@v3
+        # We need my elevated user permissions to be able to push tags and
+        # commits to main so we use a deploy secret here. This will also be
+        # useful if we ever need to trigger another workflow from the resulting
+        # push to main here.
+        # https://docs.github.com/en/actions/using-workflows/triggering-a-workflow#triggering-a-workflow-from-a-workflow
+        with:
+          ssh-key: ${{ secrets.TAG_PUSH_DEPLOY_KEY }}
       - name: Setup Node
         uses: actions/setup-node@v3
         with:

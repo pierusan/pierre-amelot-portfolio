@@ -37,6 +37,7 @@
     ],
     "no-console": ["warn", { "allow": ["warn", "error"] }],
     "unicorn/no-null": "off",
+    "unicorn/no-array-for-each": "off",
     // Allow some abbreviations to accelerate reading time
     "unicorn/prevent-abbreviations": [
       "error",
@@ -47,8 +48,23 @@
           },
           "props": {
             "properties": false
+          },
+          "ref": {
+            "reference": false
           }
         }
+      }
+    ],
+    "react/forbid-component-props": [
+      "warn",
+      {
+        "forbid": [
+          {
+            "propName": "placeholder",
+            "disallowedFor": ["RemoteImage"],
+            "message": "Images should have a blurred placeholder in production"
+          }
+        ]
       }
     ]
   }

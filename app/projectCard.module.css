@@ -1,0 +1,17 @@
+/* Keep complex CSS logic in module for readability */
+/* We prefer CSS to JS to prevent waiting for hydration */
+.preview-secondary-images-in-main-slot-on-hover {
+  /* Secondary images ready to be displayed on the main slot*/
+  & > li:first-of-type img:nth-of-type(n + 2) {
+    opacity: 0;
+    transition: opacity 200ms;
+  }
+
+  /* When a secondary image is hovered on the lower row, replace the main slot
+  with the corresponding image */
+  &:has(li:nth-of-type(2):hover) > li:first-of-type img:nth-of-type(2),
+  &:has(li:nth-of-type(3):hover) > li:first-of-type img:nth-of-type(3),
+  &:has(li:nth-of-type(4):hover) > li:first-of-type img:nth-of-type(4) {
+    opacity: 1;
+  }
+}

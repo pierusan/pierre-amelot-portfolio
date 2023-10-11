@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:focus-visible {
+  outline-color: currentColor;
+  outline-offset: 0.25rem;
+}
+
+::selection {
+  @apply bg-highlight;
+  @apply bg-opacity-60;
+}

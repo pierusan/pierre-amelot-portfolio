@@ -2,6 +2,8 @@
 
 [![Test, Build, Deploy](https://github.com/Bierro/pierre-amelot-portfolio/actions/workflows/test-build-deploy.yml/badge.svg?branch=main)](https://github.com/Bierro/pierre-amelot-portfolio/actions/workflows/test-build-deploy.yml)
 
+[![CodeQL](https://github.com/Bierro/pierre-amelot-portfolio/actions/workflows/github-code-scanning/codeql/badge.svg?branch=main)](https://github.com/Bierro/pierre-amelot-portfolio/actions/workflows/github-code-scanning/codeql)
+
 Personal portfolio.
 
 Run it locally with [nvm](https://github.com/nvm-sh/nvm) installed:
@@ -48,12 +50,12 @@ are used in, and when I start reusing them I move them to the top-level
 My CI pipeline is definitely overkill since I'm alone on this project, but it
 was a good exercise to get familiar with Github Actions.
 
-The pipeline lints, formats, tests, builds, and deploys previews on every PRs
-and pushes to master. I run jobs concurrently when possible and cache
+The pipeline lints, formats, tests, builds, and deploys previews URLs on every
+PR or push to master. I run jobs concurrently when possible and cache
 ./node_modules and ~/.npm to speed up the pipeline.
 
 I also automated the release process. I can trigger the workflow manually from
-main, and it bumps the npm version, creates a Github Release with generated
+main, and it bumps the npm version, creates a Github Release with auto-generated
 notes, and deploys the portfolio to production.
 
 I hooked the dev, staging, and prod deployments to Github Deployments for a nicer
@@ -66,12 +68,11 @@ overview and links in the github UI.
 <details>
 <summary>Decisions</summary>
 
-I host images on a public Google Cloud bucket rather than stored locally. I
-think this allows to easily recreate/deploy the project on another machine or in
-CI without the hassle of Git LFS or custom download scripts. Next doesn't
-generate blurred image placeholders for remote images so I use
-[blurred.dev](https://blurred.dev) to generate the base64 image blur
-placeholders myself.
+I host images on a public Google Cloud bucket rather than keeping them locally.
+This lets me recreate/deploy the project on another machine or in CI without
+the hassle of Git LFS or custom download scripts. Next doesn't generate blurred
+image placeholders for remote images so I use [blurred.dev](https://blurred.dev)
+to generate the base64 image blur placeholders myself.
 
 </details>
 
@@ -87,7 +88,8 @@ placeholders myself.
 - Hot skill to have these days
 - Easy way to play around with React server components and Suspense
 - Nice routing system and links prefetching
-- Easy Image optimization, hosting, blur placeholder, and loader
+- Easy Image optimization (caching, levering WebP, logic hosted on functions on
+  the edge)
 - Easy google fonts integration and fallback font
 
 ### What I don't love
@@ -141,14 +143,17 @@ placeholders myself.
   customizable and extendable component libraries (like headless ui, tailwind
   components, or shadcn) on top of it, without having a bunch of custom syntax
   or rules.
+- VSCode extensions with autocomplete, color preview, and tooltips is really
+  nice
 
 ### What I don't love
 
-- Lots of classnames hurts readability imo and it can be hard to find the
-  tailwind rule you're looking for in this large string. I preferred the
-  highlighting and ordering of props in Chakra UI, and the highlighting of
-  styled-components. But I understand that following the ordering of the cascade
-  is better for bug prevention.
+- Lots of classnames can hurts readability imo and it can be hard to find the
+  tailwind rule you're looking for in this large string. Bugs arising from order
+  in the cascading stylesheet are also not intuitive. That said, it hasn't been
+  much of an issue since I started using tailwind-merge and the `cn` util
+  function to construct class names. It not only prevents bugs but it also
+  allows to break strings apart and add comments between string segments.
 - Semantic tokens and theming aren't really supported. The explanation by
   Tailwind's CEO that it would not be useful is wrong imo, and designers and
   large companies have now adopted semantic tokens for theming their design
@@ -168,6 +173,27 @@ placeholders myself.
 
 </details>
 
+## GSAP
+
+<details>
+<summary>Rationale</summary>
+
+### Why I chose it
+
+- Quite a few forum posts and docs online
+- ScrollTrigger pinning behavior is nice and there doesn't seem to be an easy
+  alternative to gsap
+
+### What I don't love
+
+- API seems a bit messy to me (lots of strings), and TS hints aren't very
+  helpful
+- Documentation sometimes feel outdated (pinSpacing default behavior is
+  confusing in the docs), or unclear
+- No straightforward integration with React (e.g. no hooks)
+
+</details>
+
 # TODO
 
 - Code Splitting?
@@ -178,3 +204,9 @@ placeholders myself.
 - Hits and likes like Josh Comeau's website
 - Clean up this readme
 - Setup commit signing?
+- Update favicon fill based on page progress
+- More interesting cards animation/design like
+  https://www.depo.studio/cases/aaron-mcguire or
+  https://www.aaronmcguire.design/projects/forma
+- Text animation like DepoStudio https://www.depo.studio/ for the home page
+- Product Analytics

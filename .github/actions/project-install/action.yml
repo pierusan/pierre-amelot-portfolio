@@ -5,7 +5,7 @@ runs:
   using: 'composite'
   steps:
     - name: Setup Node
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@5e21ff4d9bc1a8cf6de233a3057d20ec6b3fb69d # v3.8.1
       with:
         node-version-file: '.nvmrc'
         cache: 'npm'
@@ -20,7 +20,7 @@ runs:
     # faster
     - name: Cache Node Modules
       id: cache-node-modules
-      uses: actions/cache@v3
+      uses: actions/cache@704facf57e6136b1bc63b828d79edcd491f0ee84 # v3.3.2
       with:
         path: node_modules
         # Invalidate cache for new lock or node version (because node_modules

@@ -2,7 +2,7 @@
 
 [![Test, Build, Deploy](https://github.com/Bierro/pierre-amelot-portfolio/actions/workflows/test-build-deploy.yml/badge.svg?branch=main)](https://github.com/Bierro/pierre-amelot-portfolio/actions/workflows/test-build-deploy.yml)
 
-[![CodeQL](https://github.com/Bierro/pierre-amelot-portfolio/actions/workflows/github-code-scanning/codeql/badge.svg?branch=main)](https://github.com/Bierro/pierre-amelot-portfolio/actions/workflows/github-code-scanning/codeql)
+[![CodeQL](https://github.com/Bierro/pierre-amelot-portfolio/actions/workflows/github-code-scanning/codeql/badge.svg?branch=main)](https://github.com/Bierro/pierre-amelot-portfolio/actions/workflows/github-code-scanning/codeql) [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/Bierro/pierre-amelot-portfolio/badge)](https://securityscorecards.dev/viewer/?uri=github.com/Bierro/pierre-amelot-portfolio)
 
 Personal portfolio.
 

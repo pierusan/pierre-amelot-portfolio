@@ -1,5 +1,6 @@
 export const animationIds = {
   homeAboutSection: 'animation-id-home-about-section',
+  home3DContainer: 'animation-id-home-3d-container',
   homeLessonsLearnedSection: 'animation-id-home-lessons-learned-section',
   homeLessonsLearnedIntroSubtitle:
     'animation-id-home-lessons-learned-intro-subtitle',

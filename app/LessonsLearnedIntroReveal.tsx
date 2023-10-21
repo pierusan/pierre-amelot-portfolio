@@ -5,6 +5,7 @@ import { gsap, Power1 } from 'gsap';
 import resolveConfig from 'tailwindcss/resolveConfig';
 import { type RecursiveKeyValuePair } from 'tailwindcss/types/config';
 import { useLayoutEffect } from 'react';
+import { useAnimationStore } from './store';
 import { animationClasses, animationIds } from '@/lib/constants';
 import tailwindConfig from '@/tailwind.config';
 
@@ -25,6 +26,11 @@ const paragraphSelector = `#${animationIds.homeLessonsLearnedIntroParagraph}`;
 // 3. Highlight intro paragraph one word at a time
 // 4. Reveal further content
 export function LessonsLearnedIntroReveal() {
+  // Keep in a state so we can
+  const {
+    setLessonsLearnedSubtitleScaleDownTl,
+    resetLessonsLearnedSubtitleScaleDownTl,
+  } = useAnimationStore();
 
   useLayoutEffect(() => {
     // Highlight the paragraph one word at a time to push people to read it as
@@ -124,13 +130,19 @@ export function LessonsLearnedIntroReveal() {
           stagger: 0.1,
         }
       );
+
+      setLessonsLearnedSubtitleScaleDownTl(subtitleScaleDownTl);
     }); // <- Scope!
 
     return () => {
       gsapContext.revert();
       splitIntroParagraph.revert();
+      resetLessonsLearnedSubtitleScaleDownTl();
     };
-  }, []);
+  }, [
+    setLessonsLearnedSubtitleScaleDownTl,
+    resetLessonsLearnedSubtitleScaleDownTl,
+  ]);
 
   return null;
 }

@@ -9,6 +9,7 @@ import { RocksAnimation } from './RocksAnimation';
 import { RocksLighting } from './RocksLighting';
 import { RocksStackObject } from './RocksStackObject';
 import { TurnTableMouseControlled } from './TurnTableMouseControlled';
+import { CameraAnimation } from './CameraAnimation';
 import { cn } from '@/lib/cn';
 import { animationIds } from '@/lib/constants';
 
@@ -53,6 +54,7 @@ export function Rocks3DScene({ className }: { className?: string }) {
         {showDebugCamera || (
           <>
             <RocksAnimation />
+            <CameraAnimation />
           </>
         )}
         {showDebugCamera && (

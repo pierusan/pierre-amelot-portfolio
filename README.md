@@ -2,7 +2,35 @@
 
 [![Test, Build, Deploy](https://github.com/Bierro/pierre-amelot-portfolio/actions/workflows/test-build-deploy.yml/badge.svg?branch=main)](https://github.com/Bierro/pierre-amelot-portfolio/actions/workflows/test-build-deploy.yml) [![CodeQL](https://github.com/Bierro/pierre-amelot-portfolio/actions/workflows/github-code-scanning/codeql/badge.svg?branch=main)](https://github.com/Bierro/pierre-amelot-portfolio/actions/workflows/github-code-scanning/codeql) [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/Bierro/pierre-amelot-portfolio/badge)](https://securityscorecards.dev/viewer/?uri=github.com/Bierro/pierre-amelot-portfolio)
 
-Personal portfolio.
+In this portfolio, I wanted to describe my diverse skill set, showcase projects
+I worked on, and highlight what I have been learning over the years.
+
+I wanted the website content to reflect some of my skills so I
+
+- spent some time on the UX (navigation, scroll behavior etc..)
+- designed the screens in Figma
+- incorporated a 3D scene that I designed in Spline
+- took time to set up CI
+
+# Design
+
+After some thinking on what aspects of my work I wanted to showcase, I landed
+while I was hiking on a stack of rocks representing the projects that I work on
+and that together come to shape my style as a designer, coder, and product
+owner.
+
+I sketched a rough outline of the website, bounced ideas with my wife, and
+iterated in Figma ([have a
+look](https://www.figma.com/file/2k7R21lwIc82hlPHH9BqyY/Portfolio-Pierre?type=design&node-id=633%3A226&mode=design&t=dNvK758we7VqyNq2-1)).
+I designed the 3D stack of pebbles using Spline modeling and sculpting tools
+([have a look at the
+scene](https://my.spline.design/untitled-dd331bee5e206ab1848bfa21db2ffc91/)),
+before I ported it to Three.js use the Three.js editor.
+
+I stuck with a mono font, and teal theme with very saturated highlights to have
+a modern dev look.
+
+# Run Locally
 
 Run it locally with [nvm](https://github.com/nvm-sh/nvm) installed:
 
@@ -159,6 +187,21 @@ to generate the base64 image blur placeholders myself.
 
 </details>
 
+## Shadcn
+
+<details>
+<summary>Rationale</summary>
+
+### Why I chose it
+
+- TODO: Fill
+
+### What I don't love
+
+-
+
+</details>
+
 ## SVGR
 
 <details>
@@ -217,7 +260,7 @@ to generate the base64 image blur placeholders myself.
 # TODO
 
 - Code Splitting?
-- Include Figma link
+- Include Figma and Spline Opengraph Preview
 - Some Storybook example and Jest example
 - Add Playwright tests
 - Suspense for the Three.js scene
@@ -230,3 +273,8 @@ to generate the base64 image blur placeholders myself.
   https://www.aaronmcguire.design/projects/forma
 - Text animation like DepoStudio https://www.depo.studio/ for the home page
 - Product Analytics
+- Reveal the hoverable text in the homepage with a little wiggle or something
+  like Kate's CMO article
+- Time machine with previous version of the website?
+- Multiple animated arrows at the bottom of the site
+- Credits with WithPoly, Spline, and other tools

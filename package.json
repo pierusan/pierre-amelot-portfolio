@@ -58,7 +58,7 @@
     "three": "^0.157.0",
     "typescript": "^5.2.2",
     "vercel": "^32.2.5",
-    "zustand": "^4.4.3"
+    "zustand": "^4.4.4"
   },
   "browserslist": [
     "defaults"

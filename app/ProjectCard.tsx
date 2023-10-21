@@ -53,10 +53,10 @@ const projects = {
     subtitle: 'Helping truck drivers see 360°',
     badges: {
       code: ['C++ 14', 'OpenGl', 'VTK', 'ROS', 'BigQuery', 'Data Studio'],
-      design: ['Prototyping', 'Figma', 'After Effects'],
+      design: ['Prototyping', 'Figma', 'After Effects', 'Pitch Deck'],
       research: [
         'Contextual Inquiry',
-        'Think Aloud Testing',
+        'Think-Aloud Testing',
         'Usability Testing',
         'Diary Study',
         'Typeform',
@@ -87,6 +87,36 @@ const projects = {
       'oust_da_landing',
     ],
   },
+  'nrec-ar': {
+    title: 'NREC Demining AR App',
+    subtitle: "Improving military deminers' technique using metal detectors",
+    badges: {
+      code: ['Unity', 'C#', 'HoloLens', 'Vuforia', 'Wireshark'],
+      design: ['Prototyping', 'Promotional Video'],
+      research: ['Think-Aloud Testing'],
+    },
+    mainImageUrl: 'nrec_ar_hero',
+    secondaryImageUrls: [
+      'nrec_ar_user_tests_mosaic',
+      'nrec_ar_markers_experiments_mosaic',
+      'nrec_ar_prototype_options_mosaic',
+    ],
+  },
+  hypnovr: {
+    title: "HypnoVR App Doctor's View",
+    subtitle: 'Virtual Reality for anxiety and pain management',
+    badges: {
+      code: ['Unity', 'C#', 'Oculus Rift'],
+      design: ['Low-Fidelity Wireframe'],
+      research: ['Interviews', 'Diagramming'],
+    },
+    mainImageUrl: 'hypnovr_app_selection',
+    secondaryImageUrls: [
+      'hypnovr_app_login',
+      'hypnovr_sketches',
+      'hypnovr_wireframes',
+    ],
+  },
 } satisfies Record<string, ProjectInfo>;
 
 type ProjectKey = keyof typeof projects;
@@ -101,7 +131,13 @@ export function ProjectCard({
   const project = projects[projectKey];
 
   return (
-    <article className={cn('rounded-md bg-surface', className)}>
+    <article
+      id={id}
+      className={cn(
+        'w-full max-w-paragraph-md rounded-md bg-surface',
+        className
+      )}
+    >
       <a
         className="flex flex-col gap-md p-md"
         rel="bookmark"

@@ -6,14 +6,25 @@ export function ProjectCards({ className }: { className?: string }) {
     <div
       className={cn(
         'py-[40vh]',
-        'grid grid-cols-[minmax(0,theme(width.paragraph-md))] gap-[60vh]',
-        'justify-center',
+        'grid grid-cols-1 gap-[100vh]',
+        'justify-items-center',
         className
       )}
     >
-      <ProjectCard projectKey="ouster-studio" />
-      <ProjectCard projectKey="fleetguide-surround-view" />
-      <ProjectCard projectKey="ouster-data-app" />
+      <ProjectCard
+        projectKey="ouster-studio"
+        className={cn('justify-self-start')}
+      />
+      <ProjectCard
+        projectKey="fleetguide-surround-view"
+        className={cn('justify-self-start')}
+      />
+      <ProjectCard
+        projectKey="ouster-data-app"
+        className={cn('justify-self-start')}
+      />
+      <ProjectCard projectKey="nrec-ar" className={cn('justify-self-start')} />
+      <ProjectCard projectKey="hypnovr" className={cn('justify-self-start')} />
     </div>
   );
 }

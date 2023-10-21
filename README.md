@@ -11,7 +11,7 @@ nvm install && nvm use && npm install
 npm run dev
 ```
 
-# Code Decisions
+# Implementation Decisions
 
 ## File Structure
 
@@ -189,6 +189,28 @@ to generate the base64 image blur placeholders myself.
 - Documentation sometimes feel outdated (pinSpacing default behavior is
   confusing in the docs), or unclear
 - No straightforward integration with React (e.g. no hooks)
+
+</details>
+
+## React Three Fiber
+
+<details>
+<summary>Rationale</summary>
+
+### Why I chose it
+
+- Nice to have a declarative API integrated with React to control Three.js
+- Removes some boilerplate (e.g. scene and renderer setup)
+- Lots of useful utilities with @react-three/drei which augment
+  react-three-fiber
+- leva is nicely designed UI to control react-three-fiber components
+
+### What I don't love
+
+- DREI and leva docs and support seem to be a bit hit or miss, and some
+  questions around whether the repos they are and will remain actively
+  maintained (for instance lamina, in fiber examples, has been archived, and
+  leva has a lot of input todos not addressed)
 
 </details>
 

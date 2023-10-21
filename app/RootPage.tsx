@@ -9,6 +9,7 @@ import { LessonsLearnedSection } from './LessonsLearnedSection';
 import { AboutBehindCurtainAnimation } from './AboutBehindCurtainAnimation';
 import { AboutSection } from './AboutSection';
 import { ProjectCards } from './ProjectCards';
+import { Rocks3DScene } from './Rocks3DScene';
 import { GsapPluginsRegisterer } from './GsapPluginsRegisterer';
 import { cn } from '@/lib/cn';
 import { FixedBackdrop } from '@/components/FixedBackdrop';
@@ -46,6 +47,9 @@ export function RootPage() {
           className={cn('z-0 mt-[-100vh]')}
         />
       </main>
+      <Rocks3DScene
+        className={cn('z-[15]', animationClasses.homeCurtainToPull)}
+      />
       <AboutBehindCurtainAnimation />
       {/* Dark backdrop for most of the page, lifted like a curtain at the end */}
       <FixedBackdrop

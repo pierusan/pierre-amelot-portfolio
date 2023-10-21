@@ -1,12 +1,8 @@
 'use client';
 
-import { gsap, Linear } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { gsap } from 'gsap';
 import { useLayoutEffect } from 'react';
 import { animationClasses, animationIds } from '@/lib/constants';
-
-gsap.registerPlugin(ScrollTrigger);
-gsap.defaults({ ease: Linear.easeIn });
 
 export function AboutBehindCurtainAnimation() {
   useLayoutEffect(() => {

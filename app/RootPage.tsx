@@ -11,6 +11,7 @@ import { AboutSection } from './AboutSection';
 import { ProjectCards } from './ProjectCards';
 import { Rocks3DScene } from './Rocks3DScene';
 import { GsapPluginsRegisterer } from './GsapPluginsRegisterer';
+import { LessonsLearnedIntroReveal } from './LessonsLearnedIntroReveal';
 import { cn } from '@/lib/cn';
 import { FixedBackdrop } from '@/components/FixedBackdrop';
 import { animationClasses, animationIds } from '@/lib/constants';
@@ -50,6 +51,10 @@ export function RootPage() {
       <Rocks3DScene
         className={cn('z-[15]', animationClasses.homeCurtainToPull)}
       />
+      <LessonsLearnedIntroReveal />
+      {/* Important to have the curtain animation after the lessons intro reveal so
+          the pin spacers are properly positioned and the curtain scroll trigger
+          happens at the right time */}
       <AboutBehindCurtainAnimation />
       {/* Dark backdrop for most of the page, lifted like a curtain at the end */}
       <FixedBackdrop

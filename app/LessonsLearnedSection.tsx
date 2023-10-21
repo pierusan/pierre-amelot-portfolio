@@ -1,18 +1,40 @@
-import { LessonsLearnedIntroReveal } from './LessonsLearnedIntroReveal';
 import { Icon } from '@/components/Icon';
-import { animationClasses } from '@/lib/constants';
+import { animationClasses, animationIds } from '@/lib/constants';
 import { cn } from '@/lib/cn';
 
 export function LessonsLearnedSection({ className }: { className?: string }) {
   return (
-    <article className={cn('max-w-paragraph-md py-xl', className)}>
-      <h2 className={cn('pb-md text-heading-lg')}>Lessons Learned</h2>
-      <LessonsLearnedIntroReveal />
+    <article
+      id={animationIds.homeLessonsLearnedSection}
+      className={cn('max-w-paragraph-md py-xl', className)}
+    >
+      <header className={cn('pb-md')}>
+        <h2 className={cn('pb-xs text-heading-lg')}>Lessons Learned</h2>
+        <p
+          id={animationIds.homeLessonsLearnedIntroSubtitle}
+          className={cn('text-details-xl', 'italic')}
+        >
+          <span className="text-[#666]">One</span>{' '}
+          <span className="text-[#bbb]">stone</span>{' '}
+          <span className="text-[#666]">at</span>{' '}
+          <span className="text-[#444]">a</span>{' '}
+          <span className="text-[#ccc]">time</span>{' '}
+          <span className="text-[#999]">...</span>{' '}
+        </p>
+      </header>
+      <p
+        id={animationIds.homeLessonsLearnedIntroParagraph}
+        className={cn('text-body-lg text-main-subtle')}
+      >
+        As my career progresses, so does my approach to technical issues,
+        product creation, and team dynamics. Here are some of my takeaways over
+        the years
+      </p>
       <h3
         className={cn(
           'pb-[1.5rem] pt-[3rem] text-heading-sm',
           'flex items-center gap-xs',
-          animationClasses.homeLessonsLearnedToReveal
+          animationClasses.homeLessonsLearnedMainContent
         )}
       >
         <Icon className="mt-[0.25rem]" name="terminalWindow" size="2rem" />
@@ -23,7 +45,7 @@ export function LessonsLearnedSection({ className }: { className?: string }) {
           'ml-[3.75rem] text-body-md',
           'flex flex-col gap-md',
           'list-outside [list-style-type:circle]',
-          animationClasses.homeLessonsLearnedToReveal
+          animationClasses.homeLessonsLearnedMainContent
         )}
       >
         {/* TODO: Use hover cards for extra information about when I learned */}
@@ -74,7 +96,7 @@ export function LessonsLearnedSection({ className }: { className?: string }) {
         className={cn(
           'pb-[1.5rem] pt-[3rem] text-heading-sm',
           'flex items-center gap-xs',
-          animationClasses.homeLessonsLearnedToReveal
+          animationClasses.homeLessonsLearnedMainContent
         )}
       >
         <Icon className="mt-[0.25rem]" name="palette" size="2rem" />

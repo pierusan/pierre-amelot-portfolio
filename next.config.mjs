@@ -4,6 +4,8 @@ const nextConfig = {
   // the case. Enabling it to follow the best practices from React 18 (e.g.
   // mounting components twice to catch bugs)
   reactStrictMode: true,
+  // https://docs.pmnd.rs/react-three-fiber/getting-started/installation#next.js-13.1-or-latest-version
+  transpilePackages: ['three'],
   images: {
     remotePatterns: [
       {

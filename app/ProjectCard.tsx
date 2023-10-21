@@ -124,9 +124,11 @@ type ProjectKey = keyof typeof projects;
 export function ProjectCard({
   projectKey,
   className,
+  id,
 }: {
   projectKey: ProjectKey;
   className?: string;
+  id?: string;
 }) {
   const project = projects[projectKey];
 

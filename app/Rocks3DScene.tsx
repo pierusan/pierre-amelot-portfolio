@@ -5,6 +5,7 @@ import { Leva, useControls } from 'leva';
 import { Grid, PerspectiveCamera } from '@react-three/drei';
 import { Perf } from 'r3f-perf';
 import { MathUtils, PCFSoftShadowMap } from 'three';
+import { RocksAnimation } from './RocksAnimation';
 import { RocksLighting } from './RocksLighting';
 import { RocksStackObject } from './RocksStackObject';
 import { TurnTableMouseControlled } from './TurnTableMouseControlled';
@@ -48,6 +49,12 @@ export function Rocks3DScene({ className }: { className?: string }) {
             />
           )}
         </TurnTableMouseControlled>
+        {/* When debugging the camera, turn off animations */}
+        {showDebugCamera || (
+          <>
+            <RocksAnimation />
+          </>
+        )}
         {showDebugCamera && (
           <PerspectiveCamera
             makeDefault

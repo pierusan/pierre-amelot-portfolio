@@ -9,6 +9,7 @@ import { LessonsLearnedSection } from './LessonsLearnedSection';
 import { AboutBehindCurtainAnimation } from './AboutBehindCurtainAnimation';
 import { AboutSection } from './AboutSection';
 import { ProjectCards } from './ProjectCards';
+import { GsapPluginsRegisterer } from './GsapPluginsRegisterer';
 import { cn } from '@/lib/cn';
 import { FixedBackdrop } from '@/components/FixedBackdrop';
 import { animationClasses, animationIds } from '@/lib/constants';
@@ -28,6 +29,7 @@ export function RootPage() {
       {/* Below Curtain with About section */}
       <DesktopContactLinks variant="strong" className={cn('z-0')} />
       <DesktopBackToTopButton className={cn('z-0')} />
+      <GsapPluginsRegisterer />
       <main
         className={cn(
           'px-md md:px-xl xl:px-[clamp(theme(padding.xl),11.875vw,theme(padding.2xl))]',

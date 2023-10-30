@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Route } from 'next';
 import resolveConfig from 'tailwindcss/resolveConfig';
 import styles from './projectCard.module.css';
 import { Badge } from '@/components/Badge';
@@ -153,7 +154,7 @@ export function ProjectCard({
         <Link
           className="flex flex-col gap-md p-md"
           rel="bookmark"
-          href={`/${projectKey}`}
+          href={`/${projectKey}` as Route}
         >
           <header className="flex flex-col gap-3xs pb-sm">
             <h2 className="text-heading-md">{project.title}</h2>

@@ -32,7 +32,8 @@
         "cases": {
           "camelCase": true, // Regular TS
           "pascalCase": true // Components
-        }
+        },
+        "ignore": [".d.ts$"]
       }
     ],
     "no-console": ["warn", { "allow": ["warn", "error"] }],
@@ -63,6 +64,17 @@
             "propName": "placeholder",
             "disallowedFor": ["RemoteImage"],
             "message": "Images should have a blurred placeholder in production"
+          }
+        ]
+      }
+    ],
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": [
+          {
+            "group": ["*.css", "!*.module.css"],
+            "message": "Prefer CSS modules or styled-components to raw .css stylesheet imports"
           }
         ]
       }

@@ -9,15 +9,15 @@ import { LessonsLearnedSection } from './LessonsLearnedSection';
 import { AboutBehindCurtainAnimation } from './AboutBehindCurtainAnimation';
 import { AboutSection } from './AboutSection';
 import { ProjectCards } from './ProjectCards';
-import { Rocks3DScene } from './Rocks3DScene';
 import { GsapPluginsRegisterer } from './GsapPluginsRegisterer';
+import { Rocks3DScene } from './Rocks3DScene';
 import { LessonsLearnedIntroReveal } from './LessonsLearnedIntroReveal';
 import { NavLinkActiveOnScroll } from './NavLinkActiveOnScroll';
 import { cn } from '@/cn';
 import { FixedBackdrop } from '@/components/FixedBackdrop';
 import { animationClasses, animationIds, navIds } from '@/constants';
 
-export function RootPage() {
+export function HomePage() {
   return (
     <>
       {/* At the top so that all other components can use gsap */}

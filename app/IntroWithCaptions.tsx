@@ -2,6 +2,7 @@
 
 import { type ReactNode, useState } from 'react';
 import { cn } from '@/lib/cn';
+import { navIds } from '@/lib/constants';
 
 const captions = {
   swEngineer: (
@@ -138,6 +139,7 @@ export function IntroWithCaptions({ className }: { className?: string }) {
 
   return (
     <div
+      id={navIds.intro}
       className={cn(
         'pt-[8rem] md:pt-[clamp(8rem,16.5vw,theme(padding.xl))]',
         // On large screens, take the full width with captions on the side, On

@@ -36,7 +36,7 @@ export function Rocks3DScene({ className }: { className?: string }) {
   return (
     <div
       id={animationIds.home3DContainer}
-      className={cn('fixed top-0 h-screen w-full', className)}
+      className={cn('fixed top-0 h-screen w-screen', className)}
     >
       <Canvas shadows={{ type: PCFSoftShadowMap }} camera={{ fov: 60 }}>
         <TurnTableMouseControlled speedX={1} speedY={0.2}>

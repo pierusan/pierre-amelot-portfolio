@@ -47,11 +47,20 @@ const config: Config = {
       highlight: {
         DEFAULT: primitiveColors.teal[700],
       },
+      action: {
+        subtle: {
+          DEFAULT: primitiveColors.teal[950],
+          hover: '#0b2c2a', //TODO: Use primitive?
+        },
+      },
     },
     borderColor: {
       action: {
         DEFAULT: primitiveColors.teal[400],
-        subtle: primitiveColors.teal[700],
+        subtle: {
+          DEFAULT: primitiveColors.teal[700],
+          hover: primitiveColors.teal[500],
+        },
       },
     },
 

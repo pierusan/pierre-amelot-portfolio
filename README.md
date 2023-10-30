@@ -278,3 +278,5 @@ to generate the base64 image blur placeholders myself.
 - Time machine with previous version of the website?
 - Multiple animated arrows at the bottom of the site
 - Credits with WithPoly, Spline, and other tools
+- Add code coverage tests?
+- Console message: Like what you see? Reach out! with Ascii art

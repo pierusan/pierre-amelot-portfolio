@@ -1,8 +1,8 @@
 import { type CSSProperties } from 'react';
-import { cn } from '@/lib/cn';
+import { cn } from '@/cn';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/Popover';
 import { Icon } from '@/components/Icon';
-import { navIds } from '@/lib/constants';
+import { navIds } from '@/constants';
 
 type Ellipse = { cx: number; cy: number; rx: number; ry: number };
 

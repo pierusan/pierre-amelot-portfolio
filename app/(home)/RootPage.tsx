@@ -13,9 +13,9 @@ import { Rocks3DScene } from './Rocks3DScene';
 import { GsapPluginsRegisterer } from './GsapPluginsRegisterer';
 import { LessonsLearnedIntroReveal } from './LessonsLearnedIntroReveal';
 import { NavLinkActiveOnScroll } from './NavLinkActiveOnScroll';
-import { cn } from '@/lib/cn';
+import { cn } from '@/cn';
 import { FixedBackdrop } from '@/components/FixedBackdrop';
-import { animationClasses, animationIds, navIds } from '@/lib/constants';
+import { animationClasses, animationIds, navIds } from '@/constants';
 
 export function RootPage() {
   return (

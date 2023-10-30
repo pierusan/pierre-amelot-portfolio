@@ -3,7 +3,7 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useLayoutEffect } from 'react';
-import { navIds } from '@/lib/constants';
+import { navIds } from '@/constants';
 
 // Scroll animation highlighting the nav link which is currently in view as the
 // user scrolls

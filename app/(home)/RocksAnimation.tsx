@@ -4,7 +4,7 @@ import { gsap, Power3 } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useLayoutEffect } from 'react';
 import { useThree } from '@react-three/fiber';
-import { animationIds } from '@/lib/constants';
+import { animationIds } from '@/constants';
 
 const nRocks = animationIds.homeProjects.length;
 

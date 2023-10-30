@@ -10,8 +10,8 @@ import { RocksLighting } from './RocksLighting';
 import { RocksStackObject } from './RocksStackObject';
 import { TurnTableMouseControlled } from './TurnTableMouseControlled';
 import { CameraAnimation } from './CameraAnimation';
-import { cn } from '@/lib/cn';
-import { animationIds } from '@/lib/constants';
+import { cn } from '@/cn';
+import { animationIds } from '@/constants';
 
 // Set to true to debug and edit the scene
 const showSceneControls = false;

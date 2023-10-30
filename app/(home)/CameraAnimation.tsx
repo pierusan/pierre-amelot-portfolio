@@ -4,8 +4,8 @@ import { useLayoutEffect } from 'react';
 import { gsap, Power1 } from 'gsap';
 import { useThree } from '@react-three/fiber';
 import { Euler, MathUtils, Vector3 } from 'three';
-import { useAnimationStore } from './store';
-import { animationIds } from '@/lib/constants';
+import { useAnimationStore } from '@/store';
+import { animationIds } from '@/constants';
 
 type Transform = { position: Vector3; rotation: Euler };
 type CameraKeyFrame = Transform & { startTs?: number; duration: number };

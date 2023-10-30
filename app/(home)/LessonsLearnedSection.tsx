@@ -1,6 +1,6 @@
 import { Icon } from '@/components/Icon';
-import { animationClasses, animationIds } from '@/lib/constants';
-import { cn } from '@/lib/cn';
+import { animationClasses, animationIds } from '@/constants';
+import { cn } from '@/cn';
 
 export function LessonsLearnedSection({ className }: { className?: string }) {
   return (

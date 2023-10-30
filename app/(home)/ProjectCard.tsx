@@ -4,8 +4,8 @@ import resolveConfig from 'tailwindcss/resolveConfig';
 import styles from './projectCard.module.css';
 import { Badge } from '@/components/Badge';
 import { RemoteImage, type RemoteImageId } from '@/components/RemoteImage';
-import { cn } from '@/lib/cn';
-import tailwindConfig from '@/tailwind.config';
+import { cn } from '@/cn';
+import tailwindConfig from '@configs/tailwind.config';
 
 const widths = resolveConfig(tailwindConfig).theme?.width;
 const projectCardMaxWidth = widths?.['paragraph-md'];

@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { type ComponentProps } from 'react';
-import { cn } from '@/lib/cn';
+import { cn } from '@/cn';
 
 type ImageProps = ComponentProps<typeof Image>;
 type RemoteImageProps = Required<

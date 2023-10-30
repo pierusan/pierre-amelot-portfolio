@@ -1,3 +1,5 @@
+import Link from 'next/link';
+import { Route } from 'next';
 import resolveConfig from 'tailwindcss/resolveConfig';
 import styles from './projectCard.module.css';
 import { Badge } from '@/components/Badge';
@@ -88,7 +90,7 @@ const projects = {
     ],
   },
   'nrec-ar': {
-    title: 'NREC Demining AR App',
+    title: 'Demining in AR',
     subtitle: "Improving military deminers' technique using metal detectors",
     badges: {
       code: ['Unity', 'C#', 'HoloLens', 'Vuforia', 'Wireshark'],
@@ -125,85 +127,101 @@ export function ProjectCard({
   projectKey,
   className,
   id,
+  navId,
 }: {
   projectKey: ProjectKey;
   className?: string;
   id?: string;
+  navId?: string;
 }) {
   const project = projects[projectKey];
 
   return (
-    <article
-      id={id}
-      className={cn(
-        'w-full max-w-paragraph-md rounded-md bg-surface',
-        className
-      )}
+    // Wrap in div to better control where the navigation will scroll to thanks
+    // to the padding
+    <div
+      className={cn('w-full max-w-paragraph-md py-md', className)}
+      id={navId}
     >
-      <a
-        className="flex flex-col gap-md p-md"
-        rel="bookmark"
-        href={`/${projectKey}`}
+      <article
+        id={id}
+        className={cn(
+          'rounded-md border transition-colors',
+          'bg-action-subtle',
+          'border-action-subtle',
+          'hover:border-action-subtle-hover hover:bg-action-subtle-hover'
+        )}
       >
-        <header className="flex flex-col gap-3xs pb-sm">
-          <h2 className="text-heading-md">{project.title}</h2>
-          <p className="text-body-md">{project.subtitle}</p>
-        </header>
-        {Object.entries(project.badges).map(([tagName, badges]) => (
-          <dl className="flex items-center gap-xs " key={tagName}>
-            <dt className="text-details-md font-details uppercase tracking-wider">
-              {tagName}
-            </dt>
-            <dd>
-              <ul className="flex flex-wrap gap-xs">
-                {badges.map((tag) => (
-                  <li key={tag}>
-                    <Badge>{tag}</Badge>
-                  </li>
-                ))}
-              </ul>
-            </dd>
-          </dl>
-        ))}
-        <ul
-          className={cn(
-            'mx-[-1rem] mb-[-1rem] grid grid-cols-3 gap-y-xs md:m-0',
-            // Keep complex CSS logic in module for more readability
-            styles['preview-secondary-images-in-main-slot-on-hover']
-          )}
+        <Link
+          className="flex flex-col gap-md p-md"
+          rel="bookmark"
+          href={`/${projectKey}` as Route}
         >
-          <li className={cn('relative col-span-3 aspect-video')}>
-            <RemoteImage
-              fill
-              id={project.mainImageUrl}
-              sizes={projectCardMaxWidth}
-            />
-            {/* Preview of secondary images in the main slot, revealed on hover */}
-            {project.secondaryImageUrls.map((id) => (
-              <RemoteImage fill key={id} id={id} sizes={projectCardMaxWidth} />
-            ))}
-          </li>
-          {project.secondaryImageUrls.map((id) => (
-            <li
-              // Padding between images so hover interaction is smooth when
-              // mouse runs across them
-              className={cn(
-                'aspect-video px-[0.325rem] last:pr-0 [&:nth-child(2)]:pl-0'
-              )}
-              key={id}
-            >
-              {/* Intermediate div so the padding is respected */}
-              <div className={cn('relative h-full w-full')}>
-                <RemoteImage
-                  id={id}
-                  fill
-                  sizes={`calc(${projectCardMaxWidth} / 3)`}
-                />
-              </div>
-            </li>
+          <header className="flex flex-col gap-3xs pb-sm">
+            <h2 className="text-heading-md">{project.title}</h2>
+            <p className="text-body-md">{project.subtitle}</p>
+          </header>
+          {Object.entries(project.badges).map(([tagName, badges]) => (
+            <dl className="flex items-center gap-xs " key={tagName}>
+              <dt className="text-details-md font-details uppercase tracking-wider">
+                {tagName}
+              </dt>
+              <dd>
+                <ul className="flex flex-wrap gap-xs">
+                  {badges.map((tag) => (
+                    <li key={tag}>
+                      <Badge>{tag}</Badge>
+                    </li>
+                  ))}
+                </ul>
+              </dd>
+            </dl>
           ))}
-        </ul>
-      </a>
-    </article>
+          <ul
+            className={cn(
+              'mx-[-1rem] mb-[-1rem] grid grid-cols-3 gap-y-xs md:m-0',
+              // Keep complex CSS logic in module for more readability
+              styles['preview-secondary-images-in-main-slot-on-hover']
+            )}
+          >
+            <li className={cn('relative col-span-3 aspect-video')}>
+              <RemoteImage
+                fill
+                id={project.mainImageUrl}
+                sizes={projectCardMaxWidth}
+              />
+              {/* Preview of secondary images in the main slot, revealed on hover */}
+              {project.secondaryImageUrls.map((id) => (
+                <RemoteImage
+                  fill
+                  key={id}
+                  id={id}
+                  sizes={projectCardMaxWidth}
+                />
+              ))}
+            </li>
+            {project.secondaryImageUrls.map((id) => (
+              <li
+                // Padding between images so hover interaction is smooth when
+                // mouse runs across them
+                className={cn(
+                  'aspect-video px-[0.325rem] last:pr-0 [&:nth-child(2)]:pl-0'
+                )}
+                key={id}
+              >
+                {/* Intermediate div so the padding is respected */}
+                <div className={cn('relative h-full w-full')}>
+                  <RemoteImage
+                    id={id}
+                    fill
+                    sizes={`calc(${projectCardMaxWidth} / 3)`}
+                  />
+                </div>
+              </li>
+            ))}
+          </ul>
+        </Link>
+      </article>
+    </div>
   );
 }

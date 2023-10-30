@@ -6,7 +6,7 @@ import resolveConfig from 'tailwindcss/resolveConfig';
 import { type RecursiveKeyValuePair } from 'tailwindcss/types/config';
 import { useLayoutEffect } from 'react';
 import { useAnimationStore } from './store';
-import { animationClasses, animationIds } from '@/lib/constants';
+import { animationClasses, animationIds, navIds } from '@/lib/constants';
 import tailwindConfig from '@/tailwind.config';
 
 const textColors = resolveConfig(tailwindConfig).theme?.textColor;
@@ -133,6 +133,15 @@ export function LessonsLearnedIntroReveal() {
 
       setLessonsLearnedSubtitleScaleDownTl(subtitleScaleDownTl);
     }); // <- Scope!
+
+    // Add the 'lessons learned' nav target link to the pin spacer that gsap has
+    // created around the lessons learned section. This will make sure the nav
+    // links are highlighted properly and scroll to the expected location
+    document
+      .querySelector(
+        `.pin-spacer:has(>#${animationIds.homeLessonsLearnedSection})`
+      )
+      ?.setAttribute('id', navIds.rocks['lessons-learned']);
 
     return () => {
       gsapContext.revert();

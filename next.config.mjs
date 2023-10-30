@@ -16,6 +16,9 @@ const nextConfig = {
       },
     ],
   },
+  experimental: {
+    typedRoutes: true,
+  },
   // The svgr docs don't seem to work with latest Next so we're using the fix
   // mentioned here:
   // https://github.com/vercel/next.js/issues/48177#issuecomment-1557354538

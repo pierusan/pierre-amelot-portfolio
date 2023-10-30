@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-restricted-imports
 import './globals.css';
 import type { Metadata } from 'next';
 import { Space_Mono } from 'next/font/google';

@@ -99,7 +99,7 @@ export function LessonsLearnedSection({ className }: { className?: string }) {
           animationClasses.homeLessonsLearnedMainContent
         )}
       >
-        <Icon className="mt-[0.25rem]" name="palette" size="2rem" />
+        <Icon className="mt-[0.25rem]" name="layout" size="2rem" />
         <span>Design</span>
       </h3>
     </article>

@@ -14,6 +14,8 @@ import {
 import { TerminalWindow } from '@phosphor-icons/react/dist/ssr/index';
 // Lucide
 import { Palette } from 'lucide-react';
+// Feather
+import { Layout } from 'react-feather';
 // Custom
 import YoutubeIconSVG from './svgs/YoutubeIcon.svg';
 
@@ -34,6 +36,8 @@ const phosphorIcons = { terminalWindow: TerminalWindow } as const;
 
 const lucideIcons = { palette: Palette } as const;
 
+const featherIcons = { layout: Layout } as const;
+
 const customIcons = { youtube: YoutubeIconSVG } as const;
 
 const icons = {
@@ -41,6 +45,7 @@ const icons = {
   ...radixIcons,
   ...phosphorIcons,
   ...lucideIcons,
+  ...featherIcons,
   ...customIcons,
 } as const;
 export type IconName = keyof typeof icons;
@@ -63,7 +68,7 @@ export function Icon({
 
   // Lucide icons sometimes uses stroke instead of fill and already applies
   // stroke="currentColor"
-  if (!(name in lucideIcons)) {
+  if (!(name in lucideIcons || name in featherIcons)) {
     extraProps.fill = 'currentColor';
   }
 

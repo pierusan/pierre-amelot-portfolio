@@ -10,7 +10,7 @@ import { AboutBehindCurtainAnimation } from './AboutBehindCurtainAnimation';
 import { AboutSection } from './AboutSection';
 import { ProjectCards } from './ProjectCards';
 import { GsapPluginsRegisterer } from './GsapPluginsRegisterer';
-import { Rocks3DScene } from './Rocks3DScene';
+import { Rocks3DScene } from './_3D/Rocks3DScene';
 import { LessonsLearnedIntroReveal } from './LessonsLearnedIntroReveal';
 import { NavLinkActiveOnScroll } from './NavLinkActiveOnScroll';
 import { cn } from '@/cn';

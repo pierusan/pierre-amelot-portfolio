@@ -3,7 +3,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Space_Mono } from 'next/font/google';
 import { type ReactNode } from 'react';
-import { cn } from '@/lib/cn';
+import { cn } from '@/cn';
 
 const spaceMono = Space_Mono({
   subsets: ['latin'],

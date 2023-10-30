@@ -2,7 +2,7 @@
 
 import { gsap } from 'gsap';
 import { useLayoutEffect } from 'react';
-import { animationClasses, animationIds } from '@/lib/constants';
+import { animationClasses, animationIds } from '@/constants';
 
 export function AboutBehindCurtainAnimation() {
   useLayoutEffect(() => {

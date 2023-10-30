@@ -1,6 +1,6 @@
 import { ProjectCard } from './ProjectCard';
-import { animationIds, navIds } from '@/lib/constants';
-import { cn } from '@/lib/cn';
+import { animationIds, navIds } from '@/constants';
+import { cn } from '@/cn';
 
 export function ProjectCards({ className }: { className?: string }) {
   return (

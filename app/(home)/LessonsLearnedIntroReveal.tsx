@@ -5,9 +5,9 @@ import { gsap, Power1 } from 'gsap';
 import resolveConfig from 'tailwindcss/resolveConfig';
 import { type RecursiveKeyValuePair } from 'tailwindcss/types/config';
 import { useLayoutEffect } from 'react';
-import { useAnimationStore } from './store';
-import { animationClasses, animationIds, navIds } from '@/lib/constants';
-import tailwindConfig from '@/tailwind.config';
+import { useAnimationStore } from '@/store';
+import { animationClasses, animationIds, navIds } from '@/constants';
+import tailwindConfig from '@configs/tailwind.config';
 
 const textColors = resolveConfig(tailwindConfig).theme?.textColor;
 const textColorMain =

@@ -1,4 +1,4 @@
-import { cn } from '@/lib/cn';
+import { cn } from '@/cn';
 
 // Gradient bg going from top to bottom of the screen and not of the whole page
 // to better see color progression on screen

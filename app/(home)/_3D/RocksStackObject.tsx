@@ -3,7 +3,7 @@ import { useControls } from 'leva';
 import { useGLTF } from '@react-three/drei';
 import { type GLTF } from 'three-stdlib';
 import { MathUtils, Mesh } from 'three';
-import { animationIds } from '@/lib/constants';
+import { animationIds } from '@/constants';
 
 const rocksStackGLTFUrl =
   'https://storage.googleapis.com/pierre-portfolio-assets/pierre-portfolio-v2/rocks_stack.gltf';

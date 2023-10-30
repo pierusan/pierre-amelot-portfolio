@@ -1,8 +1,8 @@
 'use client';
 
 import { type ReactNode, useState } from 'react';
-import { cn } from '@/lib/cn';
-import { navIds } from '@/lib/constants';
+import { cn } from '@/cn';
+import { navIds } from '@/constants';
 
 const captions = {
   swEngineer: (

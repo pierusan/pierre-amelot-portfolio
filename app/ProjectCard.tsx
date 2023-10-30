@@ -147,7 +147,8 @@ export function ProjectCard({
         id={id}
         className={cn(
           'rounded-md border transition-colors',
-          'bg-action-subtle border-action-subtle',
+          'bg-action-subtle',
+          'border-action-subtle',
           'hover:border-action-subtle-hover hover:bg-action-subtle-hover'
         )}
       >

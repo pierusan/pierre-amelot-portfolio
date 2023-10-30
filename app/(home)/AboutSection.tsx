@@ -1,7 +1,7 @@
 import { type ReactNode } from 'react';
 import { cn } from '@/cn';
 import { Icon } from '@/components/Icon';
-import { RemoteImage, type RemoteImageId } from '@/components/RemoteImage';
+import { RemoteImage, type RemoteImageName } from '@/components/RemoteImage';
 
 // https://tailwindcss.com/docs/content-configuration#dynamic-class-names
 const profileImageWidth = '223px';
@@ -10,7 +10,7 @@ const timelineImageWidth = '40px';
 const twGridColsTimeline = `grid-cols-[40px_1fr]`;
 
 type TimelineItem = {
-  logo: RemoteImageId;
+  logo: RemoteImageName;
   name: string;
   city: string;
   year: number;
@@ -139,7 +139,7 @@ function Timeline() {
         >
           <aside className={cn('flex flex-col text-body-md text-main-subtle')}>
             <RemoteImage
-              id={item.logo}
+              name={item.logo}
               className="mb-[0.5rem]"
               sizes={`${timelineImageWidth}`}
             />
@@ -173,13 +173,13 @@ function AboutPicture({ className }: { className?: string }) {
       )}
     >
       <RemoteImage
-        id="profile_pic_hiking"
+        name="profile_pic_hiking"
         className={cn('[grid-column:1] [grid-row:1]')}
         sizes={`${profileImageWidth}`}
       />
       {/* Overlayed hidden on hover */}
       <RemoteImage
-        id="profile_pic_red_bg"
+        name="profile_pic_red_bg"
         className={cn('transition-opacity [grid-column:1] [grid-row:1]')}
         sizes={`${profileImageWidth}`}
       />

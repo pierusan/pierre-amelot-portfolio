@@ -3,7 +3,7 @@ import { Route } from 'next';
 import resolveConfig from 'tailwindcss/resolveConfig';
 import styles from './projectCard.module.css';
 import { Badge } from '@/components/Badge';
-import { RemoteImage, type RemoteImageId } from '@/components/RemoteImage';
+import { RemoteImage, type RemoteImageName } from '@/components/RemoteImage';
 import { cn } from '@/cn';
 import tailwindConfig from '@configs/tailwind.config';
 
@@ -14,8 +14,8 @@ type ProjectInfo = {
   title: string;
   subtitle: string;
   badges: { code?: string[]; design?: string[]; research?: string[] };
-  mainImageUrl: RemoteImageId;
-  secondaryImageUrls: [RemoteImageId, RemoteImageId, RemoteImageId];
+  mainImage: RemoteImageName;
+  secondaryImages: [RemoteImageName, RemoteImageName, RemoteImageName];
 };
 
 const projects = {
@@ -43,8 +43,8 @@ const projects = {
       ],
       research: ['Competitive Analysis', 'Interviews', 'Usability Testing'],
     },
-    mainImageUrl: 'oust_studio_viz_home',
-    secondaryImageUrls: [
+    mainImage: 'oust_studio_viz_home',
+    secondaryImages: [
       'oust_studio_low_fi_viz_recording_menu',
       'oust_studio_design_system_button',
       'oust_studio_storybook_interaction_test',
@@ -65,10 +65,10 @@ const projects = {
         'Product Analytics',
       ],
     },
-    mainImageUrl: 'fg_surr_camera_views',
-    // mainImageUrl: 'fg_surr_cover_image',
-    // mainImageUrl: 'fg_surr_overview_slide',
-    secondaryImageUrls: [
+    mainImage: 'fg_surr_camera_views',
+    // mainImage: 'fg_surr_cover_image',
+    // mainImage: 'fg_surr_overview_slide',
+    secondaryImages: [
       'fg_surr_prototypes_2',
       'fg_surr_think_aloud',
       'fg_surr_embedded_code',
@@ -82,8 +82,8 @@ const projects = {
       design: ['Figma', 'Prototyping'],
       research: ['Interviews', 'Usability Testing'],
     },
-    mainImageUrl: 'oust_da_near_ir_viz_only',
-    secondaryImageUrls: [
+    mainImage: 'oust_da_near_ir_viz_only',
+    secondaryImages: [
       'oust_da_magma_range',
       'oust_da_shortcuts_2',
       'oust_da_landing',
@@ -97,8 +97,8 @@ const projects = {
       design: ['Prototyping', 'Promotional Video'],
       research: ['Think-Aloud Testing'],
     },
-    mainImageUrl: 'nrec_ar_hero',
-    secondaryImageUrls: [
+    mainImage: 'nrec_ar_hero',
+    secondaryImages: [
       'nrec_ar_user_tests_mosaic',
       'nrec_ar_markers_experiments_mosaic',
       'nrec_ar_prototype_options_mosaic',
@@ -112,8 +112,8 @@ const projects = {
       design: ['Low-Fidelity Wireframe'],
       research: ['Interviews', 'Diagramming'],
     },
-    mainImageUrl: 'hypnovr_app_selection',
-    secondaryImageUrls: [
+    mainImage: 'hypnovr_app_selection',
+    secondaryImages: [
       'hypnovr_app_login',
       'hypnovr_sketches',
       'hypnovr_wireframes',
@@ -187,32 +187,32 @@ export function ProjectCard({
             <li className={cn('relative col-span-3 aspect-video')}>
               <RemoteImage
                 fill
-                id={project.mainImageUrl}
+                name={project.mainImage}
                 sizes={projectCardMaxWidth}
               />
               {/* Preview of secondary images in the main slot, revealed on hover */}
-              {project.secondaryImageUrls.map((id) => (
+              {project.secondaryImages.map((secondaryImageName) => (
                 <RemoteImage
                   fill
-                  key={id}
-                  id={id}
+                  key={secondaryImageName}
+                  name={secondaryImageName}
                   sizes={projectCardMaxWidth}
                 />
               ))}
             </li>
-            {project.secondaryImageUrls.map((id) => (
+            {project.secondaryImages.map((secondaryImageName) => (
               <li
                 // Padding between images so hover interaction is smooth when
                 // mouse runs across them
                 className={cn(
                   'aspect-video px-[0.325rem] last:pr-0 [&:nth-child(2)]:pl-0'
                 )}
-                key={id}
+                key={secondaryImageName}
               >
                 {/* Intermediate div so the padding is respected */}
                 <div className={cn('relative h-full w-full')}>
                   <RemoteImage
-                    id={id}
+                    name={secondaryImageName}
                     fill
                     sizes={`calc(${projectCardMaxWidth} / 3)`}
                   />

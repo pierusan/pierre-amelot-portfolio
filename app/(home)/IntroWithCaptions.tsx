@@ -20,6 +20,7 @@ import cursorReact from './cursors/cursor_react_logo_with_bg_30.png';
 import cursorCalifornia from './cursors/cursor_california_flag_36.jpg';
 import cursorUnity from './cursors/cursor_unity_logo_30.png';
 import cursorWarming from './cursors/cursor_warming_stripes_42.jpg';
+import captionStyles from './caption.module.css';
 import { cn } from '@/cn';
 import { navIds } from '@/constants';
 
@@ -34,7 +35,6 @@ function CaptionLineStartingDot() {
       height={dotSize}
       viewBox="0 0 10 10"
       fill="currentColor"
-      className={cn('[fill:theme(borderColor.action.DEFAULT)]')}
     >
       <circle cx="5" cy="5" r="5" />
     </svg>
@@ -130,7 +130,8 @@ function CaptionedText({
               'absolute',
               // TODO: Tweak this based on screen size?
               'min-w-aside-sm max-w-aside-md',
-              'text-body-md text-main'
+              'text-body-md text-main',
+              captionStyles.caption
             )}
             style={{
               top: captionY,
@@ -144,58 +145,64 @@ function CaptionedText({
             {/* Just for floating UI to run the computations. We use the coordinates below */}
             <div ref={captionLineEndRef} />
           </aside>
-          {/* Dot */}
-          <div
-            ref={dotRefs.setFloating}
-            className={cn('absolute')}
-            style={dotStyles}
-          >
-            <CaptionLineStartingDot />
+          {/*  */}
+          <div className={cn('inline', captionStyles['caption-line'])}>
+            {/* Dot */}
+            <div
+              ref={dotRefs.setFloating}
+              className={cn(
+                'absolute text-[theme(borderColor.action.DEFAULT)]'
+              )}
+              style={dotStyles}
+            >
+              <CaptionLineStartingDot />
+            </div>
+            {/* Lines going from dot to the caption */}
+            <div
+              className={cn('absolute border-l border-action')}
+              style={{
+                left: dotX + dotSize / 2,
+                ...(dotIsOnTop
+                  ? { top: 0, bottom: `calc(100% - ${dotY + dotSize / 2}px)` }
+                  : { top: dotY + dotSize / 2, bottom: 0 }),
+              }}
+            />
+            <div
+              className={cn('absolute border-t border-action')}
+              style={{
+                left: dotX + dotSize / 2,
+                right: 0,
+                ...(dotIsOnTop
+                  ? { top: Math.min(0, dotY + dotSize / 2) }
+                  : {
+                      bottom: `min(0px,calc(100% - ${dotY + dotSize / 2}px))`,
+                    }),
+              }}
+            />
+            <div
+              className={cn('absolute border-l border-action')}
+              style={{
+                right: 0,
+                ...(dotIsOnTop
+                  ? {
+                      top: Math.min(0, dotY + dotSize / 2),
+                      bottom: `calc(100% - ${captionLineEndY + captionY}px)`,
+                    }
+                  : {
+                      top: captionLineEndY + captionY,
+                      bottom: `min(0px,calc(100% - ${dotY + dotSize / 2}px))`,
+                    }),
+              }}
+            />
+            <div
+              className={cn('absolute border-t border-action')}
+              style={{
+                right: `-${gapTextCaptions - 16}px`,
+                width: `${gapTextCaptions - 16}px`,
+                top: captionLineEndY + captionY,
+              }}
+            />
           </div>
-          {/* Lines going from dot to the caption */}
-          <div
-            className={cn('absolute border-l border-action')}
-            style={{
-              left: dotX + dotSize / 2,
-              ...(dotIsOnTop
-                ? { top: 0, bottom: `calc(100% - ${dotY + dotSize / 2}px)` }
-                : { top: dotY + dotSize / 2, bottom: 0 }),
-            }}
-          />
-          <div
-            className={cn('absolute border-t border-action')}
-            style={{
-              left: dotX + dotSize / 2,
-              right: 0,
-              ...(dotIsOnTop
-                ? { top: Math.min(0, dotY + dotSize / 2) }
-                : { bottom: `min(0px,calc(100% - ${dotY + dotSize / 2}px))` }),
-            }}
-          />
-          <div
-            className={cn('absolute border-l border-action')}
-            style={{
-              right: 0,
-              ...(dotIsOnTop
-                ? {
-                    top: Math.min(0, dotY + dotSize / 2),
-                    bottom: `calc(100% - ${captionLineEndY + captionY}px)`,
-                  }
-                : {
-                    top: captionLineEndY + captionY,
-                    bottom: `min(0px,calc(100% - ${dotY + dotSize / 2}px))`,
-                  }),
-            }}
-          />
-          <div
-            className={cn('absolute border-t border-action')}
-            style={{
-              right: 0,
-              width: `${gapTextCaptions - 16}px`,
-              top: captionLineEndY + captionY,
-              transform: 'translateX(100%)',
-            }}
-          />
         </>
       )}
     </>

@@ -1,0 +1,81 @@
+.caption-line {
+  > div {
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+  }
+
+  --anim-1: 30ms;
+  --anim-2: 100ms;
+  --anim-3: 50ms;
+  --anim-4: 70ms;
+
+  /* Dot -> Top */
+  > div:nth-of-type(2) {
+    transform-origin: bottom center;
+    transform: scale(1, 0);
+    animation-name: vertical-grow;
+    animation-duration: var(--anim-1);
+  }
+
+  /* Top -> Right Edge */
+  > div:nth-of-type(3) {
+    transform-origin: left center;
+    transform: scale(0, 1);
+    animation-name: horizontal-grow;
+    animation-delay: var(--anim-1);
+    animation-duration: var(--anim-2);
+  }
+
+  /* Right Edge Top -> Down */
+  > div:nth-of-type(4) {
+    transform-origin: top center;
+    transform: scale(1, 0);
+    animation-name: vertical-grow;
+    animation-delay: calc(var(--anim-1) + var(--anim-2));
+    animation-duration: var(--anim-3);
+  }
+
+  /* Right Edge -> Caption */
+  > div:nth-of-type(5) {
+    transform-origin: left center;
+    transform: scale(0, 1);
+    animation-name: horizontal-grow;
+    animation-delay: calc(var(--anim-1) + var(--anim-2) + var(--anim-3));
+    animation-duration: var(--anim-4);
+  }
+}
+
+.caption {
+  opacity: 0;
+  animation-name: fade-in;
+  animation-duration: 250ms;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}
+
+@keyframes horizontal-grow {
+  0% {
+    transform: scale(0, 1);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+@keyframes vertical-grow {
+  0% {
+    transform: scale(1, 0);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100;
+  }
+}

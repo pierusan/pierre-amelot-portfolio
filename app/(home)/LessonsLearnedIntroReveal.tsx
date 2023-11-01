@@ -80,6 +80,8 @@ export function LessonsLearnedIntroReveal() {
           scale: 1.75,
           translateY: '300%',
           duration: 0.5,
+          // Prevent paragraph from overflowing due to the added scale
+          width: 'calc(100%/1.75)',
         })
         .to(
           // Change the color in a separate selector due to CSS specificity

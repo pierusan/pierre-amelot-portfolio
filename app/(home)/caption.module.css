@@ -1,3 +1,24 @@
+.captioned-text {
+  /* highlight the text before JS has loaded */
+  &:not(:has(> div)) {
+    @apply bg-surface;
+  }
+
+  /* Once JS is loaded and inner divs have been added to the text, start the
+     bouncing animation */
+  & > div {
+    @apply bg-surface;
+    transform-origin: center left;
+    transform: scale(1, 1);
+    animation-name: scale-easeInBounce;
+    animation-timing-function: linear;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    /* Below the span to mimic highlight */
+    z-index: -10;
+  }
+}
+
 .caption-line {
   > div {
     animation-fill-mode: forwards;
@@ -77,5 +98,48 @@
   }
   100% {
     opacity: 100;
+  }
+}
+
+/* https://easings.net/#easeInBounce */
+@keyframes scale-easeInBounce {
+  0% {
+    transform: scale(1, 1);
+  }
+
+  4% {
+    transform: scale(0.98, 1);
+  }
+
+  8% {
+    transform: scale(0.99, 1);
+  }
+
+  18% {
+    transform: scale(0.94, 1);
+  }
+
+  26% {
+    transform: scale(0.98, 1);
+  }
+
+  46% {
+    transform: scale(0.75, 1);
+  }
+
+  64% {
+    transform: scale(0.98, 1);
+  }
+
+  76% {
+    transform: scale(0.44, 1);
+  }
+
+  88% {
+    transform: scale(0.11, 1);
+  }
+
+  100% {
+    transform: scale(0, 1);
   }
 }

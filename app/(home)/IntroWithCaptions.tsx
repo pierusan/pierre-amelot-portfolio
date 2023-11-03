@@ -424,7 +424,6 @@ function AnimatedDownArrow({
   );
 }
 
-// TODO: Don't reveal if user has already scrolled to projects
 function ScrollCTA() {
   // Assume we need the scroll CTA, but hide it if it's not visible when it
   // loads because that means the intro text is relatively long and almost
@@ -518,6 +517,7 @@ const CaptionInteractionContext = createContext<{
 
 export function IntroWithCaptions({ className }: { className?: string }) {
   const [revealScrollCTA, setRevealScrollCTA] = useState(false);
+  const [blockScrollCTAReveal, setBlockScrollCTAReveal] = useState(false);
   const [numberCaptionsHovered, setNumberCaptionsHovered] = useState(0);
   const incrementNumberOfCaptionsHovered = useCallback(() => {
     setNumberCaptionsHovered((previous) => previous + 1);
@@ -584,6 +584,27 @@ export function IntroWithCaptions({ className }: { className?: string }) {
     };
   }, []);
 
+  // If the intro goes of the viewport, we don't need to start revealing the
+  // scroll, bu if it's already revealed, let it be
+  useEffect(() => {
+    if (!introContentRef.current) return;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) {
+        setRevealScrollCTA((wasAlreadyRevealed) => {
+          if (!wasAlreadyRevealed) {
+            setBlockScrollCTAReveal(true);
+            return wasAlreadyRevealed;
+          }
+          return wasAlreadyRevealed;
+        });
+      }
+    });
+
+    observer.observe(introContentRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <CaptionInteractionContext.Provider
       value={{
@@ -643,7 +664,7 @@ export function IntroWithCaptions({ className }: { className?: string }) {
             />
           </article>
         </div>
-        {revealScrollCTA && <ScrollCTA />}
+        {revealScrollCTA && !blockScrollCTAReveal && <ScrollCTA />}
       </div>
     </CaptionInteractionContext.Provider>
   );

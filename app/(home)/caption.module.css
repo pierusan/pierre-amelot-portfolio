@@ -1,0 +1,200 @@
+.captioned-text {
+  /* highlight the text before JS has loaded */
+  &:not(:has(> div)) {
+    @apply bg-surface;
+  }
+
+  /* Once JS is loaded and inner divs have been added to the text, start the
+     bouncing animation */
+  &.captioned-text-initial-load > div {
+    /* Below the span to mimic highlight */
+    z-index: -10;
+    @apply bg-surface;
+    transform-origin: center left;
+    transform: scale(1, 1);
+    animation-name: scale-easeInBounce;
+    animation-timing-function: ease;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+  }
+
+  /* Higher specificity */
+  &&.flickering-captioned-text > div {
+    /* Below the span to mimic highlight */
+    z-index: -10;
+    @apply bg-surface;
+    transform-origin: center left;
+    transform: scale(0, 1);
+    animation-name: scale-teaser;
+    animation-timing-function: ease;
+    animation-duration: 5s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+  }
+}
+
+/* For Intellisense  when importing the module */
+.captioned-text-initial-load {
+}
+.flickering-captioned-text {
+}
+
+.caption-line {
+  > div {
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+  }
+
+  --anim-1: 30ms;
+  --anim-2: 100ms;
+  --anim-3: 50ms;
+  --anim-4: 70ms;
+
+  /* Dot -> Top */
+  > div:nth-of-type(2) {
+    transform-origin: bottom center;
+    transform: scale(1, 0);
+    animation-name: vertical-grow;
+    animation-duration: var(--anim-1);
+  }
+
+  /* Top -> Right Edge */
+  > div:nth-of-type(3) {
+    transform-origin: left center;
+    transform: scale(0, 1);
+    animation-name: horizontal-grow;
+    animation-delay: var(--anim-1);
+    animation-duration: var(--anim-2);
+  }
+
+  /* Right Edge Top -> Down */
+  > div:nth-of-type(4) {
+    transform-origin: top center;
+    transform: scale(1, 0);
+    animation-name: vertical-grow;
+    animation-delay: calc(var(--anim-1) + var(--anim-2));
+    animation-duration: var(--anim-3);
+  }
+
+  /* Right Edge -> Caption */
+  > div:nth-of-type(5) {
+    transform-origin: left center;
+    transform: scale(0, 1);
+    animation-name: horizontal-grow;
+    animation-delay: calc(var(--anim-1) + var(--anim-2) + var(--anim-3));
+    animation-duration: var(--anim-4);
+  }
+}
+
+.caption {
+  opacity: 0;
+  animation-name: fade-in;
+  animation-duration: 250ms;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}
+
+@keyframes horizontal-grow {
+  0% {
+    transform: scale(0, 1);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+@keyframes vertical-grow {
+  0% {
+    transform: scale(1, 0);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100;
+  }
+}
+
+@keyframes scale-teaser {
+  0%,
+  18.4% {
+    transform: scale(0, 1);
+  }
+
+  0.8%,
+  17.6% {
+    transform: scale(0.02, 1);
+  }
+
+  1.6%,
+  16.8% {
+    transform: scale(0.01, 1);
+  }
+
+  3.6%,
+  14.8% {
+    transform: scale(0.06, 1);
+  }
+
+  5.2%,
+  13.2% {
+    transform: scale(0.02, 1);
+  }
+
+  9.2% {
+    transform: scale(0.25, 1);
+  }
+
+  100% {
+    transform: scale(0, 1);
+  }
+}
+
+/* https://easings.net/#easeInBounce */
+@keyframes scale-easeInBounce {
+  0% {
+    transform: scale(1, 1);
+  }
+
+  4% {
+    transform: scale(0.98, 1);
+  }
+
+  8% {
+    transform: scale(0.99, 1);
+  }
+
+  18% {
+    transform: scale(0.94, 1);
+  }
+
+  26% {
+    transform: scale(0.98, 1);
+  }
+
+  46% {
+    transform: scale(0.75, 1);
+  }
+
+  64% {
+    transform: scale(0.98, 1);
+  }
+
+  76% {
+    transform: scale(0.44, 1);
+  }
+
+  88% {
+    transform: scale(0.11, 1);
+  }
+
+  100% {
+    transform: scale(0, 1);
+  }
+}

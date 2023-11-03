@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="28" viewBox="0 0 24 14" stroke-linecap="round"
+    stroke-linejoin="round">
+    <symbol id="diamond" fill="#737373" stroke="#a7a7a7">
+        <!-- fill="#737373" stroke="#a7a7a7" -->
+        <!-- fill="#cdd8f1" stroke="#778290" -->
+        <!-- fill="#cd77ff" stroke="#8f3eb2" -->
+        <!-- fill="#4794cf" stroke="#376199" -->
+        <path d="M1 7L6 1L11 7L6 13L1 7" viewBox="-1 -1 11 13" stroke-width="1.2" />
+    </symbol>
+    <!-- <symbol id="triangle" height="3" width="5" viewBox="0 0 2.5 2">
+        <path d="M0 0L2.5 1L0 2" fill="#ddd" />
+    </symbol> -->
+    <!-- <path d="M0 6L5 0L10 6L5 12L0 6" stroke-width="2.5" />
+    <path d="M0 6L5 0L10 6L5 12L0 6" stroke-width="2.5" transform="translate(12)" /> -->
+    <use href="#diamond" x="" y="0" />
+    <use href="#diamond" x="10" y="0" />
+    <path d="M5 7L15 7" stroke="#57cebe" />
+    <path d="M15 7L15 8.8L18 7L15 5.2" fill="#57cebe" stroke-width="0" />
+</svg>

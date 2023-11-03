@@ -1,0 +1,52 @@
+.scroll-cta {
+  /* Fade in once comes into view */
+  opacity: 0;
+  animation-name: fade-in;
+  animation-timing-function: ease-in-out;
+  animation-duration: 500ms;
+  animation-fill-mode: forwards;
+}
+
+.animated-arrow {
+  & > path {
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+  }
+
+  & > path:nth-child(1) {
+    animation-name: stretch-arrow-shaft;
+  }
+
+  & > path:nth-child(2) {
+    animation-name: move-arrowhead;
+  }
+}
+
+@keyframes stretch-arrow-shaft {
+  0% {
+    transform: scale(1, 20);
+  }
+  100% {
+    transform: scale(1, 30);
+  }
+}
+
+@keyframes move-arrowhead {
+  0% {
+    transform: translate(0px, 20px);
+  }
+  100% {
+    transform: translate(0px, 30px);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

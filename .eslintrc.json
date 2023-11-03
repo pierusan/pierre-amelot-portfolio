@@ -52,6 +52,12 @@
           },
           "ref": {
             "reference": false
+          },
+          "refs": {
+            "references": false
+          },
+          "dev": {
+            "development": false
           }
         }
       }
@@ -74,7 +80,7 @@
         "patterns": [
           {
             "group": ["*.css", "!*.module.css"],
-            "message": "Prefer CSS modules or styled-components to raw .css stylesheet imports"
+            "message": "Prefer CSS modules or styled-components to raw .css style sheet imports"
           }
         ]
       }

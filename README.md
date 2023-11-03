@@ -2,15 +2,17 @@
 
 [![Test, Build, Deploy](https://github.com/Bierro/pierre-amelot-portfolio/actions/workflows/test-build-deploy.yml/badge.svg?branch=main)](https://github.com/Bierro/pierre-amelot-portfolio/actions/workflows/test-build-deploy.yml) [![CodeQL](https://github.com/Bierro/pierre-amelot-portfolio/actions/workflows/github-code-scanning/codeql/badge.svg?branch=main)](https://github.com/Bierro/pierre-amelot-portfolio/actions/workflows/github-code-scanning/codeql) [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/Bierro/pierre-amelot-portfolio/badge)](https://securityscorecards.dev/viewer/?uri=github.com/Bierro/pierre-amelot-portfolio)
 
-In this portfolio, I wanted to describe my diverse skill set, showcase projects
-I worked on, and highlight what I have been learning over the years.
+I made this portfolio to describe my skills in development and UX, showcase
+projects I worked on, and highlight what I have been learning over the years.
 
-I wanted the website content to reflect some of my skills so I
+I wanted the website content to reflect the way I work:
 
-- spent some time on the UX (navigation, scroll behavior etc..)
-- designed the screens in Figma
-- incorporated a 3D scene that I designed in Spline
-- took time to set up CI
+- I spent some time on the UX (navigation, scroll behavior, Easter eggs, etc..)
+- I designed the screens in Figma with the latest Figma features (variables)
+- I incorporated a 3D scene that I designed in Spline
+- I tried libraries I've been wanting to experiment with (react-three-fiber,
+  gsap, shadcn, etc...)
+- I took time to set up CI
 
 # Design
 
@@ -41,37 +43,17 @@ npm run dev
 
 # Implementation Decisions
 
-## File Structure
+## Images
 
-<details>
-<summary>Pages and Layouts</summary>
-
-I like Next.js 13 file-system based `app` router. You can set and remember
-routes easily. But I don't like having a bunch of files all named `page.tsx` or
-`layout.tsx`. They make file hopping slower during development. To address this,
-I create my own Page and Layout components forwarded in `page.tsx` and
-`layout.tsx` (e.g. `RootPage` and `RootLayout` are imported and immediately
-re-exported by `app/page` and `app/layout`).
-
-</details>
-
-<details>
-<summary>Reusable components</summary>
-
-I place components and hook reused throughout the app in root `components` and
-`hooks` directories. This organization by function can be messy but it's a small
-price to pay to avoid big refactoring costs ([cf Josh
-Comeau](https://www.joshwcomeau.com/react/file-structure/#organized-by-function-12)).
-I will usually keep specific components in the same directory as the page they
-are used in, and when I start reusing them I move them to the top-level
-`components` directory.
-
-</details>
+I host images on a public Google Cloud bucket rather than keeping them locally.
+This lets me recreate/deploy the project on another machine or in CI without the
+hassle of Git LFS or custom download scripts. Next doesn't generate blurred
+image placeholders for remote images so I wrote [a
+script](https://github.com/Bierro/remote-images-for-next) with the
+[Plaiceholder](https://plaiceholder.co/docs) library to generate them for all
+the images in my bucket.
 
 ## CI
-
-<details>
-<summary>Decisions</summary>
 
 My CI pipeline is definitely overkill since I'm alone on this project, but it
 was a good exercise to get familiar with Github Actions.
@@ -87,27 +69,27 @@ notes, and deploys the portfolio to production.
 I hooked the dev, staging, and prod deployments to Github Deployments for a nicer
 overview and links in the github UI.
 
-</details>
+## File Structure
 
-## Images
+I like Next.js 13 file-system based `app` router. You can set and remember
+routes easily. But I don't like having a bunch of files all named `page.tsx` or
+`layout.tsx`. They make file hopping slower during development. To address this,
+I create my own Page and Layout components forwarded in `page.tsx` and
+`layout.tsx` (e.g. `HomePage` and `RootLayout` are imported and immediately
+re-exported by `app/(home)/page` and `app/layout`).
 
-<details>
-<summary>Decisions</summary>
-
-I host images on a public Google Cloud bucket rather than keeping them locally.
-This lets me recreate/deploy the project on another machine or in CI without
-the hassle of Git LFS or custom download scripts. Next doesn't generate blurred
-image placeholders for remote images so I use [blurred.dev](https://blurred.dev)
-to generate the base64 image blur placeholders myself.
-
-</details>
+I place components, hooks, constants, store, and functions reused throughout the
+app in a `app/_common` that I can import (`import ... from '@/...'`) quickly
+with a typescript path remap. I will usually keep specific components in the same
+directory as the page they are used in, and when I start reusing them I move
+them to `app/_common/components` directory.
 
 # Stack and Library Decisions
 
 ## Next.js
 
 <details>
-<summary>Rationale</summary>
+<summary>Why?</summary>
 
 ### Why I chose it
 
@@ -136,7 +118,7 @@ to generate the base64 image blur placeholders myself.
 ## Vercel
 
 <details>
-<summary>Rationale</summary>
+<summary>Why?</summary>
 
 ### Why I chose it
 
@@ -155,7 +137,7 @@ to generate the base64 image blur placeholders myself.
 ## Tailwind
 
 <details>
-<summary>Rationale</summary>
+<summary>Why?</summary>
 
 ### Why I chose it
 
@@ -177,47 +159,41 @@ to generate the base64 image blur placeholders myself.
 - Lots of classnames can hurts readability imo and it can be hard to find the
   tailwind rule you're looking for in this large string. Bugs arising from order
   in the cascading stylesheet are also not intuitive. That said, it hasn't been
-  much of an issue since I started using tailwind-merge and the `cn` util
+  much of an issue since I started using **tailwind-merge** and the `cn` util
   function to construct class names. It not only prevents bugs but it also
   allows to break strings apart and add comments between string segments.
-- Semantic tokens and theming aren't really supported. The explanation by
-  Tailwind's CEO that it would not be useful is wrong imo, and designers and
-  large companies have now adopted semantic tokens for theming their design
-  systems
+- Semantic tokens and theming aren't really supported. The [explanation by
+  Tailwind's
+  creator](https://github.com/tailwindlabs/tailwindcss/discussions/10274#discussioncomment-4627634)
+  that it would not be useful is wrong imo, and designers and large companies
+  have now adopted semantic tokens for theming their design systems
 
 </details>
 
-## Shadcn
+## Floating UI
 
 <details>
-<summary>Rationale</summary>
+<summary>Why?</summary>
 
 ### Why I chose it
 
-- TODO: Fill
+- Lots of control and flexibility to create 'floating' elements that are
+  anchored but stay in view
+- Good react wrapper and docs
+- Widely used by component libraries like Radix
+- Actively maintained. The library is at its third iteration (after popper v1
+  and v2) and
 
 ### What I don't love
 
--
-
-</details>
-
-## SVGR
-
-<details>
-<summary>Rationale</summary>
-
-### Why I chose it
-
-- Loading SVGs as React components is more flexible than `img` tags. I can style
-  and animate the SVGs directly in CSS.
+- _Nothing really..._
 
 </details>
 
 ## GSAP
 
 <details>
-<summary>Rationale</summary>
+<summary>Why?</summary>
 
 ### Why I chose it
 
@@ -238,7 +214,7 @@ to generate the base64 image blur placeholders myself.
 ## React Three Fiber
 
 <details>
-<summary>Rationale</summary>
+<summary>Why?</summary>
 
 ### Why I chose it
 
@@ -254,6 +230,33 @@ to generate the base64 image blur placeholders myself.
   questions around whether the repos they are and will remain actively
   maintained (for instance lamina, in fiber examples, has been archived, and
   leva has a lot of input todos not addressed)
+
+</details>
+
+## Shadcn
+
+<details>
+<summary>Why?</summary>
+
+### Why I chose it
+
+- TODO: Fill
+
+### What I don't love
+
+-
+
+</details>
+
+## SVGR
+
+<details>
+<summary>Why?</summary>
+
+### Why I chose it
+
+- Loading SVGs as React components is more flexible than `img` tags. I can style
+  and animate the SVGs directly in CSS.
 
 </details>
 

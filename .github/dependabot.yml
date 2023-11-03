@@ -4,10 +4,27 @@ updates:
   - package-ecosystem: 'github-actions'
     directory: '/'
     schedule:
-      interval: 'monthly'
+      interval: 'weekly'
+    # Prevent too many PRs from dependabot but keep major bumps as individual
+    # PRs so breaking changes can be reviewed appropriately
+    groups:
+      minors-and-patches:
+        update-types:
+          - 'minor'
+          - 'patch'
   # Check the npm registry for updates every month
   - package-ecosystem: 'npm'
     # Look for `package.json` and `lock` files in the `root` directory
     directory: '/'
     schedule:
-      interval: 'monthly'
+      interval: 'weekly'
+    # Prevent too many PRs from dependabot but keep major bumps as individual
+    # PRs so breaking changes can be reviewed appropriately
+    groups:
+      minors-and-patches:
+        update-types:
+          - 'minor'
+          - 'patch'
+    # Because this is an application, the package.json can stay strict, so no
+    # need to bump the lock file only
+    # versioning-strategy: 'increase-if-necessary'

@@ -143,7 +143,38 @@ function CaptionedText({
   ]);
 
   // Add 'highlight' boxes around the captioned text that will be animated as a
-  // CTA for users to hover and reveal the caption
+  // CTA for users to hover and reveal the caption. We need to create them
+  // dynamically with JS because span is an inline element over potentially
+  // multiple lines and bounding boxes which don't see available in html/css
+  // only
+  const appendDivsToSpan = useCallback(
+    (span: HTMLSpanElement, parentRelativeParagraph: HTMLElement) => {
+      // Call getClientRects because the span might be broken into multiple lines
+      const spanRects = span.getClientRects();
+      const paragraphRect = parentRelativeParagraph.getBoundingClientRect();
+      const highlightDivs = [...spanRects].map((rect) => {
+        const div = document.createElement('div');
+        div.style.position = 'absolute';
+        div.style.pointerEvents = 'none';
+        // The relative parent is the paragraph
+        div.style.top = `${rect.top - paragraphRect.top}px`;
+        div.style.left = `${rect.left - paragraphRect.left}px`;
+        div.style.width = `${rect.width}px`;
+        div.style.height = `${rect.height}px`;
+        span.append(div);
+        return div;
+      });
+
+      return highlightDivs;
+    },
+    []
+  );
+
+  const removeDivsFromSpan = useCallback((span: HTMLSpanElement) => {
+    const existingHighlightDivs = span.querySelectorAll('div');
+    existingHighlightDivs.forEach((div) => div.remove());
+  }, []);
+
   useEffect(() => {
     if (!captionRefs.domReference.current) return;
     const spanElement = captionRefs.domReference
@@ -151,29 +182,26 @@ function CaptionedText({
     const paragraphElement = spanElement.parentElement;
     if (!paragraphElement) return;
 
-    // Call getClientRects because the span might be broken into multiple lines
-    const spanRects = spanElement.getClientRects();
-    const paragraphRect = paragraphElement.getBoundingClientRect();
-    const highlightDivs = [...spanRects].map((rect) => {
-      const div = document.createElement('div');
-      div.style.position = 'absolute';
-      div.style.pointerEvents = 'none';
-      // The relative parent is the paragraph
-      div.style.top = `${rect.top - paragraphRect.top}px`;
-      div.style.left = `${rect.left - paragraphRect.left}px`;
-      div.style.width = `${rect.width}px`;
-      div.style.height = `${rect.height}px`;
-      spanElement.append(div);
-      return div;
+    // Add animated hover CTA divs. We need to do it dynamically with JS because
+    // span is an inline element with potentially multiple lines and bounding
+    // boxes which don't see available in html/css only
+    appendDivsToSpan(spanElement, paragraphElement);
+
+    // When the screen resizes and line breaks might get added, recompute the
+    // bounding boxes of the span
+    const resizeObserver = new ResizeObserver(() => {
+      removeDivsFromSpan(spanElement);
+      appendDivsToSpan(spanElement, paragraphElement);
     });
 
-    // Because the animation only runs once when the window opens, we don't need
-    // to deal with screen resize
+    // Resize observers only work on the block elements so we need to set it on
+    // the parent
+    resizeObserver.observe(paragraphElement);
 
     return () => {
-      highlightDivs.forEach((div) => div.remove());
+      removeDivsFromSpan(spanElement);
     };
-  }, [captionRefs.domReference]);
+  }, [captionRefs.domReference, appendDivsToSpan, removeDivsFromSpan]);
 
   return (
     <>
@@ -457,6 +485,7 @@ function AnimatedDownArrow({
   );
 }
 
+// TODO: Don't reveal if user has already scrolled to projects
 function ScrollCTA() {
   // Assume we need the scroll CTA, but hide it if it's not visible when it
   // loads because that means the intro text is relatively long and almost

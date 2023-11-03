@@ -5,10 +5,12 @@ import { extendTailwindMerge } from 'tailwind-merge';
 // Ensure custom font sizes are considered as sizes and not as colors by
 // tailwind-merge
 const customTwMerge = extendTailwindMerge({
-  classGroups: {
-    'font-size': [
-      { text: [(value: string) => /^(details|body|heading)/.test(value)] },
-    ],
+  extend: {
+    classGroups: {
+      'font-size': [
+        { text: [(value: string) => /^(details|body|heading)/.test(value)] },
+      ],
+    },
   },
 });
 

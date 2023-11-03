@@ -147,6 +147,9 @@ const config: Config = {
         'details-light': '400',
         details: '700',
       },
+      height: {
+        'header-mobile': '4.5rem',
+      },
       // From shadcn?
       keyframes: {
         'accordion-down': {

@@ -1,6 +1,14 @@
 'use client';
 
-import { type ReactNode, useState, useRef, useEffect } from 'react';
+import {
+  type ReactNode,
+  useState,
+  useRef,
+  useEffect,
+  useCallback,
+  useContext,
+  createContext,
+} from 'react';
 import {
   arrow,
   autoUpdate,
@@ -22,6 +30,7 @@ import cursorCalifornia from './cursors/cursor_california_flag_36.jpg';
 import cursorUnity from './cursors/cursor_unity_logo_30.png';
 import cursorWarming from './cursors/cursor_warming_stripes_42.jpg';
 import captionStyles from './caption.module.css';
+import scrollCtaStyles from './scrollCTAAnimations.module.css';
 import { cn } from '@/cn';
 import { navIds } from '@/constants';
 
@@ -53,6 +62,22 @@ function CaptionedText({
 }) {
   const [isCaptionOpen, setIsCaptionOpen] = useState(false);
   const captionLineEndRef = useRef(null);
+  const { incrementNumberOfCaptionsHovered } = useContext(
+    CaptionInteractionContext
+  );
+
+  const hasEverOpened = useRef(false);
+  const onOpenChange = useCallback(
+    (open: boolean) => {
+      setIsCaptionOpen(open);
+
+      if (open && !hasEverOpened.current) {
+        incrementNumberOfCaptionsHovered();
+        hasEverOpened.current = true;
+      }
+    },
+    [incrementNumberOfCaptionsHovered]
+  );
 
   // Floating Caption
   const {
@@ -70,7 +95,7 @@ function CaptionedText({
     ],
     // Tie captioned text interaction (controlled by Floating UI) to React
     open: isCaptionOpen,
-    onOpenChange: setIsCaptionOpen,
+    onOpenChange: onOpenChange,
     // As long as the caption is mounted, keep the floating styles updated even
     // on scroll and resize
     whileElementsMounted: autoUpdate,
@@ -394,53 +419,163 @@ function RelocationParagraph() {
   );
 }
 
-export function IntroWithCaptions({ className }: { className?: string }) {
+function AnimatedDownArrow({
+  scale = 1,
+  className,
+}: {
+  scale?: number;
+  className?: string;
+}) {
   return (
-    <div
-      id={navIds.intro}
-      className={cn(
-        'min-h-screen pt-[8rem] md:pt-[clamp(8rem,16.5vw,theme(padding.xl))]',
-        // On large screens, take the full width with captions on the side, On
-        // smaller screens, center the text and have captions overlayed on top
-        'md:mx-auto xl:mx-0',
-        'text-main [&:not(:has(span:hover))_span]:text-main-strong',
-        '[&:has(span:hover)]:text-main-subtle [&:has(span:hover)_span:hover]:text-main',
-        className
-      )}
+    <svg
+      className={cn(scrollCtaStyles['animated-arrow'], className)}
+      width={`${15 * scale}`}
+      height={`${31 * scale}`}
+      viewBox="0 0 15 31"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1 / scale}
+      xmlns="http://www.w3.org/2000/svg"
     >
-      <h1
+      <path d="M7.5 0v1" />
+      <path d="M14.5 -7L7.5 0L0.5 -7" />
+    </svg>
+  );
+}
+
+function ScrollCTA() {
+  // Assume we need the scroll CTA, but hide it if it's not visible when it
+  // loads because that means the intro text is relatively long and almost
+  // cropped by the viewport, which is already enough of a CTA to scroll
+  const [needsScrollCTA, setNeedsScrollCTA] = useState(true);
+  const ctaRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!ctaRef.current) return;
+
+    const observer = new IntersectionObserver(([entry], observer) => {
+      setNeedsScrollCTA(entry.isIntersecting);
+      observer.disconnect();
+    });
+
+    observer.observe(ctaRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    needsScrollCTA && (
+      <div
+        ref={ctaRef}
         className={cn(
-          'mb-[theme(gap.2xl)] text-heading-lg ',
-          // On small screens, the name will be in the header
-          'hidden md:block'
+          'self-center',
+          'w-[min(30rem,80%)] sm:w-[min(60rem,100%)]',
+          'flex items-center pb-sm text-body-md text-main-subtle',
+          scrollCtaStyles['scroll-cta'] // fade-in
         )}
       >
-        Pierre Amelot
-      </h1>
-      <article
-        className={cn(
-          'grid grid-cols-[auto] [grid-template-areas:"paragraph"]',
-          'xl:grid-cols-[auto_1fr] xl:gap-2xl xl:[grid-template-areas:"paragraphs_funStuff"]'
-        )}
-      >
-        <div
-          className={cn(
-            'max-w-paragraph-md [grid-area:paragraphs]',
-            'text-body-md sm:text-body-lg',
-            'flex flex-col gap-lg'
-          )}
+        <AnimatedDownArrow scale={0.75} className={cn('shrink-0')} />
+        <p className={cn('grow text-center text-[0.875rem]')}>
+          Don&apos;t miss the rest
+        </p>
+        <AnimatedDownArrow scale={0.75} className={cn('shrink-0')} />
+        <p
+          className={cn('hidden sm:block', 'grow text-center text-[0.875rem]')}
         >
-          <RolesParagraph />
-          <SanFranciscoParagraph />
-          <CodingParagraph />
-          <UXParagraph />
-          <RelocationParagraph />
-        </div>
-        <aside
-          className={cn('hidden [grid-area:funStuff] xl:block')}
-          // TODO: brainstorm what/whether to put into fun stuff
+          Scroll for more
+        </p>
+        <AnimatedDownArrow
+          scale={0.75}
+          className={cn('hidden sm:block', 'shrink-0')}
         />
-      </article>
-    </div>
+      </div>
+    )
+  );
+}
+
+const CaptionInteractionContext = createContext<{
+  incrementNumberOfCaptionsHovered: () => void;
+  numberCaptionsHovered: number;
+}>({
+  incrementNumberOfCaptionsHovered: () => {
+    throw 'Should be implemented';
+  },
+  numberCaptionsHovered: 0,
+});
+
+export function IntroWithCaptions({ className }: { className?: string }) {
+  const [revealScrollCTA, setRevealScrollCTA] = useState(false);
+  const [numberCaptionsHovered, setNumberCaptionsHovered] = useState(0);
+  const incrementNumberOfCaptionsHovered = useCallback(() => {
+    setNumberCaptionsHovered((previous) => previous + 1);
+  }, []);
+
+  useEffect(() => {
+    if (numberCaptionsHovered === 2) {
+      setTimeout(() => {
+        setRevealScrollCTA(true);
+      }, 2000);
+    }
+  }, [numberCaptionsHovered]);
+
+  return (
+    <CaptionInteractionContext.Provider
+      value={{
+        numberCaptionsHovered,
+        incrementNumberOfCaptionsHovered,
+      }}
+    >
+      <div
+        id={navIds.intro}
+        className={cn(
+          'min-h-[calc(100dvh_-_theme(height.header-mobile))] md:min-h-screen',
+          'pt-[5rem]  md:pt-[min(16.5vw,theme(padding.xl))]',
+          // On large screens, take the full width with captions on the side, On
+          // smaller screens, center the text and have captions overlayed on top
+          'md:mx-auto xl:mx-0',
+          'text-main [&:not(:has(span:hover))_span]:text-main-strong',
+          '[&:has(span:hover)]:text-main-subtle [&:has(span:hover)_span:hover]:text-main',
+          // Place scroll CTA at the bottom of the screen
+          'flex flex-col justify-between gap-[3rem]',
+          className
+        )}
+      >
+        <div>
+          <h1
+            className={cn(
+              'mb-[theme(gap.2xl)] text-heading-lg ',
+              // On small screens, the name will be in the header
+              'hidden md:block'
+            )}
+          >
+            Pierre Amelot
+          </h1>
+          <article
+            className={cn(
+              'grid grid-cols-[auto] [grid-template-areas:"paragraph"]',
+              'xl:grid-cols-[auto_1fr] xl:gap-2xl xl:[grid-template-areas:"paragraphs_funStuff"]'
+            )}
+          >
+            <div
+              className={cn(
+                'max-w-paragraph-md [grid-area:paragraphs]',
+                'text-body-md sm:text-body-lg',
+                'flex flex-col gap-lg'
+              )}
+            >
+              <RolesParagraph />
+              <SanFranciscoParagraph />
+              <CodingParagraph />
+              <UXParagraph />
+              <RelocationParagraph />
+            </div>
+            <aside
+              className={cn('hidden [grid-area:funStuff] xl:block')}
+              // TODO: brainstorm what/whether to put into fun stuff
+            />
+          </article>
+        </div>
+        {revealScrollCTA && <ScrollCTA />}
+      </div>
+    </CaptionInteractionContext.Provider>
   );
 }

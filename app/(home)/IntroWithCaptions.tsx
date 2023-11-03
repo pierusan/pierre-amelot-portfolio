@@ -171,8 +171,9 @@ function CaptionedText({
             className={cn(
               // position relative to the parent paragraph
               'absolute',
-              // TODO: Tweak this based on screen size?
-              'min-w-aside-sm max-w-aside-md',
+              // screen: 1370px -->  caption: 360px
+              // screen: 1280px -->  caption: 280px
+              'xl:w-[min(calc(280px_+_(100vw-1280px)*(360_-_280)/(1370_-_1280)),theme(width.aside-md))]',
               'text-body-md text-main',
               captionStyles.caption
             )}

@@ -142,67 +142,6 @@ function CaptionedText({
     dotRefs.setReference,
   ]);
 
-  // Add 'highlight' boxes around the captioned text that will be animated as a
-  // CTA for users to hover and reveal the caption. We need to create them
-  // dynamically with JS because span is an inline element over potentially
-  // multiple lines and bounding boxes which don't see available in html/css
-  // only
-  const appendDivsToSpan = useCallback(
-    (span: HTMLSpanElement, parentRelativeParagraph: HTMLElement) => {
-      // Call getClientRects because the span might be broken into multiple lines
-      const spanRects = span.getClientRects();
-      const paragraphRect = parentRelativeParagraph.getBoundingClientRect();
-      const highlightDivs = [...spanRects].map((rect) => {
-        const div = document.createElement('div');
-        div.style.position = 'absolute';
-        div.style.pointerEvents = 'none';
-        // The relative parent is the paragraph
-        div.style.top = `${rect.top - paragraphRect.top}px`;
-        div.style.left = `${rect.left - paragraphRect.left}px`;
-        div.style.width = `${rect.width}px`;
-        div.style.height = `${rect.height}px`;
-        span.append(div);
-        return div;
-      });
-
-      return highlightDivs;
-    },
-    []
-  );
-
-  const removeDivsFromSpan = useCallback((span: HTMLSpanElement) => {
-    const existingHighlightDivs = span.querySelectorAll('div');
-    existingHighlightDivs.forEach((div) => div.remove());
-  }, []);
-
-  useEffect(() => {
-    if (!captionRefs.domReference.current) return;
-    const spanElement = captionRefs.domReference
-      .current as HTMLElementTagNameMap['span'];
-    const paragraphElement = spanElement.parentElement;
-    if (!paragraphElement) return;
-
-    // Add animated hover CTA divs. We need to do it dynamically with JS because
-    // span is an inline element with potentially multiple lines and bounding
-    // boxes which don't see available in html/css only
-    appendDivsToSpan(spanElement, paragraphElement);
-
-    // When the screen resizes and line breaks might get added, recompute the
-    // bounding boxes of the span
-    const resizeObserver = new ResizeObserver(() => {
-      removeDivsFromSpan(spanElement);
-      appendDivsToSpan(spanElement, paragraphElement);
-    });
-
-    // Resize observers only work on the block elements so we need to set it on
-    // the parent
-    resizeObserver.observe(paragraphElement);
-
-    return () => {
-      removeDivsFromSpan(spanElement);
-    };
-  }, [captionRefs.domReference, appendDivsToSpan, removeDivsFromSpan]);
-
   return (
     <>
       <span
@@ -535,6 +474,36 @@ function ScrollCTA() {
   );
 }
 
+// Assumes the parent element is a block with relative positioning
+const appendWrappingDivsToSpan = (span: HTMLSpanElement) => {
+  const parentRelativeParagraph = span.parentElement;
+  if (!parentRelativeParagraph) return;
+
+  // Call getClientRects because the span might be broken into multiple lines
+  const spanRects = span.getClientRects();
+  const paragraphRect = parentRelativeParagraph.getBoundingClientRect();
+  const highlightDivs = [...spanRects].map((rect) => {
+    const div = document.createElement('div');
+    div.style.position = 'absolute';
+    div.style.pointerEvents = 'none';
+    // Wrap the div around the bounding box, knowing the parent has relative
+    // positioning
+    div.style.top = `${rect.top - paragraphRect.top}px`;
+    div.style.left = `${rect.left - paragraphRect.left}px`;
+    div.style.width = `${rect.width}px`;
+    div.style.height = `${rect.height}px`;
+    span.append(div);
+    return div;
+  });
+
+  return highlightDivs;
+};
+
+const removeDivsFromSpan = (span: HTMLSpanElement) => {
+  const existingHighlightDivs = span.querySelectorAll('div');
+  existingHighlightDivs.forEach((div) => div.remove());
+};
+
 const CaptionInteractionContext = createContext<{
   incrementNumberOfCaptionsHovered: () => void;
   numberCaptionsHovered: number;
@@ -554,6 +523,8 @@ export function IntroWithCaptions({ className }: { className?: string }) {
     setNumberCaptionsHovered((previous) => previous + 1);
   }, []);
   const [captionsShouldFlicker, setCaptionsShouldFlicker] = useState(false);
+
+  const introContentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let timeoutId: NodeJS.Timeout | undefined;
@@ -580,6 +551,38 @@ export function IntroWithCaptions({ className }: { className?: string }) {
 
     // TODO: See if we need a cleanup function
   }, [numberCaptionsHovered]);
+
+  // Add 'highlight' boxes around the captioned text that will be animated as a
+  // CTA for users to hover and reveal the caption. We need to create them
+  // dynamically with JS because span is an inline element over potentially
+  // multiple lines
+  useEffect(() => {
+    if (!introContentRef.current) return;
+
+    const spanElements = introContentRef.current.querySelectorAll('span');
+    [...spanElements].forEach((span) => {
+      appendWrappingDivsToSpan(span);
+    });
+
+    // When the screen resizes and line breaks might get added, recompute the
+    // bounding boxes of the span
+    const resizeObserver = new ResizeObserver(() => {
+      [...spanElements].forEach((span) => {
+        removeDivsFromSpan(span);
+        appendWrappingDivsToSpan(span);
+      });
+    });
+
+    // Resize observers only work on the block elements so we need to set it on
+    // the container
+    resizeObserver.observe(introContentRef.current);
+
+    return () => {
+      [...spanElements].forEach((span) => {
+        removeDivsFromSpan(span);
+      });
+    };
+  }, []);
 
   return (
     <CaptionInteractionContext.Provider
@@ -626,6 +629,7 @@ export function IntroWithCaptions({ className }: { className?: string }) {
                 'text-body-md sm:text-body-lg',
                 'flex flex-col gap-lg'
               )}
+              ref={introContentRef}
             >
               <RolesParagraph />
               <SanFranciscoParagraph />

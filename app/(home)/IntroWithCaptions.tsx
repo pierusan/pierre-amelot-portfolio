@@ -62,9 +62,11 @@ function CaptionedText({
 }) {
   const [isCaptionOpen, setIsCaptionOpen] = useState(false);
   const captionLineEndRef = useRef(null);
-  const { incrementNumberOfCaptionsHovered } = useContext(
-    CaptionInteractionContext
-  );
+  const {
+    captionsShouldFlicker,
+    numberCaptionsHovered,
+    incrementNumberOfCaptionsHovered,
+  } = useContext(CaptionInteractionContext);
 
   const hasEverOpened = useRef(false);
   const onOpenChange = useCallback(
@@ -179,7 +181,19 @@ function CaptionedText({
         ref={captionedTextRef}
         style={{ cursor: `url(${cursorSvgUrl}), auto` }}
         {...getCaptionedTextProps()}
-        className={cn(captionStyles['captioned-text'])}
+        className={cn(
+          captionStyles['captioned-text'],
+          `${
+            numberCaptionsHovered === 0
+              ? captionStyles['captioned-text-initial-load']
+              : ''
+          }`,
+          `${
+            captionsShouldFlicker
+              ? captionStyles['flickering-captioned-text']
+              : ''
+          }`
+        )}
       >
         {children}
       </span>
@@ -495,11 +509,13 @@ function ScrollCTA() {
 const CaptionInteractionContext = createContext<{
   incrementNumberOfCaptionsHovered: () => void;
   numberCaptionsHovered: number;
+  captionsShouldFlicker: boolean;
 }>({
   incrementNumberOfCaptionsHovered: () => {
     throw 'Should be implemented';
   },
   numberCaptionsHovered: 0,
+  captionsShouldFlicker: false,
 });
 
 export function IntroWithCaptions({ className }: { className?: string }) {
@@ -508,6 +524,23 @@ export function IntroWithCaptions({ className }: { className?: string }) {
   const incrementNumberOfCaptionsHovered = useCallback(() => {
     setNumberCaptionsHovered((previous) => previous + 1);
   }, []);
+  const [captionsShouldFlicker, setCaptionsShouldFlicker] = useState(false);
+
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout | undefined;
+    if (numberCaptionsHovered === 0) {
+      timeoutId = setTimeout(() => {
+        setCaptionsShouldFlicker(true);
+      }, 10_000);
+    }
+
+    return () => {
+      if (timeoutId) {
+        setCaptionsShouldFlicker(false);
+        clearTimeout(timeoutId);
+      }
+    };
+  }, [numberCaptionsHovered]);
 
   useEffect(() => {
     if (numberCaptionsHovered === 2) {
@@ -515,6 +548,8 @@ export function IntroWithCaptions({ className }: { className?: string }) {
         setRevealScrollCTA(true);
       }, 2000);
     }
+
+    // TODO: See if we need a cleanup function
   }, [numberCaptionsHovered]);
 
   return (
@@ -522,6 +557,7 @@ export function IntroWithCaptions({ className }: { className?: string }) {
       value={{
         numberCaptionsHovered,
         incrementNumberOfCaptionsHovered,
+        captionsShouldFlicker,
       }}
     >
       <div

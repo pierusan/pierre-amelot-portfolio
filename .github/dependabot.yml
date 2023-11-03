@@ -8,7 +8,7 @@ updates:
     # Prevent too many PRs from dependabot but keep major bumps as individual
     # PRs so breaking changes can be reviewed appropriately
     groups:
-      minors-and-patches:
+      gh-actions-minors-and-patches:
         update-types:
           - 'minor'
           - 'patch'
@@ -21,7 +21,7 @@ updates:
     # Prevent too many PRs from dependabot but keep major bumps as individual
     # PRs so breaking changes can be reviewed appropriately
     groups:
-      minors-and-patches:
+      npm-minors-and-patches:
         update-types:
           - 'minor'
           - 'patch'

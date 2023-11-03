@@ -54,7 +54,8 @@ export function MobileContactLinks({ className }: { className?: string }) {
       aria-label="Contact links"
       className={cn(
         'md:hidden',
-        'h-header-mobile sticky top-0',
+        'h-header-mobile',
+        'sticky top-0',
         'border-b-[1px] border-b-action-subtle bg-[theme(gradientColorStops.bg-main-stop)] ',
         'flex items-center justify-between px-md',
         'text-details-lg',

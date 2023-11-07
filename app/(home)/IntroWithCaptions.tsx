@@ -21,14 +21,14 @@ import {
   useMergeRefs,
   inline,
 } from '@floating-ui/react';
-import cursorCircle from './cursors/cursor_circle.svg?url';
-import cursorDoubleDiamond from './cursors/cursor_double_diamond.svg?url';
-import cursorDevEmoji from './cursors/cursor_dev_emoji.svg?url';
-import cursorLearnEmoji from './cursors/cursor_learning_emoji.svg?url';
-import cursorReact from './cursors/cursor_react_logo_with_bg_30.png';
-import cursorCalifornia from './cursors/cursor_california_flag_36.jpg';
-import cursorUnity from './cursors/cursor_unity_logo_30.png';
-import cursorWarming from './cursors/cursor_warming_stripes_42.jpg';
+import cursorCircle from './_cursors/cursor_circle.svg?url';
+import cursorDoubleDiamond from './_cursors/cursor_double_diamond.svg?url';
+import cursorDevEmoji from './_cursors/cursor_dev_emoji.svg?url';
+import cursorLearnEmoji from './_cursors/cursor_learning_emoji.svg?url';
+import cursorReact from './_cursors/cursor_react_logo_with_bg_30.png';
+import cursorCalifornia from './_cursors/cursor_california_flag_36.jpg';
+import cursorUnity from './_cursors/cursor_unity_logo_30.png';
+import cursorWarming from './_cursors/cursor_warming_stripes_42.jpg';
 import captionStyles from './caption.module.css';
 import scrollCtaStyles from './scrollCTAAnimations.module.css';
 import { cn } from '@/cn';

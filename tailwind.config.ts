@@ -11,18 +11,18 @@ const primitiveColors = {
   },
 };
 
-const config: Config = {
+export default {
   content: [
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  future: {
+    // Only apply hover styles on devices that support it. Forces better usage
+    // of hover interactions on touch devices.
+    // https://github.com/tailwindlabs/tailwindcss/pull/8394
+    hoverOnlyWhenSupported: true,
+  },
   theme: {
-    future: {
-      // Only apply hover styles on devices that support it. Forces better usage
-      // of hover interactions on touch devices.
-      // https://github.com/tailwindlabs/tailwindcss/pull/8394
-      hoverOnlyWhenSupported: true,
-    },
     screens: {
       sm: '460px',
       md: '800px',
@@ -169,5 +169,4 @@ const config: Config = {
   },
   // eslint-disable-next-line unicorn/prefer-module
   plugins: [require('tailwindcss-animate')],
-};
-export default config;
+} satisfies Config;

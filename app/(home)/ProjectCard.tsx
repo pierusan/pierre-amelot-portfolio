@@ -7,8 +7,8 @@ import { RemoteImage, type RemoteImageName } from '@/components/RemoteImage';
 import { cn } from '@/cn';
 import tailwindConfig from '@configs/tailwind.config';
 
-const widths = resolveConfig(tailwindConfig).theme?.width;
-const projectCardMaxWidth = widths?.['paragraph-md'];
+const projectCardMaxWidth =
+  resolveConfig(tailwindConfig).theme.width['paragraph-md'];
 
 type ProjectInfo = {
   title: string;

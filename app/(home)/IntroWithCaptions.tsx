@@ -1,289 +1,48 @@
 'use client';
 
-import {
-  type ReactNode,
-  useState,
-  useRef,
-  useEffect,
-  useCallback,
-  useContext,
-  createContext,
-} from 'react';
-import {
-  arrow,
-  autoUpdate,
-  flip,
-  offset,
-  shift,
-  useFloating,
-  useHover,
-  useInteractions,
-  useMergeRefs,
-  inline,
-} from '@floating-ui/react';
-import cursorCircle from './cursors/cursor_circle.svg?url';
-import cursorDoubleDiamond from './cursors/cursor_double_diamond.svg?url';
-import cursorDevEmoji from './cursors/cursor_dev_emoji.svg?url';
-import cursorLearnEmoji from './cursors/cursor_learning_emoji.svg?url';
-import cursorReact from './cursors/cursor_react_logo_with_bg_30.png';
-import cursorCalifornia from './cursors/cursor_california_flag_36.jpg';
-import cursorUnity from './cursors/cursor_unity_logo_30.png';
-import cursorWarming from './cursors/cursor_warming_stripes_42.jpg';
-import captionStyles from './caption.module.css';
-import scrollCtaStyles from './scrollCTAAnimations.module.css';
+import { useState, useRef, useEffect, useCallback } from 'react';
+import cursorDoubleDiamond from './_cursors/cursor_double_diamond.svg?url';
+import cursorDevEmoji from './_cursors/cursor_dev_emoji.svg?url';
+import cursorLearnEmoji from './_cursors/cursor_learning_emoji.svg?url';
+import cursorReact from './_cursors/cursor_react_logo_with_bg_30.png';
+import cursorCalifornia from './_cursors/cursor_california_flag_36.jpg';
+import cursorUnity from './_cursors/cursor_unity_logo_30.png';
+import cursorWarming from './_cursors/cursor_warming_stripes_42.jpg';
+import { CaptionedText } from './Caption';
+import { CaptionInteractionContext } from './CaptionInteractionContext';
+import { ScrollCta } from './ScrollCta';
 import { cn } from '@/cn';
 import { navIds } from '@/constants';
 
-const gapTextCaptions = 88;
-const dotSize = 14;
+// Assumes the parent element is a block with relative positioning
+const appendWrappingDivsToSpan = (span: HTMLSpanElement) => {
+  const parentRelativeParagraph = span.parentElement;
+  if (!parentRelativeParagraph) return;
 
-function CaptionLineStartingDot() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width={dotSize}
-      height={dotSize}
-      viewBox="0 0 10 10"
-      fill="currentColor"
-    >
-      <circle cx="5" cy="5" r="5" />
-    </svg>
-  );
-}
-
-function CaptionedText({
-  caption,
-  children,
-  cursorSvgUrl = cursorCircle.src,
-}: {
-  caption: ReactNode;
-  children: string;
-  cursorSvgUrl?: string;
-}) {
-  const [isCaptionOpen, setIsCaptionOpen] = useState(false);
-  const captionLineEndRef = useRef(null);
-  const {
-    captionsShouldFlicker,
-    numberCaptionsHovered,
-    incrementNumberOfCaptionsHovered,
-  } = useContext(CaptionInteractionContext);
-
-  const hasEverOpened = useRef(false);
-  const onOpenChange = useCallback(
-    (open: boolean) => {
-      setIsCaptionOpen(open);
-
-      if (open && !hasEverOpened.current) {
-        incrementNumberOfCaptionsHovered();
-        hasEverOpened.current = true;
-      }
-    },
-    [incrementNumberOfCaptionsHovered]
-  );
-
-  // Floating Caption
-  const {
-    refs: captionRefs,
-    middlewareData: captionMiddlewareData,
-    y: captionY,
-    context,
-  } = useFloating({
-    placement: 'right-start',
-    middleware: [
-      // Caption shouldn't be flush with the edge of the screen
-      shift({ padding: 20 }),
-      // Horizontally link the caption to the text for visual reference
-      arrow({ element: captionLineEndRef }),
-    ],
-    // Tie captioned text interaction (controlled by Floating UI) to React
-    open: isCaptionOpen,
-    onOpenChange: onOpenChange,
-    // As long as the caption is mounted, keep the floating styles updated even
-    // on scroll and resize
-    whileElementsMounted: autoUpdate,
+  // Call getClientRects because the span might be broken into multiple lines
+  const spanRects = span.getClientRects();
+  const paragraphRect = parentRelativeParagraph.getBoundingClientRect();
+  const highlightDivs = [...spanRects].map((rect) => {
+    const div = document.createElement('div');
+    div.style.position = 'absolute';
+    div.style.pointerEvents = 'none';
+    // Wrap the div around the bounding box, knowing the parent has relative
+    // positioning
+    div.style.top = `${rect.top - paragraphRect.top}px`;
+    div.style.left = `${rect.left - paragraphRect.left}px`;
+    div.style.width = `${rect.width}px`;
+    div.style.height = `${rect.height}px`;
+    span.append(div);
+    return div;
   });
 
-  // Where final line to the caption is at the same level as the text
-  const { arrow: captionMiddlewareDataArrow } = captionMiddlewareData;
-  const captionLineEndY = captionMiddlewareDataArrow?.y || 0;
+  return highlightDivs;
+};
 
-  // Hook the caption open state to hover
-  const captionHover = useHover(context);
-  const {
-    getReferenceProps: getCaptionedTextProps,
-    getFloatingProps: getFloatingCaptionProps,
-  } = useInteractions([captionHover]);
-
-  // Floating Dot starting the connection from the text to the caption
-  const {
-    refs: dotRefs,
-    placement: dotPlacement,
-    floatingStyles: dotStyles,
-    x: dotX,
-    y: dotY,
-  } = useFloating({
-    placement: 'top',
-    middleware: [
-      // Gracefully deal with line breaks on the text
-      inline(),
-      // Dot is a bit offset from the text
-      offset(2),
-      // Always have the dot visible
-      flip({ padding: 32 }),
-    ],
-    whileElementsMounted: autoUpdate,
-  });
-
-  const dotIsOnTop = dotPlacement === 'top';
-
-  // Merge the 2 refs for the text
-  const captionedTextRef = useMergeRefs([
-    captionRefs.setReference,
-    dotRefs.setReference,
-  ]);
-
-  // Add 'highlight' boxes around the captioned text that will be animated as a
-  // CTA for users to hover and reveal the caption
-  useEffect(() => {
-    if (!captionRefs.domReference.current) return;
-    const spanElement = captionRefs.domReference
-      .current as HTMLElementTagNameMap['span'];
-    const paragraphElement = spanElement.parentElement;
-    if (!paragraphElement) return;
-
-    // Call getClientRects because the span might be broken into multiple lines
-    const spanRects = spanElement.getClientRects();
-    const paragraphRect = paragraphElement.getBoundingClientRect();
-    const highlightDivs = [...spanRects].map((rect) => {
-      const div = document.createElement('div');
-      div.style.position = 'absolute';
-      div.style.pointerEvents = 'none';
-      // The relative parent is the paragraph
-      div.style.top = `${rect.top - paragraphRect.top}px`;
-      div.style.left = `${rect.left - paragraphRect.left}px`;
-      div.style.width = `${rect.width}px`;
-      div.style.height = `${rect.height}px`;
-      spanElement.append(div);
-      return div;
-    });
-
-    // Because the animation only runs once when the window opens, we don't need
-    // to deal with screen resize
-
-    return () => {
-      highlightDivs.forEach((div) => div.remove());
-    };
-  }, [captionRefs.domReference]);
-
-  return (
-    <>
-      <span
-        ref={captionedTextRef}
-        style={{ cursor: `url(${cursorSvgUrl}), auto` }}
-        {...getCaptionedTextProps()}
-        className={cn(
-          captionStyles['captioned-text'],
-          `${
-            numberCaptionsHovered === 0
-              ? captionStyles['captioned-text-initial-load']
-              : ''
-          }`,
-          `${
-            captionsShouldFlicker
-              ? captionStyles['flickering-captioned-text']
-              : ''
-          }`
-        )}
-      >
-        {children}
-      </span>
-      {isCaptionOpen && (
-        <>
-          <aside
-            ref={captionRefs.setFloating}
-            className={cn(
-              // position relative to the parent paragraph
-              'absolute',
-              // TODO: Tweak this based on screen size?
-              'min-w-aside-sm max-w-aside-md',
-              'text-body-md text-main',
-              captionStyles.caption
-            )}
-            style={{
-              top: captionY,
-              // fixed x position on the right area
-              right: `-${gapTextCaptions}px`,
-              transform: 'translateX(100%)',
-            }}
-            {...getFloatingCaptionProps}
-          >
-            {caption}
-            {/* Just for floating UI to run the computations. We use the coordinates below */}
-            <div ref={captionLineEndRef} />
-          </aside>
-          {/*  */}
-          <div className={cn('inline', captionStyles['caption-line'])}>
-            {/* Dot */}
-            <div
-              ref={dotRefs.setFloating}
-              className={cn(
-                'absolute text-[theme(borderColor.action.DEFAULT)]'
-              )}
-              style={dotStyles}
-            >
-              <CaptionLineStartingDot />
-            </div>
-            {/* Lines going from dot to the caption */}
-            <div
-              className={cn('absolute border-l border-action')}
-              style={{
-                left: dotX + dotSize / 2,
-                ...(dotIsOnTop
-                  ? { top: 0, bottom: `calc(100% - ${dotY + dotSize / 2}px)` }
-                  : { top: dotY + dotSize / 2, bottom: 0 }),
-              }}
-            />
-            <div
-              className={cn('absolute border-t border-action')}
-              style={{
-                left: dotX + dotSize / 2,
-                right: 0,
-                ...(dotIsOnTop
-                  ? { top: Math.min(0, dotY + dotSize / 2) }
-                  : {
-                      bottom: `min(0px,calc(100% - ${dotY + dotSize / 2}px))`,
-                    }),
-              }}
-            />
-            <div
-              className={cn('absolute border-l border-action')}
-              style={{
-                right: 0,
-                ...(dotIsOnTop
-                  ? {
-                      top: Math.min(0, dotY + dotSize / 2),
-                      bottom: `calc(100% - ${captionLineEndY + captionY}px)`,
-                    }
-                  : {
-                      top: captionLineEndY + captionY,
-                      bottom: `min(0px,calc(100% - ${dotY + dotSize / 2}px))`,
-                    }),
-              }}
-            />
-            <div
-              className={cn('absolute border-t border-action')}
-              style={{
-                right: `-${gapTextCaptions - 16}px`,
-                width: `${gapTextCaptions - 16}px`,
-                top: captionLineEndY + captionY,
-              }}
-            />
-          </div>
-        </>
-      )}
-    </>
-  );
-}
+const removeDivsFromSpan = (span: HTMLSpanElement) => {
+  const existingHighlightDivs = span.querySelectorAll('div');
+  existingHighlightDivs.forEach((div) => div.remove());
+};
 
 function RolesParagraph() {
   return (
@@ -433,98 +192,16 @@ function RelocationParagraph() {
   );
 }
 
-function AnimatedDownArrow({
-  scale = 1,
-  className,
-}: {
-  scale?: number;
-  className?: string;
-}) {
-  return (
-    <svg
-      className={cn(scrollCtaStyles['animated-arrow'], className)}
-      width={`${15 * scale}`}
-      height={`${31 * scale}`}
-      viewBox="0 0 15 31"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={1 / scale}
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path d="M7.5 0v1" />
-      <path d="M14.5 -7L7.5 0L0.5 -7" />
-    </svg>
-  );
-}
-
-function ScrollCTA() {
-  // Assume we need the scroll CTA, but hide it if it's not visible when it
-  // loads because that means the intro text is relatively long and almost
-  // cropped by the viewport, which is already enough of a CTA to scroll
-  const [needsScrollCTA, setNeedsScrollCTA] = useState(true);
-  const ctaRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!ctaRef.current) return;
-
-    const observer = new IntersectionObserver(([entry], observer) => {
-      setNeedsScrollCTA(entry.isIntersecting);
-      observer.disconnect();
-    });
-
-    observer.observe(ctaRef.current);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    needsScrollCTA && (
-      <div
-        ref={ctaRef}
-        className={cn(
-          'self-center',
-          'w-[min(30rem,80%)] sm:w-[min(60rem,100%)]',
-          'flex items-center pb-sm text-body-md text-main-subtle',
-          scrollCtaStyles['scroll-cta'] // fade-in
-        )}
-      >
-        <AnimatedDownArrow scale={0.75} className={cn('shrink-0')} />
-        <p className={cn('grow text-center text-[0.875rem]')}>
-          Don&apos;t miss the rest
-        </p>
-        <AnimatedDownArrow scale={0.75} className={cn('shrink-0')} />
-        <p
-          className={cn('hidden sm:block', 'grow text-center text-[0.875rem]')}
-        >
-          Scroll for more
-        </p>
-        <AnimatedDownArrow
-          scale={0.75}
-          className={cn('hidden sm:block', 'shrink-0')}
-        />
-      </div>
-    )
-  );
-}
-
-const CaptionInteractionContext = createContext<{
-  incrementNumberOfCaptionsHovered: () => void;
-  numberCaptionsHovered: number;
-  captionsShouldFlicker: boolean;
-}>({
-  incrementNumberOfCaptionsHovered: () => {
-    throw 'Should be implemented';
-  },
-  numberCaptionsHovered: 0,
-  captionsShouldFlicker: false,
-});
-
 export function IntroWithCaptions({ className }: { className?: string }) {
-  const [revealScrollCTA, setRevealScrollCTA] = useState(false);
+  const [revealScrollCta, setRevealScrollCta] = useState(false);
+  const [blockScrollCtaReveal, setBlockScrollCtaReveal] = useState(false);
   const [numberCaptionsHovered, setNumberCaptionsHovered] = useState(0);
   const incrementNumberOfCaptionsHovered = useCallback(() => {
     setNumberCaptionsHovered((previous) => previous + 1);
   }, []);
   const [captionsShouldFlicker, setCaptionsShouldFlicker] = useState(false);
+
+  const introContentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let timeoutId: NodeJS.Timeout | undefined;
@@ -545,12 +222,65 @@ export function IntroWithCaptions({ className }: { className?: string }) {
   useEffect(() => {
     if (numberCaptionsHovered === 2) {
       setTimeout(() => {
-        setRevealScrollCTA(true);
+        setRevealScrollCta(true);
       }, 2000);
     }
 
     // TODO: See if we need a cleanup function
   }, [numberCaptionsHovered]);
+
+  // Add 'highlight' boxes around the captioned text that will be animated as a
+  // CTA for users to hover and reveal the caption. We need to create them
+  // dynamically with JS because span is an inline element over potentially
+  // multiple lines
+  useEffect(() => {
+    if (!introContentRef.current) return;
+
+    const spanElements = introContentRef.current.querySelectorAll('span');
+    [...spanElements].forEach((span) => {
+      appendWrappingDivsToSpan(span);
+    });
+
+    // When the screen resizes and line breaks might get added, recompute the
+    // bounding boxes of the span
+    const resizeObserver = new ResizeObserver(() => {
+      [...spanElements].forEach((span) => {
+        removeDivsFromSpan(span);
+        appendWrappingDivsToSpan(span);
+      });
+    });
+
+    // Resize observers only work on the block elements so we need to set it on
+    // the container
+    resizeObserver.observe(introContentRef.current);
+
+    return () => {
+      [...spanElements].forEach((span) => {
+        removeDivsFromSpan(span);
+      });
+    };
+  }, []);
+
+  // If the intro goes of the viewport, we don't need to start revealing the
+  // scroll, but if it's already revealed, let it be
+  useEffect(() => {
+    if (!introContentRef.current) return;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) {
+        setRevealScrollCta((wasAlreadyRevealed) => {
+          if (!wasAlreadyRevealed) {
+            setBlockScrollCtaReveal(true);
+            return wasAlreadyRevealed;
+          }
+          return wasAlreadyRevealed;
+        });
+      }
+    });
+
+    observer.observe(introContentRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <CaptionInteractionContext.Provider
@@ -568,8 +298,8 @@ export function IntroWithCaptions({ className }: { className?: string }) {
           // On large screens, take the full width with captions on the side, On
           // smaller screens, center the text and have captions overlayed on top
           'md:mx-auto xl:mx-0',
-          'text-main [&:not(:has(span:hover))_span]:text-main-strong',
-          '[&:has(span:hover)]:text-main-subtle [&:has(span:hover)_span:hover]:text-main',
+          'text-main [&:not(:has(span[data-open="true"]))_span]:text-main-strong',
+          '[&:has(span[data-open="true"])]:text-main-subtle [&:has(span[data-open="true"])_span[data-open="true"]]:text-main',
           // Place scroll CTA at the bottom of the screen
           'flex flex-col justify-between gap-[3rem]',
           className
@@ -597,6 +327,7 @@ export function IntroWithCaptions({ className }: { className?: string }) {
                 'text-body-md sm:text-body-lg',
                 'flex flex-col gap-lg'
               )}
+              ref={introContentRef}
             >
               <RolesParagraph />
               <SanFranciscoParagraph />
@@ -610,7 +341,7 @@ export function IntroWithCaptions({ className }: { className?: string }) {
             />
           </article>
         </div>
-        {revealScrollCTA && <ScrollCTA />}
+        {revealScrollCta && !blockScrollCtaReveal && <ScrollCta />}
       </div>
     </CaptionInteractionContext.Provider>
   );

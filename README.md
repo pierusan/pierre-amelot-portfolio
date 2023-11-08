@@ -290,3 +290,4 @@ them to `app/_common/components` directory.
 - Fix gap, padding, etc... in tailwind theme
 - Explain CSS modules for animations
 - Mobile header blur like floating-ui website?
+- Talk about dependabot in Readme

@@ -282,9 +282,11 @@ them to `app/_common/components` directory.
 - Multiple animated arrows at the bottom of the site
 - Credits with WithPoly, Spline, and other tools
 - Add code coverage tests?
+- Add tests for custom hooks?
 - Console message: Like what you see? Reach out! with Ascii art
 - 404 page
 - Light mode?
 - Add date, title, and company to project?
 - Fix gap, padding, etc... in tailwind theme
 - Explain CSS modules for animations
+- Mobile header blur like floating-ui website?

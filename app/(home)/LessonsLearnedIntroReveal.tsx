@@ -3,19 +3,14 @@
 import SplitType from 'split-type';
 import { gsap, Power1 } from 'gsap';
 import resolveConfig from 'tailwindcss/resolveConfig';
-import { type RecursiveKeyValuePair } from 'tailwindcss/types/config';
 import { useLayoutEffect } from 'react';
 import { useAnimationStore } from '@/store';
 import { animationClasses, animationIds, navIds } from '@/constants';
 import tailwindConfig from '@configs/tailwind.config';
 
-const textColors = resolveConfig(tailwindConfig).theme?.textColor;
-const textColorMain =
-  ((textColors?.main as RecursiveKeyValuePair<string, string>)
-    ?.DEFAULT as string) ?? 'white';
-const textColorMainSubtle =
-  ((textColors?.main as RecursiveKeyValuePair<string, string>)
-    ?.subtle as string) ?? 'white';
+const textColors = resolveConfig(tailwindConfig).theme.textColor;
+const textColorMain = textColors.main.DEFAULT;
+const textColorMainSubtle = textColors.main.subtle;
 
 const sectionSelector = `#${animationIds.homeLessonsLearnedSection}`;
 const subtitleSelector = `#${animationIds.homeLessonsLearnedIntroSubtitle}`;

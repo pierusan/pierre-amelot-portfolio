@@ -39,51 +39,67 @@
 .flickering-captioned-text {
 }
 
-.caption-line {
-  > div {
-    animation-fill-mode: forwards;
-    animation-timing-function: linear;
-  }
-
+/* Different animation timing for different screen and lines */
+.polyline-xl {
   --anim-1: 30ms;
   --anim-2: 100ms;
   --anim-3: 50ms;
   --anim-4: 70ms;
+}
+.polyline-sm {
+  --anim-1: 50ms;
+  --anim-2: 75ms;
+  --anim-3: 50ms;
+}
+.line-sm {
+  --anim-1: 100ms;
+}
 
-  /* Dot -> Top */
-  > div:nth-of-type(2) {
-    transform-origin: bottom center;
-    transform: scale(1, 0);
-    animation-name: vertical-grow;
-    animation-duration: var(--anim-1);
-  }
+/* Animate a line segment one after the other */
+.polyline-1 {
+  animation-duration: var(--anim-1);
+}
+.polyline-2 {
+  animation-delay: var(--anim-1);
+  animation-duration: var(--anim-2);
+}
+.polyline-3 {
+  animation-delay: calc(var(--anim-1) + var(--anim-2));
+  animation-duration: var(--anim-3);
+}
+.polyline-4 {
+  animation-delay: calc(var(--anim-1) + var(--anim-2) + var(--anim-3));
+  animation-duration: var(--anim-4);
+}
 
-  /* Top -> Right Edge */
-  > div:nth-of-type(3) {
-    transform-origin: left center;
-    transform: scale(0, 1);
-    animation-name: horizontal-grow;
-    animation-delay: var(--anim-1);
-    animation-duration: var(--anim-2);
-  }
-
-  /* Right Edge Top -> Down */
-  > div:nth-of-type(4) {
-    transform-origin: top center;
-    transform: scale(1, 0);
-    animation-name: vertical-grow;
-    animation-delay: calc(var(--anim-1) + var(--anim-2));
-    animation-duration: var(--anim-3);
-  }
-
-  /* Right Edge -> Caption */
-  > div:nth-of-type(5) {
-    transform-origin: left center;
-    transform: scale(0, 1);
-    animation-name: horizontal-grow;
-    animation-delay: calc(var(--anim-1) + var(--anim-2) + var(--anim-3));
-    animation-duration: var(--anim-4);
-  }
+/* Animations */
+.grow-to-right {
+  transform-origin: left center;
+  transform: scale(0, 1);
+  animation-name: horizontal-grow;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+}
+.grow-to-left {
+  transform-origin: right center;
+  transform: scale(0, 1);
+  animation-name: horizontal-grow;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+}
+.grow-to-top {
+  transform-origin: bottom center;
+  transform: scale(1, 0);
+  animation-name: vertical-grow;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+}
+.grow-to-bottom {
+  transform-origin: top center;
+  transform: scale(1, 0);
+  animation-name: vertical-grow;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
 }
 
 .caption {

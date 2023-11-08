@@ -1,4 +1,5 @@
 import { type ComponentProps } from 'react';
+import Link from 'next/link';
 import { cn } from '@/cn';
 import { Icon } from '@/components/Icon';
 
@@ -62,7 +63,9 @@ export function MobileContactLinks({ className }: { className?: string }) {
         className
       )}
     >
-      <p className="whitespace-nowrap text-heading-xs">Pierre Amelot</p>
+      <Link href={'/'} className="whitespace-nowrap text-heading-xs">
+        Pierre Amelot
+      </Link>
       <LinksList
         className={cn(
           'flex items-center gap-sm',

@@ -3,6 +3,7 @@ import { cn } from '@/cn';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/Popover';
 import { Icon } from '@/components/Icon';
 import { navIds } from '@/constants';
+import { DesktopLeftNav, DesktopVerticalLink } from '@/components/Nav';
 
 type Ellipse = { cx: number; cy: number; rx: number; ry: number };
 
@@ -163,27 +164,6 @@ function RocksStackDesktopNav() {
   );
 }
 
-function DesktopVerticalLink({
-  navLinkId,
-  linkName,
-}: {
-  navLinkId: keyof typeof navIds;
-  linkName: string;
-}) {
-  return (
-    <a
-      className={cn(
-        'rotate-180 p-md uppercase [writing-mode:vertical-lr]',
-        'hover:text-main active:text-main-strong',
-        'pointer-events-auto'
-      )}
-      href={`#${navIds[navLinkId]}`}
-    >
-      {linkName}
-    </a>
-  );
-}
-
 export function DesktopHomeNav({
   id,
   className,
@@ -192,12 +172,9 @@ export function DesktopHomeNav({
   className?: string;
 }) {
   return (
-    <nav
+    <DesktopLeftNav
       id={id}
       className={cn(
-        'hidden md:block',
-        'fixed top-0 h-screen',
-        'text-details-xl text-main-subtle',
         // Enable pointer events on the children directly so the project cards
         // pointer-events are not blocked by the nav overlapping
         'pointer-events-none',
@@ -206,16 +183,24 @@ export function DesktopHomeNav({
     >
       <ol className="flex h-full flex-col items-start justify-between">
         <li>
-          <DesktopVerticalLink navLinkId="intro" linkName="Intro" />
+          <DesktopVerticalLink
+            className="pointer-events-auto"
+            href={`#${navIds.intro}`}
+            linkName="Intro"
+          />
         </li>
         <li>
           <RocksStackDesktopNav />
         </li>
         <li>
-          <DesktopVerticalLink navLinkId="about" linkName="About" />
+          <DesktopVerticalLink
+            className="pointer-events-auto"
+            href={`#${navIds.about}`}
+            linkName="About"
+          />
         </li>
       </ol>
-    </nav>
+    </DesktopLeftNav>
   );
 }
 

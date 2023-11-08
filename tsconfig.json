@@ -20,8 +20,8 @@
       }
     ],
     "paths": {
-      "@configs/*": ["./*"],
-      "@/*": ["./app/_common/*"]
+      "@/*": ["./app/_common/*"],
+      "@configs/*": ["./*"]
     }
   },
   "include": [

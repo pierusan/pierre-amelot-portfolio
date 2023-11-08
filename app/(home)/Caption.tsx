@@ -204,7 +204,12 @@ export function CaptionedText({
     enabled: canHover,
   });
   const captionClick = useClick(context, { enabled: !canHover });
-  const captionDismiss = useDismiss(context, { enabled: !canHover });
+  const captionDismiss = useDismiss(context, {
+    enabled: !canHover,
+    // Only dismiss once users click instead of pointer-down. This lets touch
+    // users scroll with the caption open
+    outsidePressEvent: 'click',
+  });
   const {
     getReferenceProps: getCaptionedTextProps,
     getFloatingProps: getFloatingCaptionProps,

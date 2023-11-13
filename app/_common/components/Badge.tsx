@@ -1,12 +1,20 @@
 import { type ReactNode } from 'react';
 import { cn } from '@/cn';
 
-export function Badge({ children }: { children: ReactNode }) {
+export function Badge({
+  variant = 'default',
+  children,
+}: {
+  variant?: 'default' | 'strong';
+  children: ReactNode;
+}) {
   return (
     <div
       className={cn(
-        'rounded-sm bg-surface px-2xs py-3xs text-body-xs text-main-strong',
-        'whitespace-nowrap tracking-wide'
+        'rounded-sm  px-2xs py-3xs text-body-xs ',
+        'whitespace-nowrap tracking-wide',
+        variant === 'strong' && 'bg-surface text-main',
+        variant === 'default' && 'bg-surface text-main-strong'
       )}
     >
       {children}

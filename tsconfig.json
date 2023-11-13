@@ -29,6 +29,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts", // Necessary because hidden folder
     // Unnecessary but included for clarity
+    "mdx-types.d.ts",
     "svgr-types.d.ts",
     "next-env.d.ts"
   ],

@@ -33,7 +33,7 @@
           "camelCase": true, // Regular TS
           "pascalCase": true // Components
         },
-        "ignore": [".d.ts$"]
+        "ignore": [".d.ts$", "mdx-components.tsx"]
       }
     ],
     "no-console": ["warn", { "allow": ["warn", "error"] }],
@@ -58,6 +58,9 @@
           },
           "dev": {
             "development": false
+          },
+          "params": {
+            "parameters": false
           }
         }
       }

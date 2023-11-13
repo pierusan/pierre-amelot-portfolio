@@ -15,6 +15,7 @@ export default {
   content: [
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './mdx-components.tsx',
   ],
   future: {
     // Only apply hover styles on devices that support it. Forces better usage
@@ -129,6 +130,7 @@ export default {
       'body-sm': ['0.75rem', { lineHeight: 'normal' }], // 12px
       'body-xs': ['0.625rem', { lineHeight: 'normal' }], // 10px
       'details-xl': ['1.25rem', { lineHeight: 'normal' }], // 20px
+      'details-lg': ['1rem', { lineHeight: 'normal' }], // 16px
       'details-md': ['0.75rem', { lineHeight: 'normal' }], // 12px
     },
     // From shadcn?

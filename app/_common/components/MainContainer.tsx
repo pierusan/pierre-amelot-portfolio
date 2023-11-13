@@ -1,6 +1,7 @@
 import { type ReactNode } from 'react';
 import { cn } from '@/cn';
 
+// TODO: Move back to just root since we're not using for projects anymore
 export function MainContainer({
   className,
   children,

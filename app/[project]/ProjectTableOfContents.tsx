@@ -2,6 +2,8 @@
 
 import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { cn } from '@/cn';
+import { Icon } from '@/components/Icon';
+import { ProjectKey, projects } from '@/constants';
 
 type SectionBounds = {
   id: string;
@@ -16,8 +18,12 @@ type TocHeading = { value: string; id: string };
 export function ProjectTableOfContents({
   headings2,
   className,
+  nextProject,
+  previousProject,
 }: {
   headings2: TocHeading[];
+  nextProject: ProjectKey;
+  previousProject: ProjectKey;
   className?: string;
 }) {
   const tocRef = useRef<HTMLElementTagNameMap['nav']>(null);
@@ -209,10 +215,7 @@ export function ProjectTableOfContents({
   }, [tocList, highlightTocLink]);
 
   return (
-    <nav
-      ref={tocRef}
-      className={cn('flex flex-col items-start', 'sticky top-16', className)}
-    >
+    <nav ref={tocRef} className={cn('sticky top-16', className)}>
       <ol>
         {tocList.map(({ value, id }) => (
           <li key={id}>
@@ -220,7 +223,7 @@ export function ProjectTableOfContents({
               href={`#${id}`}
               className={cn(
                 'p-2xs',
-                'text-details-md uppercase text-main-subtle',
+                'whitespace-nowrap text-details-md uppercase text-main-subtle',
                 'flex items-center gap-sm',
                 'transition-all',
                 'group hover:text-main [&.in-view]:text-main'
@@ -228,8 +231,8 @@ export function ProjectTableOfContents({
             >
               <div
                 className={cn(
-                  'w-[80px] border-t border-action-subtle transition-all',
-                  'group-hover:w-[96px] group-hover:border-t-2 group-hover:border-[theme(textColor.main.DEFAULT)]',
+                  'min-w-[80px] border-t border-action-subtle transition-all',
+                  'group-hover:min-w-[96px] group-hover:border-t-2 group-hover:border-[theme(textColor.main.DEFAULT)]',
                   'group-[.in-view]:w-[96px] group-[.in-view]:border-t-2 group-[.in-view]:border-[theme(textColor.main.DEFAULT)]'
                 )}
               />
@@ -237,6 +240,34 @@ export function ProjectTableOfContents({
             </a>
           </li>
         ))}
+      </ol>
+      <ol className={cn('mt-10 flex justify-between gap-xs')}>
+        <li>
+          <a
+            href={`/${previousProject}`}
+            className={cn(
+              'px-2xs py-sm', // Larger hover zone
+              'flex flex-nowrap items-center gap-[0.5rem]',
+              'text-details-md uppercase text-main-subtle transition-colors hover:text-main '
+            )}
+          >
+            <Icon name="pinLeft" size="1rem" />
+            {projects[previousProject].linkName}
+          </a>
+        </li>
+        <li>
+          <a
+            href={`/${nextProject}`}
+            className={cn(
+              'px-2xs py-sm',
+              'flex flex-nowrap items-center gap-[0.5rem]',
+              'text-details-md uppercase text-main-subtle transition-colors hover:text-main '
+            )}
+          >
+            {projects[nextProject].linkName}
+            <Icon name="pinRight" size="1rem" />
+          </a>
+        </li>
       </ol>
     </nav>
   );

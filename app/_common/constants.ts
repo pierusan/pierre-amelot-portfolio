@@ -55,6 +55,7 @@ export const animationClasses = {
 export type ProjectInfo = {
   title: string;
   subtitle: string;
+  linkName: string;
   badges: { code?: string[]; design?: string[]; research?: string[] };
   mainImage: RemoteImageName;
   secondaryImages: [RemoteImageName, RemoteImageName, RemoteImageName];
@@ -64,6 +65,7 @@ export const projects = {
   'ouster-studio': {
     title: 'Ouster Studio',
     subtitle: 'Unifying Ouster Lidar ecosystem of visualizers',
+    linkName: 'Ouster Studio',
     badges: {
       code: [
         'React',
@@ -95,6 +97,7 @@ export const projects = {
   'fleetguide-surround-view': {
     title: 'Fleetguide 360° View',
     subtitle: 'Helping truck drivers see 360°',
+    linkName: 'Fleetguide 360°',
     badges: {
       code: ['C++ 14', 'OpenGl', 'VTK', 'ROS', 'BigQuery', 'Data Studio'],
       design: ['Prototyping', 'Figma', 'After Effects', 'Pitch Deck'],
@@ -119,6 +122,7 @@ export const projects = {
   'ouster-data-app': {
     title: 'Ouster Data App',
     subtitle: 'Full-stack upgrade of internal web tool',
+    linkName: 'Ouster Data App',
     badges: {
       code: ['React', 'Flask', 'SQLAlchemy', 'Docker', 'Terraform', 'Three.js'],
       design: ['Figma', 'Prototyping'],
@@ -133,6 +137,7 @@ export const projects = {
   },
   'nrec-ar': {
     title: 'Demining in AR',
+    linkName: 'AR Demining',
     subtitle: "Improving military deminers' technique using metal detectors",
     badges: {
       code: ['Unity', 'C#', 'HoloLens', 'Vuforia', 'Wireshark'],
@@ -148,6 +153,7 @@ export const projects = {
   },
   hypnovr: {
     title: "HypnoVR App Doctor's View",
+    linkName: 'HypnoVR',
     subtitle: 'Virtual Reality for anxiety and pain management',
     badges: {
       code: ['Unity', 'C#', 'Oculus Rift'],

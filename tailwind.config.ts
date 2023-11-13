@@ -103,6 +103,7 @@ export default {
       'aside-sm': '18.5rem',
       screen: '100vw',
       full: '100%',
+      fit: 'fit-content',
     },
     maxWidth: ({ theme }) => ({
       ...theme('width'),

@@ -7,6 +7,10 @@ import TocSVG from '@material-design-icons/svg/filled/toc.svg';
 // Radix
 import {
   ArrowUpIcon,
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  PinLeftIcon,
+  PinRightIcon,
   GitHubLogoIcon,
   LinkedInLogoIcon,
 } from '@radix-ui/react-icons';
@@ -28,8 +32,12 @@ const materialIcons = {
 
 const radixIcons = {
   arrowUp: ArrowUpIcon,
+  arrowLeft: ArrowLeftIcon,
+  arrowRight: ArrowRightIcon,
   github: GitHubLogoIcon,
   linkedin: LinkedInLogoIcon,
+  pinLeft: PinLeftIcon,
+  pinRight: PinRightIcon,
 } as const;
 
 const phosphorIcons = { terminalWindow: TerminalWindow } as const;

@@ -17,7 +17,8 @@ export function ProjectLayout({ children }: { children: ReactNode }) {
       </DesktopLeftNav>
       <main
         className={cn(
-          'w-fit mx-auto',
+          'w-fit',
+          'mx-auto',
           'pl-[6.5rem] pr-[5rem] pt-main-y-xl',
           'grid',
           'grid-cols-[theme(width.paragraph-md)]',

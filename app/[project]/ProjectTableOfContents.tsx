@@ -248,7 +248,7 @@ export function ProjectTableOfContents({
             className={cn(
               'px-2xs py-sm', // Larger hover zone
               'flex flex-nowrap items-center gap-[0.5rem]',
-              'text-details-md uppercase text-main-subtle transition-colors hover:text-main '
+              'whitespace-nowrap text-details-md uppercase text-main-subtle transition-colors hover:text-main '
             )}
           >
             <Icon name="pinLeft" size="1rem" />
@@ -261,7 +261,7 @@ export function ProjectTableOfContents({
             className={cn(
               'px-2xs py-sm',
               'flex flex-nowrap items-center gap-[0.5rem]',
-              'text-details-md uppercase text-main-subtle transition-colors hover:text-main '
+              'whitespace-nowrap text-details-md uppercase text-main-subtle transition-colors hover:text-main '
             )}
           >
             {projects[nextProject].linkName}

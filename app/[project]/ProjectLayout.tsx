@@ -28,6 +28,7 @@ export function ProjectLayout({ children }: { children: ReactNode }) {
       >
         {children}
       </main>
+      {/* TODO: Also add Previous and Next project links at the bottom of the page */}
       <FixedBackdrop className={cn('-z-10')} />
     </>
   );

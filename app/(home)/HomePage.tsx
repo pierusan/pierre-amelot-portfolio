@@ -1,5 +1,4 @@
 import { IntroWithCaptions } from './IntroWithCaptions';
-import { DesktopContactLinks, MobileContactLinks } from './ContactLinks';
 import {
   DesktopBackToTopButton,
   DesktopHomeNav,
@@ -14,8 +13,13 @@ import { Rocks3DScene } from './_3D/Rocks3DScene';
 import { LessonsLearnedIntroReveal } from './LessonsLearnedIntroReveal';
 import { NavLinkActiveOnScroll } from './NavLinkActiveOnScroll';
 import { cn } from '@/cn';
+import {
+  DesktopContactLinks,
+  MobileContactLinks,
+} from '@/components/ContactLinks';
 import { FixedBackdrop } from '@/components/FixedBackdrop';
 import { animationClasses, animationIds, navIds } from '@/constants';
+import { MainContainer } from '@/components/MainContainer';
 
 export function HomePage() {
   return (
@@ -34,9 +38,8 @@ export function HomePage() {
       {/* Below Curtain, displayed with the about section */}
       <DesktopContactLinks variant="strong" className={cn('z-0')} />
       <DesktopBackToTopButton className={cn('z-0')} />
-      <main
+      <MainContainer
         className={cn(
-          'px-md md:px-xl xl:px-[clamp(theme(padding.xl),11.875vw,theme(padding.2xl))]',
           // Easier to center things inside if we use flex
           'flex flex-col'
         )}
@@ -44,9 +47,9 @@ export function HomePage() {
         <IntroWithCaptions className={cn('z-20')} />
         <ProjectCards className={cn('z-20')} />
         <LessonsLearnedSection className={cn('z-20')} />
-        {/* Invisible div that we use to scroll to the 'about section'. 
-            We need this because the 'real' about section right below has 
-            a negative top margin */}
+        {/* Invisible div that we use to scroll to the 'about section'.
+              We need this because the 'real' about section right below has
+              a negative top margin */}
         <div className={cn('relative overflow-hidden')}>
           <div id={navIds.about} className={cn('absolute h-[10vh]')} />
         </div>
@@ -55,7 +58,7 @@ export function HomePage() {
           // Lift by 100vh to reveal it when pinned and curtain is pulled
           className={cn('z-0 mt-[-100vh]')}
         />
-      </main>
+      </MainContainer>
       <Rocks3DScene
         className={cn('z-[15]', animationClasses.homeCurtainToPull)}
       />

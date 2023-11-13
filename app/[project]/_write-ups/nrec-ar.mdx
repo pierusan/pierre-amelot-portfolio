@@ -1,0 +1,126 @@
+import { ProjectImageWithCaption } from '../ProjectImageWithCaption';
+import { ProjectWrapperBelowTitles } from '../ProjectPage';
+
+# Demining in AR
+
+Training in Augmented Reality: Helping deminers use metal detectors.
+
+<ProjectWrapperBelowTitles project={props.project}>
+
+Scanning mined areas with a metal detector requires a rigorous technique. At all
+times, the detector should be kept low and flat, and the moves should be precise
+and slow. To build enough muscle memory, soldiers receive more than a hundred of
+hours of training before going to the field.
+
+<ProjectImageWithCaption
+  name="fg_surr_cover_image"
+  caption="An army deminer. Credit: https://www.seriousdetecting.com/"
+/>
+
+As a Graphics Engineer at NREC (robotics R&D Lab attached to Carnegie Mellon
+University), _I developed a Unity AR app to help deminers get instant feedback on
+their technique_. I rapidly iterated over prototypes across a variety of hardware
+and libraries, culminating in a HoloLens app overlaying the detector's motion
+information directly on the ground.
+
+<ProjectImageWithCaption
+  name="fg_surr_cover_image"
+  caption="Pitch video I created for the AR app. Unedited footage shot with HoloLens and DSLR."
+/>
+
+## Project scope
+
+When I joined NREC in 2017, the team had already built a [custom piece of
+hardware](https://www.nrec.ri.cmu.edu/nrec/solutions/defense/other-projects/sweep-monitoring.html)
+to track the detector's base relative to the ground. Position and orientation
+measurements were sent by the device over the network.
+
+The goal for this new project was to listen for these motion measurements, and
+overlay them on the field of view of deminers using Augmented or Mixed Reality.
+_My job as only engineer/designer on this AR project was to investigate
+feasibility of this idea, and to build an experience that we could pitch to the
+US Army Research Office._
+
+<ProjectImageWithCaption name="fg_surr_cover_image" caption="System diagram" />
+
+## Initial experiments
+
+I first experimented with different headsets the team had purchased: Atheer Air,
+ODG R7, and Microsoft HoloLens. While field of view of the Atheer and form
+factor of the ODG were appealing, their lack of inside-out tracking and the
+hardware issues encountered gradually led me to prioritize for a HoloLens
+experience.
+
+As a software stack, I converged towards using Unity with the marker tracking
+library Vuforia. This allowed to develop for different platforms at the same
+time: while I was building HoloLens and ODG app for deminers, I was also getting
+"for free" an Android mobile/tablet AR app that observers could use during
+demos.
+
+<ProjectImageWithCaption
+  name="fg_surr_cover_image"
+  caption="Some hardware and software experiments I conducted"
+/>
+
+## Parallel prototyping
+
+For faster prototype development, I recorded and replayed packets using a
+combination of software: Wireshark, Colasoft Packet Player, and TraceWrangler. I
+could then iterate offline over different visualizations of the detectors
+movements.
+
+<ProjectImageWithCaption
+  name="fg_surr_cover_image"
+  caption="Screenshots of different prototypes I created to visualize detector movements"
+/>
+
+## User tests
+
+_Since I had no direct access to soldiers, I gathered feedback amongst NREC
+employees, all first-time detector users, through user tests of the ODG and
+HoloLens prototypes_.
+
+Overall, my colleagues found the AR app gave them a clear framework to
+self-improve on their technique. They also pointed out issues such as loss of
+tracking (especially for tall users) and low framerate, and felt items like
+tracking status, color palettes, and voice commands discoverability could be
+improved.
+
+<ProjectImageWithCaption
+  name="fg_surr_cover_image"
+  caption="Some of the user tests I ran at NREC"
+/>
+
+## Performance improvements
+
+Acting on users feedback, I took advantage of Unity's profiling tools to reduce
+performance bottlenecks. In particular, I started writing detector position
+measurements directly to a texture instead of rendering waypoints as individual
+meshes.
+
+To improve tracking, I also ran test bench experiments against multiple Vuforia
+marker types and form factors. After recording data with Unity, exporting it to
+CSV, and plotting the results in Matlab, I was able to print an optimized marker
+for our use case.
+
+<ProjectImageWithCaption
+  name="fg_surr_cover_image"
+  caption="Experiments to find the correct marker size and shape"
+/>
+
+## Pitch Video
+
+Once stable, the HoloLens AR deminer app demo became a must-see stop of NREC
+tours, and I also created a pitch video of the project to show visitors.
+
+<ProjectImageWithCaption
+  name="fg_surr_cover_image"
+  caption="Footage of the app I recorded, later edited by NREC's Marketing team"
+/>
+
+Although project sponsors were excited about the demo and prospects of the AR
+app, I unfortunately never got direct access to soldiers in the 10 months I
+worked at NREC, and many hypotheses were yet to be tested in actual military
+training environment.
+
+</ProjectWrapperBelowTitles>

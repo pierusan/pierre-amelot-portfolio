@@ -1,5 +1,28 @@
+import createMDX from '@next/mdx';
+import rehypeSlug from 'rehype-slug';
+import { rehypeExportToc } from './rehypeExportToc.mjs';
+
+const withMDX = createMDX({
+  extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: [],
+    rehypePlugins: [
+      // Add ids to headings (to link to them in the ToC)
+      rehypeSlug,
+      // Export the file table of contents during compilation. This is more
+      // flexible than the approach of https://github.com/remarkjs/remark-toc
+      // which injects it directly as a unordered list in the markdown. If we
+      // need to use the ToC in the markdown, it can be still be passed as a
+      // prop to the MDX component.
+      [rehypeExportToc, { namedExport: 'tableOfContents' }],
+    ],
+  },
+});
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Configure `pageExtensions` to include MDX files
+  pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
   // It should have been enabled by default by Next 13 but it doesn't seem to be
   // the case. Enabling it to follow the best practices from React 18 (e.g.
   // mounting components twice to catch bugs)
@@ -18,6 +41,8 @@ const nextConfig = {
   },
   experimental: {
     typedRoutes: true,
+    // Can't use Rust for now because plugins aren't supported as of Nov 2023
+    // mdxRs: true,
   },
   // The svgr docs don't seem to work with latest Next so we're using the fix
   // mentioned here:
@@ -54,4 +79,4 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+export default withMDX(nextConfig);

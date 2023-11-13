@@ -294,7 +294,7 @@ export function IntroWithCaptions({ className }: { className?: string }) {
         id={navIds.intro}
         className={cn(
           'min-h-[calc(100dvh_-_theme(height.header-mobile))] md:min-h-screen',
-          'pt-[5rem]  md:pt-[min(16.5vw,theme(padding.xl))]',
+          'pt-[5rem] md:pt-[min(16.5vw,theme(padding.xl))]',
           // On large screens, take the full width with captions on the side, On
           // smaller screens, center the text and have captions overlayed on top
           'md:mx-auto xl:mx-0',

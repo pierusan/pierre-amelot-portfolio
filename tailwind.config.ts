@@ -15,6 +15,7 @@ export default {
   content: [
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './mdx-components.tsx',
   ],
   future: {
     // Only apply hover styles on devices that support it. Forces better usage
@@ -81,6 +82,7 @@ export default {
       md: '2rem', // 32px
       xl: '9.5rem', // 152px pour 1280px
       '2xl': '12.5rem', // 200px pour 1280px
+      'main-y-xl': '6rem',
     },
     // TODO: Revert to defaults for sizing?
     gap: {
@@ -101,6 +103,7 @@ export default {
       'aside-sm': '18.5rem',
       screen: '100vw',
       full: '100%',
+      fit: 'fit-content',
     },
     maxWidth: ({ theme }) => ({
       ...theme('width'),
@@ -128,6 +131,7 @@ export default {
       'body-sm': ['0.75rem', { lineHeight: 'normal' }], // 12px
       'body-xs': ['0.625rem', { lineHeight: 'normal' }], // 10px
       'details-xl': ['1.25rem', { lineHeight: 'normal' }], // 20px
+      'details-lg': ['1rem', { lineHeight: 'normal' }], // 16px
       'details-md': ['0.75rem', { lineHeight: 'normal' }], // 12px
     },
     // From shadcn?

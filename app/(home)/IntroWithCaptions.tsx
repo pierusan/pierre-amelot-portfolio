@@ -14,6 +14,10 @@ import { ScrollCta } from './ScrollCta';
 import { cn } from '@/cn';
 import { navIds } from '@/constants';
 
+const DELAY_REVEAL_HOVER_CTA_MS = 5000;
+const NUM_CAPTIONS_HOVER_BEFORE_SCROLL_CTA_MS = 2;
+const DELAY_REVEAL_SCROLL_CTA_MS = 2000;
+
 // Assumes the parent element is a block with relative positioning
 const appendWrappingDivsToSpan = (span: HTMLSpanElement) => {
   const parentRelativeParagraph = span.parentElement;
@@ -208,7 +212,7 @@ export function IntroWithCaptions({ className }: { className?: string }) {
     if (numberCaptionsHovered === 0) {
       timeoutId = setTimeout(() => {
         setCaptionsShouldFlicker(true);
-      }, 10_000);
+      }, DELAY_REVEAL_HOVER_CTA_MS);
     }
 
     return () => {
@@ -220,10 +224,10 @@ export function IntroWithCaptions({ className }: { className?: string }) {
   }, [numberCaptionsHovered]);
 
   useEffect(() => {
-    if (numberCaptionsHovered === 2) {
+    if (numberCaptionsHovered === NUM_CAPTIONS_HOVER_BEFORE_SCROLL_CTA_MS) {
       setTimeout(() => {
         setRevealScrollCta(true);
-      }, 2000);
+      }, DELAY_REVEAL_SCROLL_CTA_MS);
     }
 
     // TODO: See if we need a cleanup function

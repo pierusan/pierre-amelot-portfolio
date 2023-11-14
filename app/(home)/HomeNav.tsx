@@ -45,15 +45,15 @@ const rockNavLinks: {
   translationYLessonsLearnedToMainStack: number;
 }[] = [
   {
-    navLinkId: 'ouster-studio',
-    linkName: 'Ouster Studio',
+    navLinkId: 'hypnovr',
+    linkName: 'HypnoVR',
     rockEllipse: { cx: 13, cy: 5, rx: 8, ry: 4 },
     translationYInStack: 50.5,
     translationYLessonsLearnedToMainStack: -101.5,
   },
   {
-    navLinkId: 'fleetguide-surround-view',
-    linkName: 'Surround View',
+    navLinkId: 'nrec-ar',
+    linkName: 'Demining in AR',
     rockEllipse: { cx: 16, cy: 7, rx: 10.2, ry: 6 },
     translationYInStack: 32,
     translationYLessonsLearnedToMainStack: -94,
@@ -66,15 +66,15 @@ const rockNavLinks: {
     translationYLessonsLearnedToMainStack: -82,
   },
   {
-    navLinkId: 'nrec-ar',
-    linkName: 'Demining in AR',
+    navLinkId: 'fleetguide-surround-view',
+    linkName: 'Surround View',
     rockEllipse: { cx: 15, cy: 8, rx: 12, ry: 7 },
     translationYInStack: 4,
     translationYLessonsLearnedToMainStack: -67,
   },
   {
-    navLinkId: 'hypnovr',
-    linkName: 'HypnoVR',
+    navLinkId: 'ouster-studio',
+    linkName: 'Ouster Studio',
     rockEllipse: { cx: 17, cy: 9, rx: 16, ry: 8 },
     translationYInStack: -10,
     translationYLessonsLearnedToMainStack: -54,

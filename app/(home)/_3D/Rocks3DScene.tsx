@@ -3,7 +3,10 @@
 import { Canvas } from '@react-three/fiber';
 import { Leva, useControls } from 'leva';
 import { Grid, PerspectiveCamera } from '@react-three/drei';
-import { Perf } from 'r3f-perf';
+// It seems like Next@14.0.2 broke usage of this performance monitor, probably
+// with this change: https://github.com/vercel/next.js/pull/57784. Monitor the
+// thread and bring it back later if a fix appears.
+// import { Perf } from 'r3f-perf';
 import { MathUtils, PCFSoftShadowMap } from 'three';
 import { RocksAnimation } from './RocksAnimation';
 import { RocksLighting } from './RocksLighting';
@@ -29,9 +32,9 @@ export function Rocks3DScene({ className }: { className?: string }) {
     fov: { value: 60, min: 10, max: 100, step: 1 },
   });
   const { show: showGrid } = useControls('Grid', { show: false });
-  const { show: showPerformanceMonitor } = useControls('Performance Monitor', {
-    show: false,
-  });
+  // const { show: showPerformanceMonitor } = useControls('Performance Monitor', {
+  //   show: false,
+  // });
 
   return (
     <div
@@ -65,7 +68,7 @@ export function Rocks3DScene({ className }: { className?: string }) {
             fov={debugCameraFov}
           />
         )}
-        {showPerformanceMonitor && <Perf />}
+        {/* {showPerformanceMonitor && <Perf />} */}
       </Canvas>
       {showSceneControls || <Leva hidden />}
     </div>

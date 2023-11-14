@@ -1,5 +1,6 @@
 'use client';
 
+import { flushSync } from 'react-dom';
 import { useState, useRef, useEffect, useCallback } from 'react';
 import cursorDoubleDiamond from './_cursors/cursor_double_diamond.svg?url';
 import cursorDevEmoji from './_cursors/cursor_dev_emoji.svg?url';
@@ -208,10 +209,20 @@ export function IntroWithCaptions({ className }: { className?: string }) {
   const introContentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // console.time('CaptionFlicker');
     let timeoutId: NodeJS.Timeout | undefined;
     if (numberCaptionsHovered === 0) {
       timeoutId = setTimeout(() => {
-        setCaptionsShouldFlicker(true);
+        // console.timeLog('CaptionFlicker', 'setCaptionsShouldFlicker(true)');
+
+        // I'm not sure if it happens in production, but at least in dev mode,
+        // there are sometimes inconsistent delays between the state update
+        // schedule and when it is run (sometime 10 seconds). It's hard to
+        // reproduce and not sure where the problem is coming from but to be
+        // safe we apply flushSync
+        flushSync(() => {
+          setCaptionsShouldFlicker(true);
+        });
       }, DELAY_REVEAL_HOVER_CTA_MS);
     }
 
@@ -220,8 +231,18 @@ export function IntroWithCaptions({ className }: { className?: string }) {
         setCaptionsShouldFlicker(false);
         clearTimeout(timeoutId);
       }
+      // console.timeEnd('CaptionFlicker');
     };
   }, [numberCaptionsHovered]);
+
+  // useEffect(() => {
+  //   if (captionsShouldFlicker) {
+  //     console.timeLog(
+  //       'CaptionFlicker',
+  //       'captionsShouldFlicker set to true in IntroWithCaptions'
+  //     );
+  //   }
+  // }, [captionsShouldFlicker]);
 
   useEffect(() => {
     if (numberCaptionsHovered === NUM_CAPTIONS_HOVER_BEFORE_SCROLL_CTA_MS) {

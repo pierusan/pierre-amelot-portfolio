@@ -15,7 +15,7 @@ import { ScrollCta } from './ScrollCta';
 import { cn } from '@/cn';
 import { navIds } from '@/constants';
 
-const DELAY_REVEAL_HOVER_CTA_MS = 5000;
+const DELAY_REVEAL_HOVER_CTA_MS = 6000;
 const NUM_CAPTIONS_HOVER_BEFORE_SCROLL_CTA_MS = 2;
 const DELAY_REVEAL_SCROLL_CTA_MS = 2000;
 
@@ -216,10 +216,10 @@ export function IntroWithCaptions({ className }: { className?: string }) {
         // console.timeLog('CaptionFlicker', 'setCaptionsShouldFlicker(true)');
 
         // I'm not sure if it happens in production, but at least in dev mode,
-        // there are sometimes inconsistent delays between the state update
-        // schedule and when it is run (sometime 10 seconds). It's hard to
-        // reproduce and not sure where the problem is coming from but to be
-        // safe we apply flushSync
+        // there have sometimes been inconsistent delays between the state
+        // update schedule and when it is run (sometimes even 10 seconds). It
+        // was hard to reproduce and clearing Next cache seems to actually have
+        // fixed it I but just to be safe we use flushSync here.
         flushSync(() => {
           setCaptionsShouldFlicker(true);
         });

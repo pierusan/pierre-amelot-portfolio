@@ -65,8 +65,13 @@ export function HomePage() {
       <AboutBehindCurtainAnimation />
       {/* Scroll animation to highlight the nav link whose target element is currently
           in view. We add this as the last animation to initialize it once all the 
-          pin spacers are added and the viewport scroll length is all set */}
-      <NavLinkActiveOnScroll />
+          pin spacers are added and the viewport scroll length is all set.
+
+          We only add the desktop animation here. For mobile it has to be added when 
+          the popover for the ToC is opened otherwise the animation won't be initialized
+          properly because the anchors are not in the DOM yet
+          */}
+      <NavLinkActiveOnScroll desktopNav={true} />
       {/* Dark backdrop for most of the page, lifted like a curtain at the end */}
       <FixedBackdrop
         className={cn('z-10', animationClasses.homeCurtainToPull)}

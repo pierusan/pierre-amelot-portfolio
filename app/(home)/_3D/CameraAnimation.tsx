@@ -6,6 +6,7 @@ import { useThree } from '@react-three/fiber';
 import { Euler, MathUtils, Vector3 } from 'three';
 import { useAnimationStore } from '@/store';
 import { animationIds } from '@/constants';
+import { useMobileFirstBreakpoint } from '@/hooks/useMobileFirstBreakpoint';
 
 type Transform = { position: Vector3; rotation: Euler };
 type CameraKeyFrame = Transform & { startTs?: number; duration: number };
@@ -15,8 +16,13 @@ const nCards = animationIds.homeProjects.length;
 const baseCameraVector = new Vector3(0, 1.15, 2);
 const baseCameraRotation = new Euler(MathUtils.degToRad(-21.23), 0, 0); // Look down
 
-const initialCameraTransform: Transform = {
+const initialDesktopCameraTransform: Transform = {
   position: baseCameraVector.clone().add(new Vector3(-1, 0, 0)), // Rocks on the right of the screen
+  rotation: baseCameraRotation.clone(),
+};
+
+const initialMobileCameraTransform: Transform = {
+  position: new Vector3(-0.05, 2, 3),
   rotation: baseCameraRotation.clone(),
 };
 
@@ -162,12 +168,37 @@ function ProjectCardsCameraAnimation() {
 
 export function CameraAnimation() {
   const { camera } = useThree();
+  const breakpoint = useMobileFirstBreakpoint();
 
   // Initial Camera transform
   useLayoutEffect(() => {
-    camera.position.copy(initialCameraTransform.position);
-    camera.rotation.copy(initialCameraTransform.rotation);
-  }, [camera]);
+    let initialPosition = initialDesktopCameraTransform.position;
+    let initialRotation = initialDesktopCameraTransform.rotation;
+
+    switch (breakpoint) {
+      case '2xl':
+      case 'xl':
+      case 'lg':
+      case 'md': {
+        initialPosition = initialDesktopCameraTransform.position;
+        initialRotation = initialDesktopCameraTransform.rotation;
+        break;
+      }
+      case 'sm':
+      case '0': {
+        initialPosition = initialMobileCameraTransform.position;
+        initialRotation = initialMobileCameraTransform.rotation;
+        break;
+      }
+      default: {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const _exhaustiveCheck: never = breakpoint;
+      }
+    }
+
+    camera.position.copy(initialPosition);
+    camera.rotation.copy(initialRotation);
+  }, [camera, breakpoint]);
 
   return (
     <>

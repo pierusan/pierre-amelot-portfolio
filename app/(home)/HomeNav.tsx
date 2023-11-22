@@ -1,6 +1,12 @@
 import { type CSSProperties } from 'react';
+import { NavLinkActiveOnScroll } from './NavLinkActiveOnScroll';
 import { cn } from '@/cn';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/Popover';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  PopoverClose,
+} from '@/components/Popover';
 import { Icon } from '@/components/Icon';
 import { animationClasses, navIds } from '@/constants';
 import { DesktopLeftNav, DesktopVerticalLink } from '@/components/Nav';
@@ -164,6 +170,48 @@ function RocksStackDesktopNav() {
   );
 }
 
+function RocksStackMobileNav() {
+  return (
+    <ul
+      className={cn(
+        '[&_a]:flex [&_a]:items-center [&_a]:gap-sm [&_a]:py-[0.125rem]',
+        // Needed so that the link highlighter can use z-index on it
+        '[&_a]:relative'
+      )}
+    >
+      {/* Rocks -> project nav links */}
+      {rockNavLinks.map(({ rockEllipse, navLinkId, linkName }) => (
+        <li key={linkName}>
+          <a href={`#${navIds.rocks[navLinkId]}`}>
+            <RockSVG translateY={0} ellipse={rockEllipse} />
+            <span>{linkName}</span>
+          </a>
+        </li>
+      ))}
+      {/* Rock stack -> Lessons Learned link */}
+      <li className="mt-[1rem]">
+        <a href={`#${navIds.rocks['lessons-learned']}`}>
+          <div
+            className={cn(
+              'relative',
+              '[&>svg:nth-child(1)]:[transform:translate(0,-3px)_scale(0.5)]',
+              '[&>svg:nth-child(3)]:[transform:translate(0,-0.5px)_scale(0.5)]',
+              '[&>svg:nth-child(5)]:[transform:translate(0,6px)_scale(0.5)]',
+              '[&>svg:nth-child(2n)]:hidden',
+              '[&>svg:not(:last-child)]:absolute'
+            )}
+          >
+            {rockNavLinks.map(({ navLinkId, rockEllipse }) => (
+              <RockSVG key={navLinkId} ellipse={rockEllipse} translateY={0} />
+            ))}
+          </div>
+          <span>Lessons Learned</span>
+        </a>
+      </li>
+    </ul>
+  );
+}
+
 export function DesktopHomeNav({
   id,
   className,
@@ -209,21 +257,63 @@ export function DesktopHomeNav({
 export function MobileHomeNav({ className }: { className?: string }) {
   return (
     <nav
-      className={cn(
-        'md:hidden',
-        'fixed -right-[1px] bottom-[20vh]',
-        // Highlight the nav link when the corresponding section is in view
-        animationClasses.navHighlightedOnScroll,
-        className
-      )}
+      className={cn('md:hidden', 'fixed -right-[1px] bottom-[20vh]', className)}
     >
       <Popover>
-        <PopoverTrigger className="rounded-l-sm border border-action-subtle p-3xs text-main-subtle">
-          <Icon name="toc" size="1.5rem" />
+        <PopoverTrigger
+          className={cn(
+            'rounded-l-sm p-3xs',
+            'border border-action-subtle bg-[theme(gradientColorStops.bg-main-stop)]',
+            'text-main-subtle'
+          )}
+        >
+          <Icon name="toc" size="1.25rem" />
         </PopoverTrigger>
-        {/* TODO: Replace with actual ToC */}
-        <PopoverContent className="bg-main p-2xs" sideOffset={2} side="left">
-          This is just a placeholder
+        <PopoverContent
+          className={cn(
+            'border-action-subtle bg-[theme(gradientColorStops.bg-main-stop)]',
+            'text-body-md',
+            // Highlight the nav link when the corresponding section is in view
+            animationClasses.navHighlightedOnScroll
+          )}
+          sideOffset={2}
+          side="left"
+        >
+          {/* The animation to highlight the ToC links is the popover
+              content appears in the DOM so it's initialized properly */}
+          <NavLinkActiveOnScroll desktopNav={false} />
+          {/* Close popover when any of the links inside is clicked */}
+          <PopoverClose asChild={true}>
+            <ul
+              className={cn(
+                'px-sm py-2xs ',
+                'flex flex-col',
+                'text-main-subtle [&_a:active]:text-main-strong [&_a:hover]:text-main',
+                // Only register clicks to close the popover on the links
+                'pointer-events-none [&_a]:pointer-events-auto'
+              )}
+            >
+              <li className={cn('mb-2')}>
+                <a
+                  className={cn('block p-2xs pl-[3.125rem]')}
+                  href={`#${navIds.intro}`}
+                >
+                  Intro
+                </a>
+              </li>
+              <li>
+                <RocksStackMobileNav />
+              </li>
+              <li className={cn('mt-2')}>
+                <a
+                  className={cn('block p-2xs pl-[3.125rem]')}
+                  href={`#${navIds.about}`}
+                >
+                  About
+                </a>
+              </li>
+            </ul>
+          </PopoverClose>
         </PopoverContent>
       </Popover>
     </nav>

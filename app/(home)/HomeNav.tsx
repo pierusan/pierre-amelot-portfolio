@@ -2,7 +2,7 @@ import { type CSSProperties } from 'react';
 import { cn } from '@/cn';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/Popover';
 import { Icon } from '@/components/Icon';
-import { navIds } from '@/constants';
+import { animationClasses, navIds } from '@/constants';
 import { DesktopLeftNav, DesktopVerticalLink } from '@/components/Nav';
 
 type Ellipse = { cx: number; cy: number; rx: number; ry: number };
@@ -178,6 +178,8 @@ export function DesktopHomeNav({
         // Enable pointer events on the children directly so the project cards
         // pointer-events are not blocked by the nav overlapping
         'pointer-events-none',
+        // Highlight the nav link when the corresponding section is in view
+        animationClasses.navHighlightedOnScroll,
         className
       )}
     >
@@ -207,7 +209,13 @@ export function DesktopHomeNav({
 export function MobileHomeNav({ className }: { className?: string }) {
   return (
     <nav
-      className={cn('md:hidden', 'fixed -right-[1px] bottom-[20vh]', className)}
+      className={cn(
+        'md:hidden',
+        'fixed -right-[1px] bottom-[20vh]',
+        // Highlight the nav link when the corresponding section is in view
+        animationClasses.navHighlightedOnScroll,
+        className
+      )}
     >
       <Popover>
         <PopoverTrigger className="rounded-l-sm border border-action-subtle p-3xs text-main-subtle">
@@ -222,15 +230,32 @@ export function MobileHomeNav({ className }: { className?: string }) {
   );
 }
 
-export function DesktopBackToTopButton({ className }: { className?: string }) {
+export function DesktopAboutNav({ className }: { className?: string }) {
   return (
-    <div className={cn('hidden md:flex', 'fixed top-0', 'p-md', className)}>
-      <a
-        className="hover:text-main-subtle active:text-main"
-        href={`#${navIds.intro}`}
-      >
-        <Icon name="arrowUp" size="2rem" />
-      </a>
-    </div>
+    <DesktopLeftNav className={cn('text-main', className)}>
+      <ol className="flex h-full flex-col justify-between">
+        <li>
+          <DesktopVerticalLink
+            href={`#${navIds.intro}`}
+            linkName="Intro"
+            className={cn('hover:text-main-subtle active:text-main')}
+          />
+        </li>
+        <li className={cn('self-stretch')}>
+          <a
+            className={cn(
+              'grid p-md transition-colors hover:text-main-subtle active:text-main'
+            )}
+            href={`#${navIds.rocks['lessons-learned']}`}
+          >
+            <Icon
+              name="arrowUp"
+              size="2rem"
+              className={cn('place-items-center')}
+            />
+          </a>
+        </li>
+      </ol>
+    </DesktopLeftNav>
   );
 }

@@ -291,3 +291,5 @@ them to `app/_common/components` directory.
 - Explain CSS modules for animations
 - Mobile header blur like floating-ui website?
 - Talk about dependabot in Readme
+- Use <picture> for mobile?
+- Background and cards like Linear and Next-Video

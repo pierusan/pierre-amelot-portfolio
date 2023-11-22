@@ -295,3 +295,4 @@ move them to `app/_common/components` directory.
 - Background and cards like Linear and Next-Video
 - Rotate scene on mobile touch
 - Add little custom cursors on mobile somewhere?
+- Click on images in project cards on mobile?

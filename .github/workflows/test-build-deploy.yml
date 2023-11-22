@@ -99,7 +99,9 @@ jobs:
       VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
 
   build-and-deploy-staging:
-    if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'release'
+    if:
+      (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
+      github.event_name == 'release'
     name: Staging
     needs: [lint, format, get-commit-info]
     uses: ./.github/workflows/build-and-deploy-reusable.yml

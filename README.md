@@ -1,6 +1,8 @@
 # Overview
 
-[![Test, Build, Deploy](https://github.com/Bierro/pierre-amelot-portfolio/actions/workflows/test-build-deploy.yml/badge.svg?branch=main)](https://github.com/Bierro/pierre-amelot-portfolio/actions/workflows/test-build-deploy.yml) [![CodeQL](https://github.com/Bierro/pierre-amelot-portfolio/actions/workflows/github-code-scanning/codeql/badge.svg?branch=main)](https://github.com/Bierro/pierre-amelot-portfolio/actions/workflows/github-code-scanning/codeql) [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/Bierro/pierre-amelot-portfolio/badge)](https://securityscorecards.dev/viewer/?uri=github.com/Bierro/pierre-amelot-portfolio)
+[![Test, Build, Deploy](https://github.com/Bierro/pierre-amelot-portfolio/actions/workflows/test-build-deploy.yml/badge.svg?branch=main)](https://github.com/Bierro/pierre-amelot-portfolio/actions/workflows/test-build-deploy.yml)
+[![CodeQL](https://github.com/Bierro/pierre-amelot-portfolio/actions/workflows/github-code-scanning/codeql/badge.svg?branch=main)](https://github.com/Bierro/pierre-amelot-portfolio/actions/workflows/github-code-scanning/codeql)
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/Bierro/pierre-amelot-portfolio/badge)](https://securityscorecards.dev/viewer/?uri=github.com/Bierro/pierre-amelot-portfolio)
 
 I made this portfolio to describe my skills in development and UX, showcase
 projects I worked on, and highlight what I have been learning over the years.
@@ -22,11 +24,10 @@ and that together come to shape my style as a designer, coder, and product
 owner.
 
 I sketched a rough outline of the website, bounced ideas with my wife, and
-iterated in Figma ([have a
-look](https://www.figma.com/file/2k7R21lwIc82hlPHH9BqyY/Portfolio-Pierre?type=design&node-id=633%3A226&mode=design&t=dNvK758we7VqyNq2-1)).
+iterated in Figma
+([have a look](https://www.figma.com/file/2k7R21lwIc82hlPHH9BqyY/Portfolio-Pierre?type=design&node-id=633%3A226&mode=design&t=dNvK758we7VqyNq2-1)).
 I designed the 3D stack of pebbles using Spline modeling and sculpting tools
-([have a look at the
-scene](https://my.spline.design/untitled-dd331bee5e206ab1848bfa21db2ffc91/)),
+([have a look at the scene](https://my.spline.design/untitled-dd331bee5e206ab1848bfa21db2ffc91/)),
 before I ported it to Three.js use the Three.js editor.
 
 I stuck with a mono font, and teal theme with very saturated highlights to have
@@ -48,8 +49,8 @@ npm run dev
 I host images on a public Google Cloud bucket rather than keeping them locally.
 This lets me recreate/deploy the project on another machine or in CI without the
 hassle of Git LFS or custom download scripts. Next doesn't generate blurred
-image placeholders for remote images so I wrote [a
-script](https://github.com/Bierro/remote-images-for-next) with the
+image placeholders for remote images so I wrote
+[a script](https://github.com/Bierro/remote-images-for-next) with the
 [Plaiceholder](https://plaiceholder.co/docs) library to generate them for all
 the images in my bucket.
 
@@ -66,8 +67,8 @@ I also automated the release process. I can trigger the workflow manually from
 main, and it bumps the npm version, creates a Github Release with auto-generated
 notes, and deploys the portfolio to production.
 
-I hooked the dev, staging, and prod deployments to Github Deployments for a nicer
-overview and links in the github UI.
+I hooked the dev, staging, and prod deployments to Github Deployments for a
+nicer overview and links in the github UI.
 
 ## File Structure
 
@@ -80,9 +81,9 @@ re-exported by `app/(home)/page` and `app/layout`).
 
 I place components, hooks, constants, store, and functions reused throughout the
 app in a `app/_common` that I can import (`import ... from '@/...'`) quickly
-with a typescript path remap. I will usually keep specific components in the same
-directory as the page they are used in, and when I start reusing them I move
-them to `app/_common/components` directory.
+with a typescript path remap. I will usually keep specific components in the
+same directory as the page they are used in, and when I start reusing them I
+move them to `app/_common/components` directory.
 
 # Stack and Library Decisions
 
@@ -103,9 +104,9 @@ them to `app/_common/components` directory.
 ### What I don't love
 
 - Next uses SWC (which should be on par with esbuild) to compile typescript, but
-  it still uses **webpack5** for bundling and HMR in development which makes it slow
-  on server start and updates compared to Vite. Plugins in webpack5 are also
-  supposed to be a pain to write compared to Rollup or Vite.
+  it still uses **webpack5** for bundling and HMR in development which makes it
+  slow on server start and updates compared to Vite. Plugins in webpack5 are
+  also supposed to be a pain to write compared to Rollup or Vite.
 - Even though they let you use TurboPack in dev, it's still in beta, not
   widespread, and there are annoying issues like making svgr work
   ([details](https://github.com/vercel/next.js/issues/48140))
@@ -162,9 +163,8 @@ them to `app/_common/components` directory.
   much of an issue since I started using **tailwind-merge** and the `cn` util
   function to construct class names. It not only prevents bugs but it also
   allows to break strings apart and add comments between string segments.
-- Semantic tokens and theming aren't really supported. The [explanation by
-  Tailwind's
-  creator](https://github.com/tailwindlabs/tailwindcss/discussions/10274#discussioncomment-4627634)
+- Semantic tokens and theming aren't really supported. The
+  [explanation by Tailwind's creator](https://github.com/tailwindlabs/tailwindcss/discussions/10274#discussioncomment-4627634)
   that it would not be useful is wrong imo, and designers and large companies
   have now adopted semantic tokens for theming their design systems
 

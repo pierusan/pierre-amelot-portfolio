@@ -3,10 +3,11 @@
 import SplitType from 'split-type';
 import { gsap, Power1 } from 'gsap';
 import resolveConfig from 'tailwindcss/resolveConfig';
-import { useLayoutEffect } from 'react';
+import { useLayoutEffect, useMemo } from 'react';
 import { useAnimationStore } from '@/store';
 import { animationClasses, animationIds, navIds } from '@/constants';
 import tailwindConfig from '@configs/tailwind.config';
+import { useMobileFirstBreakpoint } from '@/hooks/useMobileFirstBreakpoint';
 
 const textColors = resolveConfig(tailwindConfig).theme.textColor;
 const textColorMain = textColors.main.DEFAULT;
@@ -26,6 +27,27 @@ export function LessonsLearnedIntroReveal() {
     setLessonsLearnedSubtitleScaleDownTl,
     resetLessonsLearnedSubtitleScaleDownTl,
   } = useAnimationStore();
+
+  const breakpoint = useMobileFirstBreakpoint();
+  const isSmallScreen = useMemo(() => {
+    switch (breakpoint) {
+      case 'md':
+      case 'lg':
+      case 'xl':
+      case '2xl': {
+        return false;
+      }
+      case '0':
+      case 'sm': {
+        return true;
+      }
+      default: {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const _exhaustiveCheck: never = breakpoint;
+        return true;
+      }
+    }
+  }, [breakpoint]);
 
   useLayoutEffect(() => {
     // Highlight the paragraph one word at a time to push people to read it as
@@ -72,11 +94,11 @@ export function LessonsLearnedIntroReveal() {
           },
         })
         .from(subtitleSelector, {
-          scale: 1.75,
-          translateY: '300%',
+          scale: isSmallScreen ? 1.1 : 1.75,
+          translateY: isSmallScreen ? '100%' : '300%',
           duration: 0.5,
           // Prevent paragraph from overflowing due to the added scale
-          width: 'calc(100%/1.75)',
+          width: isSmallScreen ? 'calc(100%/1.1)' : 'calc(100%/1.75)',
         })
         .to(
           // Change the color in a separate selector due to CSS specificity
@@ -148,6 +170,7 @@ export function LessonsLearnedIntroReveal() {
   }, [
     setLessonsLearnedSubtitleScaleDownTl,
     resetLessonsLearnedSubtitleScaleDownTl,
+    isSmallScreen,
   ]);
 
   return null;

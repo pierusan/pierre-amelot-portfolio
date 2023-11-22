@@ -6,10 +6,12 @@ export function LessonsLearnedSection({ className }: { className?: string }) {
   return (
     <article
       id={animationIds.homeLessonsLearnedSection}
-      className={cn('max-w-paragraph-md py-xl', className)}
+      className={cn('max-w-paragraph-md py-[8rem] md:py-xl', className)}
     >
       <header className={cn('pb-md')}>
-        <h2 className={cn('pb-xs text-heading-lg')}>Lessons Learned</h2>
+        <h2 className={cn('pb-xs text-heading-sm md:text-heading-lg')}>
+          Lessons Learned
+        </h2>
         <p
           id={animationIds.homeLessonsLearnedIntroSubtitle}
           className={cn('text-details-xl', 'italic')}
@@ -24,7 +26,7 @@ export function LessonsLearnedSection({ className }: { className?: string }) {
       </header>
       <p
         id={animationIds.homeLessonsLearnedIntroParagraph}
-        className={cn('text-body-lg text-main-subtle')}
+        className={cn('text-body-md text-main-subtle md:text-body-lg')}
       >
         As my career progresses, so does my approach to technical issues,
         product creation, and team dynamics. Here are some of my takeaways over

@@ -25,7 +25,9 @@ runs:
         path: node_modules
         # Invalidate cache for new lock or node version (because node_modules
         # could be set up differently across node versions)
-        key: node-modules-cache-node-${{env.NODE_VERSION}}-lock-${{ hashFiles('./package-lock.json') }}
+        key:
+          node-modules-cache-node-${{env.NODE_VERSION}}-lock-${{
+          hashFiles('./package-lock.json') }}
 
     # Only install dependencies if they weren't installed already
     - if: ${{ steps.cache-node-modules.outputs.cache-hit != 'true' }}

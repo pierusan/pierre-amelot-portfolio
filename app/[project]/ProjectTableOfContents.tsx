@@ -233,7 +233,7 @@ export function ProjectTableOfContents({
                 className={cn(
                   'min-w-[80px] border-t border-action-subtle transition-all',
                   'group-hover:min-w-[96px] group-hover:border-t-2 group-hover:border-[theme(textColor.main.DEFAULT)]',
-                  'group-[.in-view]:w-[96px] group-[.in-view]:border-t-2 group-[.in-view]:border-[theme(textColor.main.DEFAULT)]'
+                  'group-[.in-view]:min-w-[96px] group-[.in-view]:border-t-2 group-[.in-view]:border-[theme(textColor.main.DEFAULT)]'
                 )}
               />
               {value}

@@ -1,5 +1,6 @@
 'use client';
 
+import { flushSync } from 'react-dom';
 import { useState, useRef, useEffect, useCallback } from 'react';
 import cursorDoubleDiamond from './_cursors/cursor_double_diamond.svg?url';
 import cursorDevEmoji from './_cursors/cursor_dev_emoji.svg?url';
@@ -13,6 +14,10 @@ import { CaptionInteractionContext } from './CaptionInteractionContext';
 import { ScrollCta } from './ScrollCta';
 import { cn } from '@/cn';
 import { navIds } from '@/constants';
+
+const DELAY_REVEAL_HOVER_CTA_MS = 6000;
+const NUM_CAPTIONS_HOVER_BEFORE_SCROLL_CTA_MS = 2;
+const DELAY_REVEAL_SCROLL_CTA_MS = 2000;
 
 // Assumes the parent element is a block with relative positioning
 const appendWrappingDivsToSpan = (span: HTMLSpanElement) => {
@@ -204,11 +209,21 @@ export function IntroWithCaptions({ className }: { className?: string }) {
   const introContentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // console.time('CaptionFlicker');
     let timeoutId: NodeJS.Timeout | undefined;
     if (numberCaptionsHovered === 0) {
       timeoutId = setTimeout(() => {
-        setCaptionsShouldFlicker(true);
-      }, 10_000);
+        // console.timeLog('CaptionFlicker', 'setCaptionsShouldFlicker(true)');
+
+        // I'm not sure if it happens in production, but at least in dev mode,
+        // there have sometimes been inconsistent delays between the state
+        // update schedule and when it is run (sometimes even 10 seconds). It
+        // was hard to reproduce and clearing Next cache seems to actually have
+        // fixed it I but just to be safe we use flushSync here.
+        flushSync(() => {
+          setCaptionsShouldFlicker(true);
+        });
+      }, DELAY_REVEAL_HOVER_CTA_MS);
     }
 
     return () => {
@@ -216,14 +231,24 @@ export function IntroWithCaptions({ className }: { className?: string }) {
         setCaptionsShouldFlicker(false);
         clearTimeout(timeoutId);
       }
+      // console.timeEnd('CaptionFlicker');
     };
   }, [numberCaptionsHovered]);
 
+  // useEffect(() => {
+  //   if (captionsShouldFlicker) {
+  //     console.timeLog(
+  //       'CaptionFlicker',
+  //       'captionsShouldFlicker set to true in IntroWithCaptions'
+  //     );
+  //   }
+  // }, [captionsShouldFlicker]);
+
   useEffect(() => {
-    if (numberCaptionsHovered === 2) {
+    if (numberCaptionsHovered === NUM_CAPTIONS_HOVER_BEFORE_SCROLL_CTA_MS) {
       setTimeout(() => {
         setRevealScrollCta(true);
-      }, 2000);
+      }, DELAY_REVEAL_SCROLL_CTA_MS);
     }
 
     // TODO: See if we need a cleanup function

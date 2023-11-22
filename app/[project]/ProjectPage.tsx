@@ -5,7 +5,7 @@ import { ProjectBadges } from './ProjectBadges';
 import { positiveModulo } from '@/positiveModulo';
 import { projects } from '@/constants';
 
-export async function generateStaticParams() {
+export function generateStaticParams() {
   return Object.keys(projectWriteUps);
 }
 type WrittenProject = keyof typeof projectWriteUps;

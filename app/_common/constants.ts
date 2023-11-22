@@ -50,6 +50,7 @@ export const animationClasses = {
   homeLessonsLearnedMainContent:
     'animation-class-home-lessons-learned-main-content',
   homeCurtainToPull: 'animation-class-home-curtain-to-pull',
+  navHighlightedOnScroll: 'anim-nav-highlight-on-scroll',
 };
 
 export type ProjectInfo = {

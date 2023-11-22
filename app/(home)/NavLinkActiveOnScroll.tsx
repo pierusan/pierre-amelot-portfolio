@@ -3,15 +3,16 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useLayoutEffect } from 'react';
-import { navIds } from '@/constants';
+import { animationClasses, navIds } from '@/constants';
 
 // Scroll animation highlighting the nav link which is currently in view as the
 // user scrolls
 export function NavLinkActiveOnScroll() {
   useLayoutEffect(() => {
     const gsapContext = gsap.context(() => {
-      const navLinks: HTMLElementTagNameMap['a'][] =
-        gsap.utils.toArray('nav a');
+      const navLinks: HTMLElementTagNameMap['a'][] = gsap.utils.toArray(
+        `.${animationClasses.navHighlightedOnScroll} a`
+      );
 
       const projectNavLinksTargetElements = navLinks.filter((navLink) => {
         const linkTargetElementId = navLink.getAttribute('href')?.slice(1);

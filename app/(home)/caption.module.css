@@ -27,7 +27,7 @@
     transform: scale(0, 1);
     animation-name: scale-teaser;
     animation-timing-function: ease;
-    animation-duration: 5s;
+    animation-duration: 6s;
     animation-fill-mode: forwards;
     animation-iteration-count: infinite;
   }
@@ -155,7 +155,7 @@
 
   3.6%,
   14.8% {
-    transform: scale(0.06, 1);
+    transform: scale(0.12, 1);
   }
 
   5.2%,
@@ -164,7 +164,7 @@
   }
 
   9.2% {
-    transform: scale(0.25, 1);
+    transform: scale(0.4, 1);
   }
 
   100% {

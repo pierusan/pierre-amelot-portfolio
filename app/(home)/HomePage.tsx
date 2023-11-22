@@ -1,9 +1,5 @@
 import { IntroWithCaptions } from './IntroWithCaptions';
-import {
-  DesktopBackToTopButton,
-  DesktopHomeNav,
-  MobileHomeNav,
-} from './HomeNav';
+import { DesktopAboutNav, DesktopHomeNav, MobileHomeNav } from './HomeNav';
 import { LessonsLearnedSection } from './LessonsLearnedSection';
 import { AboutBehindCurtainAnimation } from './AboutBehindCurtainAnimation';
 import { AboutSection } from './AboutSection';
@@ -37,7 +33,7 @@ export function HomePage() {
       />
       {/* Below Curtain, displayed with the about section */}
       <DesktopContactLinks variant="strong" className={cn('z-0')} />
-      <DesktopBackToTopButton className={cn('z-0')} />
+      <DesktopAboutNav className={cn('z-0')} />
       <MainContainer
         className={cn(
           // Easier to center things inside if we use flex

@@ -1,4 +1,5 @@
 import { type CSSProperties } from 'react';
+import { NavLinkActiveOnScroll } from './NavLinkActiveOnScroll';
 import { cn } from '@/cn';
 import {
   Popover,
@@ -256,23 +257,31 @@ export function DesktopHomeNav({
 export function MobileHomeNav({ className }: { className?: string }) {
   return (
     <nav
-      className={cn(
-        'md:hidden',
-        'fixed -right-[1px] bottom-[20vh]',
-        // Highlight the nav link when the corresponding section is in view
-        animationClasses.navHighlightedOnScroll,
-        className
-      )}
+      className={cn('md:hidden', 'fixed -right-[1px] bottom-[20vh]', className)}
     >
       <Popover>
-        <PopoverTrigger className="rounded-l-sm border border-action-subtle p-3xs text-main-subtle">
+        <PopoverTrigger
+          className={cn(
+            'rounded-l-sm p-3xs',
+            'border border-action-subtle bg-[theme(gradientColorStops.bg-main-stop)]',
+            'text-main-subtle'
+          )}
+        >
           <Icon name="toc" size="1.25rem" />
         </PopoverTrigger>
         <PopoverContent
-          className="border-action-subtle bg-[theme(gradientColorStops.bg-main-stop)] text-body-md"
+          className={cn(
+            'border-action-subtle bg-[theme(gradientColorStops.bg-main-stop)]',
+            'text-body-md',
+            // Highlight the nav link when the corresponding section is in view
+            animationClasses.navHighlightedOnScroll
+          )}
           sideOffset={2}
           side="left"
         >
+          {/* The animation to highlight the ToC links is the popover
+              content appears in the DOM so it's initialized properly */}
+          <NavLinkActiveOnScroll desktopNav={false} />
           {/* Close popover when any of the links inside is clicked */}
           <PopoverClose asChild={true}>
             <ul

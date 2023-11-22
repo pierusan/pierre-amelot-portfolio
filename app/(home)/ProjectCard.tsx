@@ -41,21 +41,23 @@ export function ProjectCard({
         )}
       >
         <Link
-          className="flex flex-col gap-md p-md"
+          className="flex flex-col gap-md p-[1.5rem] md:p-md"
           rel="bookmark"
           href={`/${projectKey}` as Route}
         >
-          <header className="flex flex-col gap-3xs pb-sm">
-            <h2 className="text-heading-md">{project.title}</h2>
+          <header className="flex flex-col gap-3xs pb-2xs md:pb-sm">
+            <h2 className="pb-[0.75rem] text-heading-sm md:pb-0 md:text-heading-md ">
+              {project.title}
+            </h2>
             <p className="text-body-md">{project.subtitle}</p>
           </header>
           {Object.entries(project.badges).map(([tagName, badges]) => (
             <dl className="flex items-center gap-xs " key={tagName}>
-              <dt className="text-details-md font-details uppercase tracking-wider">
+              <dt className="text-body-xs uppercase tracking-wider md:text-details-md md:font-details">
                 {tagName}
               </dt>
-              <dd>
-                <ul className="flex flex-wrap gap-xs">
+              <dd className={cn('overflow-x-auto')}>
+                <ul className="flex gap-xs md:flex-wrap">
                   {badges.map((tag) => (
                     <li key={tag}>
                       <Badge>{tag}</Badge>
@@ -67,7 +69,7 @@ export function ProjectCard({
           ))}
           <ul
             className={cn(
-              'mx-[-1rem] mb-[-1rem] grid grid-cols-3 gap-y-xs md:m-0',
+              'mx-[-1rem] mb-[-1rem] grid grid-cols-3 gap-y-xs md:m-0 md:mx-[-1rem] md:mb-[-1rem]',
               // Keep complex CSS logic in module for more readability
               styles['preview-secondary-images-in-main-slot-on-hover']
             )}

@@ -16,3 +16,9 @@
 html {
   scroll-behavior: smooth;
 }
+
+@media screen {
+  html {
+    scroll-padding-top: theme(height.header-mobile);
+  }
+}

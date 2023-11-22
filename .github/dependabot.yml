@@ -25,16 +25,16 @@ updates:
         update-types:
           - 'minor'
           - 'patch'
-    # Weird empty warnings started to appear in Next 14.0.2 in dev mode. Don't
-    # update to it and see if the next version fixes it, along with the r3f-perf
-    # issue
+    # Warnings started to appear in Next 14.0.2 in dev mode due to DREI.
+    # https://github.com/vercel/next.js/issues/58557 Don't update to it and see
+    # if the next version fixes it, along with the r3f-perf issue
     ignore:
       - dependency-name: 'next'
-        versions: ['14.0.2']
+        versions: ['14.0.2', '14.0.3']
       - dependency-name: '@next/mdx'
-        versions: ['14.0.2']
+        versions: ['14.0.2', '14.0.3']
       - dependency-name: 'eslint-config-next'
-        versions: ['14.0.2']
+        versions: ['14.0.2', '14.0.3']
     # Because this is an application, the package.json can stay strict, so no
     # need to bump the lock file only
     # versioning-strategy: 'increase-if-necessary'

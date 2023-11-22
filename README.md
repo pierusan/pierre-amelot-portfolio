@@ -293,3 +293,4 @@ move them to `app/_common/components` directory.
 - Talk about dependabot in Readme
 - Use <picture> for mobile?
 - Background and cards like Linear and Next-Video
+- Rotate scene on mobile touch

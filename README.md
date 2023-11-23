@@ -296,3 +296,4 @@ move them to `app/_common/components` directory.
 - Rotate scene on mobile touch
 - Add little custom cursors on mobile somewhere?
 - Click on images in project cards on mobile?
+- Fix html color on top overscroll on mobile

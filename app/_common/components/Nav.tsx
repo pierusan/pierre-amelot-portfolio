@@ -97,6 +97,7 @@ export function MobileNavPopover({
               // Only register clicks to close the popover on the links
               'pointer-events-none [&_a]:pointer-events-auto'
             )}
+            tabIndex={-1}
           >
             {children}
           </PopoverClose>

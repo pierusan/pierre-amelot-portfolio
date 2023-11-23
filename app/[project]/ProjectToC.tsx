@@ -116,13 +116,13 @@ function MobileProjectToCList({
 
   return (
     <>
-      <ol ref={tocRef} className={cn('pt-3xs')}>
+      <ol ref={tocRef} className={cn('flex flex-col pt-3xs')}>
         {tocList.map(({ value, id }) => (
-          <li key={id} className={cn('flex')}>
+          <li key={id}>
             <a
               href={`#${id}`}
               className={cn(
-                'p-3xs',
+                'block p-3xs',
                 'xl:whitespace-nowrap',
                 ' [&.in-view]:text-main'
               )}

@@ -83,6 +83,7 @@ export default {
       xl: '9.5rem', // 152px pour 1280px
       '2xl': '12.5rem', // 200px pour 1280px
       'main-y-xl': '6rem',
+      'main-y-sm': '3rem',
     },
     // TODO: Revert to defaults for sizing?
     gap: {

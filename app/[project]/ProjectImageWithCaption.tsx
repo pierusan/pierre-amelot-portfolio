@@ -6,7 +6,7 @@ export function ProjectImageWithCaption({
   ...remoteImageProps
 }: { caption: string } & ComponentProps<typeof RemoteImage>) {
   return (
-    <figure className="mb-14 mt-9 flex flex-col gap-[0.5rem]">
+    <figure className="mb-8 mt-9 flex flex-col gap-[0.5rem] md:mb-14">
       <RemoteImage {...remoteImageProps} />
       <figcaption className="text-center text-details-md uppercase text-main-subtle">
         <p>{caption}</p>

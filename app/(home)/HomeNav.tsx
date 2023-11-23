@@ -1,15 +1,13 @@
 import { type CSSProperties } from 'react';
 import { NavLinkActiveOnScroll } from './NavLinkActiveOnScroll';
 import { cn } from '@/cn';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-  PopoverClose,
-} from '@/components/Popover';
 import { Icon } from '@/components/Icon';
 import { animationClasses, navIds } from '@/constants';
-import { DesktopLeftNav, DesktopVerticalLink } from '@/components/Nav';
+import {
+  DesktopLeftNav,
+  DesktopVerticalLink,
+  MobileNavPopover,
+} from '@/components/Nav';
 
 type Ellipse = { cx: number; cy: number; rx: number; ry: number };
 
@@ -256,67 +254,36 @@ export function DesktopHomeNav({
 
 export function MobileHomeNav({ className }: { className?: string }) {
   return (
-    <nav
-      className={cn('md:hidden', 'fixed -right-[1px] bottom-[20vh]', className)}
+    <MobileNavPopover
+      triggerClassName={cn('md:hidden', className)}
+      // Highlight the nav link when the corresponding section is in view
+      className={animationClasses.navHighlightedOnScroll}
     >
-      <Popover>
-        <PopoverTrigger
-          className={cn(
-            'rounded-l-sm p-3xs',
-            'border border-action-subtle bg-[theme(gradientColorStops.bg-main-stop)]',
-            'text-main-subtle'
-          )}
-        >
-          <Icon name="toc" size="1.25rem" />
-        </PopoverTrigger>
-        <PopoverContent
-          className={cn(
-            'border-action-subtle bg-[theme(gradientColorStops.bg-main-stop)]',
-            'text-body-md',
-            // Highlight the nav link when the corresponding section is in view
-            animationClasses.navHighlightedOnScroll
-          )}
-          sideOffset={2}
-          side="left"
-        >
-          {/* The animation to highlight the ToC links is the popover
-              content appears in the DOM so it's initialized properly */}
-          <NavLinkActiveOnScroll desktopNav={false} />
-          {/* Close popover when any of the links inside is clicked */}
-          <PopoverClose asChild={true}>
-            <ul
-              className={cn(
-                'px-sm py-2xs ',
-                'flex flex-col',
-                'text-main-subtle [&_a:active]:text-main-strong [&_a:hover]:text-main',
-                // Only register clicks to close the popover on the links
-                'pointer-events-none [&_a]:pointer-events-auto'
-              )}
-            >
-              <li className={cn('mb-2')}>
-                <a
-                  className={cn('block p-2xs pl-[3.125rem]')}
-                  href={`#${navIds.intro}`}
-                >
-                  Intro
-                </a>
-              </li>
-              <li>
-                <RocksStackMobileNav />
-              </li>
-              <li className={cn('mt-2')}>
-                <a
-                  className={cn('block p-2xs pl-[3.125rem]')}
-                  href={`#${navIds.about}`}
-                >
-                  About
-                </a>
-              </li>
-            </ul>
-          </PopoverClose>
-        </PopoverContent>
-      </Popover>
-    </nav>
+      <ul className={cn('flex flex-col')}>
+        {/* The animation to highlight the ToC links is the popover
+          content appears in the DOM so it's initialized properly */}
+        <NavLinkActiveOnScroll desktopNav={false} />
+        <li className={cn('mb-2')}>
+          <a
+            className={cn('block p-2xs pl-[3.125rem]')}
+            href={`#${navIds.intro}`}
+          >
+            Intro
+          </a>
+        </li>
+        <li>
+          <RocksStackMobileNav />
+        </li>
+        <li className={cn('mt-2')}>
+          <a
+            className={cn('block p-2xs pl-[3.125rem]')}
+            href={`#${navIds.about}`}
+          >
+            About
+          </a>
+        </li>
+      </ul>
+    </MobileNavPopover>
   );
 }
 

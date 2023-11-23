@@ -1,9 +1,4 @@
-'use client';
-
-import { useCallback, useEffect, useMemo, useRef } from 'react';
-import { cn } from '@/cn';
-import { Icon } from '@/components/Icon';
-import { ProjectKey, projects } from '@/constants';
+import { RefObject, useCallback, useEffect, useMemo } from 'react';
 
 type SectionBounds = {
   id: string;
@@ -13,21 +8,13 @@ type SectionBounds = {
   nextId: string | undefined;
 };
 
-type TocHeading = { value: string; id: string };
+export type TocHeading = { value: string; id: string };
 
-export function ProjectTableOfContents({
-  headings2,
-  className,
-  nextProject,
-  previousProject,
-}: {
-  headings2: TocHeading[];
-  nextProject: ProjectKey;
-  previousProject: ProjectKey;
-  className?: string;
-}) {
-  const tocRef = useRef<HTMLElementTagNameMap['nav']>(null);
-
+export function useHighlightToCLinks(
+  tocRef: RefObject<HTMLElement>,
+  headings2: { value: string; id: string }[],
+  highlightClass: string
+) {
   // Add an 'Overview' ToC element that links to the root (-> will scroll to the
   // top of the project page which contains title, badges, and intro)
   const tocList = useMemo(
@@ -35,21 +22,24 @@ export function ProjectTableOfContents({
     [headings2]
   );
 
-  const highlightTocLink = useCallback((headingId?: string) => {
-    if (headingId === undefined) {
-      return;
-    }
+  const highlightTocLink = useCallback(
+    (headingId?: string) => {
+      if (headingId === undefined) {
+        return;
+      }
 
-    const allTocLinks = tocRef.current?.querySelectorAll(`a`);
-    const tocLinkToHighlight = tocRef.current?.querySelector(
-      `a[href="#${headingId}"]`
-    );
+      const allTocLinks = tocRef.current?.querySelectorAll(`a`);
+      const tocLinkToHighlight = tocRef.current?.querySelector(
+        `a[href="#${headingId}"]`
+      );
 
-    allTocLinks?.forEach((tocLink) => {
-      tocLink.classList.remove('in-view');
-    });
-    tocLinkToHighlight?.classList.add('in-view');
-  }, []);
+      allTocLinks?.forEach((tocLink) => {
+        tocLink.classList.remove(highlightClass);
+      });
+      tocLinkToHighlight?.classList.add(highlightClass);
+    },
+    [highlightClass, tocRef]
+  );
 
   // Highlight ToC link when corresponding section gets in view
   useEffect(() => {
@@ -214,61 +204,5 @@ export function ProjectTableOfContents({
     };
   }, [tocList, highlightTocLink]);
 
-  return (
-    <nav ref={tocRef} className={cn('sticky top-16', className)}>
-      <ol>
-        {tocList.map(({ value, id }) => (
-          <li key={id}>
-            <a
-              href={`#${id}`}
-              className={cn(
-                'p-2xs',
-                'whitespace-nowrap text-details-md uppercase text-main-subtle',
-                'flex items-center gap-sm',
-                'transition-all',
-                'group hover:text-main [&.in-view]:text-main'
-              )}
-            >
-              <div
-                className={cn(
-                  'min-w-[80px] border-t border-action-subtle transition-all',
-                  'group-hover:min-w-[96px] group-hover:border-t-2 group-hover:border-[theme(textColor.main.DEFAULT)]',
-                  'group-[.in-view]:min-w-[96px] group-[.in-view]:border-t-2 group-[.in-view]:border-[theme(textColor.main.DEFAULT)]'
-                )}
-              />
-              {value}
-            </a>
-          </li>
-        ))}
-      </ol>
-      <ol className={cn('mt-10 flex justify-between gap-xs')}>
-        <li>
-          <a
-            href={`/${previousProject}`}
-            className={cn(
-              'px-2xs py-sm', // Larger hover zone
-              'flex flex-nowrap items-center gap-[0.5rem]',
-              'whitespace-nowrap text-details-md uppercase text-main-subtle transition-colors hover:text-main '
-            )}
-          >
-            <Icon name="pinLeft" size="1rem" />
-            {projects[previousProject].linkName}
-          </a>
-        </li>
-        <li>
-          <a
-            href={`/${nextProject}`}
-            className={cn(
-              'px-2xs py-sm',
-              'flex flex-nowrap items-center gap-[0.5rem]',
-              'whitespace-nowrap text-details-md uppercase text-main-subtle transition-colors hover:text-main '
-            )}
-          >
-            {projects[nextProject].linkName}
-            <Icon name="pinRight" size="1rem" />
-          </a>
-        </li>
-      </ol>
-    </nav>
-  );
+  return tocList;
 }

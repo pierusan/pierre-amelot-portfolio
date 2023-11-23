@@ -77,7 +77,7 @@ export function DesktopProjectToC({
             )}
           >
             <Icon name="pinLeft" size="1rem" className={cn('shrink-0')} />
-            {projects[previousProject].linkName}
+            <p>{projects[previousProject].linkName}</p>
           </Link>
         </li>
         <li>
@@ -91,8 +91,14 @@ export function DesktopProjectToC({
               'xl:whitespace-nowrap'
             )}
           >
-            {projects[nextProject].linkName}
-            <Icon name="pinRight" size="1rem" className={cn('shrink-0')} />
+            <p className={cn('xl:order-0 lg:order-1', className)}>
+              {projects[nextProject].linkName}
+            </p>
+            <Icon
+              name="pinRight"
+              size="1rem"
+              className={cn('lg:order-0 shrink-0 xl:order-1')}
+            />
           </Link>
         </li>
       </ol>

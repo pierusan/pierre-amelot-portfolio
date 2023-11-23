@@ -23,7 +23,7 @@ export function ProjectLayout({ children }: { children: ReactNode }) {
         className={cn(
           'w-fit lg:w-full xl:w-fit',
           'mx-auto lg:mx-0 xl:mx-auto',
-          'pt-main-y-sm px-md md:pl-[6.5rem] md:pr-[5rem] md:pt-main-y-xl',
+          'px-md pt-main-y-sm md:pl-[6.5rem] md:pr-[5rem] md:pt-main-y-xl',
           'grid',
           'grid-cols-[minmax(1fr,theme(width.paragraph-md))]',
           'lg:grid-cols-[theme(width.paragraph-md)_minmax(0,1fr)] lg:gap-x-[3rem]',

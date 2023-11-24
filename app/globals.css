@@ -15,10 +15,11 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: theme(height.header-mobile);
 }
 
-@media screen {
+@screen md {
   html {
-    scroll-padding-top: theme(height.header-mobile);
+    scroll-padding-top: 0;
   }
 }

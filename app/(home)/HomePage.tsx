@@ -1,13 +1,11 @@
 import { IntroWithCaptions } from './IntroWithCaptions';
 import { DesktopAboutNav, DesktopHomeNav, MobileHomeNav } from './HomeNav';
 import { LessonsLearnedSection } from './LessonsLearnedSection';
-import { AboutBehindCurtainAnimation } from './AboutBehindCurtainAnimation';
 import { AboutSection } from './AboutSection';
 import { ProjectCards } from './ProjectCards';
-import { GsapPluginsRegisterer } from './GsapPluginsRegisterer';
 import { Rocks3DScene } from './_3D/Rocks3DScene';
-import { LessonsLearnedIntroReveal } from './LessonsLearnedIntroReveal';
-import { NavLinkActiveOnScroll } from './NavLinkActiveOnScroll';
+import { GsapPluginsRegisterer } from './_gsapScrollAnimations/GsapPluginsRegisterer';
+import { GsapDomAnimations } from './_gsapScrollAnimations/GsapDomAnimations';
 import { cn } from '@/cn';
 import {
   DesktopContactLinks,
@@ -58,20 +56,7 @@ export function HomePage() {
       <Rocks3DScene
         className={cn('z-[15]', animationClasses.homeCurtainToPull)}
       />
-      <LessonsLearnedIntroReveal />
-      {/* Important to have the curtain animation after the lessons intro reveal so
-          the pin spacers are properly positioned and the curtain scroll trigger
-          happens at the right time */}
-      <AboutBehindCurtainAnimation />
-      {/* Scroll animation to highlight the nav link whose target element is currently
-          in view. We add this as the last animation to initialize it once all the 
-          pin spacers are added and the viewport scroll length is all set.
-
-          We only add the desktop animation here. For mobile it has to be added when 
-          the popover for the ToC is opened otherwise the animation won't be initialized
-          properly because the anchors are not in the DOM yet
-          */}
-      <NavLinkActiveOnScroll desktopNav={true} />
+      <GsapDomAnimations />
       {/* Dark backdrop for most of the page, lifted like a curtain at the end */}
       <FixedBackdrop
         className={cn('z-10', animationClasses.homeCurtainToPull)}

@@ -1,4 +1,4 @@
-import { RemoteImageName } from '@/components/RemoteImage';
+import { RemoteImageName } from '@/components/RemoteMedia';
 
 // For the navigation links to scroll to the correct section id in the page
 export const navIds = {

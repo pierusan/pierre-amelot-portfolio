@@ -1,5 +1,5 @@
 import { type ComponentProps } from 'react';
-import { RemoteImage } from '../_common/components/RemoteImage'; // Don't use ts paths remap here to play nicely with MDX Intellisense
+import { RemoteImage } from '../_common/components/RemoteMedia'; // Don't use ts paths remap here to play nicely with MDX Intellisense
 
 export function ProjectImageWithCaption({
   caption,

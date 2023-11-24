@@ -3,7 +3,7 @@ import { Route } from 'next';
 import resolveConfig from 'tailwindcss/resolveConfig';
 import styles from './projectCard.module.css';
 import { Badge } from '@/components/Badge';
-import { RemoteImage } from '@/components/RemoteImage';
+import { RemoteImage } from '@/components/RemoteMedia';
 import { cn } from '@/cn';
 import tailwindConfig from '@configs/tailwind.config';
 import { ProjectKey, projects } from '@/constants';

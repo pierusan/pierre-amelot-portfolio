@@ -1,5 +1,5 @@
 import { type CSSProperties } from 'react';
-import { NavLinkActiveOnScroll } from './NavLinkActiveOnScroll';
+import { ToCHighlighter } from './_gsapScrollAnimations/tocHighlight';
 import { cn } from '@/cn';
 import { Icon } from '@/components/Icon';
 import { animationClasses, navIds } from '@/constants';
@@ -260,9 +260,9 @@ export function MobileHomeNav({ className }: { className?: string }) {
       className={animationClasses.navHighlightedOnScroll}
     >
       <ul className={cn('flex flex-col')}>
-        {/* The animation to highlight the ToC links is the popover
-          content appears in the DOM so it's initialized properly */}
-        <NavLinkActiveOnScroll desktopNav={false} />
+        {/* The ToC links only appear in the dom when the popover is opened so the
+            animation has to be registered within the PopoverContent component */}
+        <ToCHighlighter />
         <li className={cn('mb-2')}>
           <a
             className={cn('block p-2xs pl-[3.125rem]')}

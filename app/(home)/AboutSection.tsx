@@ -1,7 +1,7 @@
 import { type ReactNode } from 'react';
 import { cn } from '@/cn';
 import { Icon } from '@/components/Icon';
-import { RemoteImage, type RemoteImageName } from '@/components/RemoteImage';
+import { RemoteImage, type RemoteImageName } from '@/components/RemoteMedia';
 
 // https://tailwindcss.com/docs/content-configuration#dynamic-class-names
 const profileImageWidth = '223px';

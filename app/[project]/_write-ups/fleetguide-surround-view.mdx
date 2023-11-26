@@ -1,4 +1,5 @@
-import { ProjectImageWithCaption } from '../ProjectImageWithCaption';
+import { ProjectImage } from '../ProjectImage';
+import { ProjectVideo } from '../ProjectVideo';
 import { ProjectWrapperBelowTitles } from '../ProjectPage';
 
 # Fleetguide 360° Surround View
@@ -16,8 +17,8 @@ As an Embedded UX Engineer in 2018/2019, and later Product Design Lead in 2020,
 I played a key role in shaping and launching a product called Fleetguide, the
 _first lidar-based fleet safety system_.
 
-<ProjectImageWithCaption
-  name="fg_surr_cover_image"
+<ProjectImage
+  name="fg_surr_1_cover_image"
   caption="Full bleed image I created for Fleetguide pitch deck"
 />
 
@@ -27,8 +28,8 @@ front-end developer on the project_, I was in charge of creating, almost from
 scratch, a real-time lidar point cloud visualization to help drivers see 360°
 and avoid collisions.
 
-<ProjectImageWithCaption
-  name="fg_surr_system_diagram"
+<ProjectImage
+  name="fg_surr_2_system_diagram"
   caption="The components of Fleetguide 360° Surround View"
 />
 
@@ -37,9 +38,9 @@ the user-centered design process_, from contextual inquiry with truck drivers,
 to diary study and product analytics dashboards to understand usage after
 launch.
 
-<ProjectImageWithCaption
-  name="fg_surr_usertest_sprinter"
-  caption="The components of Fleetguide 360° Surround View"
+<ProjectImage
+  name="fg_surr_3_usertest_sprinter"
+  caption="GoPro snapshot from a user test with a utilities van driver"
 />
 
 At the end of this process, the final design was _a single 3D scene, with 3
@@ -47,18 +48,18 @@ camera angles that drivers could customize and toggle between_. A 3D model of
 the vehicle was added to the scene, and 2 color palettes were used to
 differentiate the ground from other objects.
 
-<ProjectImageWithCaption
-  name="fg_surr_camera_views"
-  caption="The different camera views of the system"
+<ProjectImage
+  name="fg_surr_4_camera_views"
+  caption="3 different camera options in the UI [Exported from Figma]"
 />
 
 The display was intended to be glanced at in _scenarios like backups, surround
 awareness, and lane changes_, as shown in the video below \[I recommend watching
 in fullscreen and 1080p resolution\].
 
-<ProjectImageWithCaption
-  name="fg_surr_system_diagram"
-  caption="Screen Capture of example scenarios of the display"
+<ProjectVideo
+  name="fg_surr_5_scenarios"
+  caption="Screen capture of example scenarios of the display"
 />
 
 ## Before I joined
@@ -68,8 +69,8 @@ a 2D vector graphics library called Cairo. _The system was deployed inside one
 truck, but no user feedback had been gathered until then._ On my first encounter
 with the driver, the first quotes I recorded were not very promising.
 
-<ProjectImageWithCaption
-  name="fg_surr_system_diagram"
+<ProjectImage
+  name="fg_surr_6_blobs"
   caption="The first quotes I gathered from our first driver when I joined the team"
 />
 
@@ -79,8 +80,8 @@ very little idea of what the needs of garbage truck drivers were. It was
 important to take a pause, and _I advocated to go through an initial discovery
 phase_ to make sure we were building the right thing.
 
-<ProjectImageWithCaption
-  name="fg_surr_system_diagram"
+<ProjectImage
+  name="fg_surr_7_double_diamond"
   caption="Double Diamond Process explained in one of the presentations I made to the team"
 />
 
@@ -90,8 +91,8 @@ To better understand driving environments and visibility pain points of garbage
 truck drivers, I went on _6 ride-alongs covering a wide range of truck types,
 routes, and shifts._
 
-<ProjectImageWithCaption
-  name="fg_surr_system_diagram"
+<ProjectImage
+  name="fg_surr_8_ouster_research_photos"
   caption="Photos taken during garbage truck ride-alongs"
 />
 
@@ -104,8 +105,8 @@ on each side, 1 or more backup cameras) did the job, drivers knew that they
 couldn't look everywhere at once, that blind spots remained, and that an
 enhanced 360° context of their surroundings would help them drive more safely.
 
-<ProjectImageWithCaption
-  name="fg_surr_system_diagram"
+<ProjectVideo
+  name="fg_surr_9_backing_up_user_research"
   caption="A safe backup requiring a lot of body, head, and eye movements from a driver."
 />
 
@@ -116,8 +117,8 @@ outside of parking, and showed that most garbage truck drivers liked to keep
 their backup cameras on at all speeds to better estimate distances with the
 vehicles behind them, suggesting we ought to do the same with the display.
 
-<ProjectImageWithCaption
-  name="fg_surr_system_diagram"
+<ProjectImage
+  name="fg_surr_10_contextual_inquiry_insights"
   caption="Some of the insights distilled from contextual inquiry."
 />
 
@@ -134,8 +135,8 @@ of them. _I decided to create prototypes directly with code to make use of
 sample data I collected with our testing van, and recorded using ROS (The Robot
 Operating System)._
 
-<ProjectImageWithCaption
-  name="fg_surr_system_diagram"
+<ProjectImage
+  name="fg_surr_11_data_collection_go_pro"
   caption="GoPro footage from a data collection drive."
 />
 
@@ -148,8 +149,8 @@ and 3D graphics (using VTK) code meant to run on developer machines, hence
 avoiding compatibility and performance requirements of embedded systems for the
 time being._
 
-<ProjectImageWithCaption
-  name="fg_surr_system_diagram"
+<ProjectImage
+  name="fg_surr_12_prototypes"
   caption="Some of the C++ parallel prototypes I created on my desktop"
 />
 
@@ -162,8 +163,8 @@ setting, and led 40min user testing sessions inside our test van where I asked
 drivers to pretend they were driving and, when prompted, to glance at a video of
 the prototype and share their thoughts out loud._
 
-<ProjectImageWithCaption
-  name="fg_surr_system_diagram"
+<ProjectImage
+  name="fg_surr_13_think_aloud_with_call_outs"
   caption="The user test setup meant to recreate driving scenarios"
 />
 
@@ -173,22 +174,22 @@ Drivers explained details of the raw point provided more context than abstracted
 shapes, and preferred having a single area of the screen to look at to increase
 'glanceability'.
 
-<ProjectImageWithCaption
-  name="fg_surr_system_diagram"
-  caption="Responses from drivers during the user test"
+<ProjectImage
+  name="fg_surr_14_survey_responses"
+  caption="Survey responses from drivers during the user test"
 />
 
 _These results, as well as direct footage from user recordings, proved to be
 strong artifacts_ to convince the team and customers that we should invest in
 building a 360° surround view system.
 
-<ProjectImageWithCaption
-  name="fg_surr_system_diagram"
+<ProjectVideo
+  name="fg_surr_15_think_aloud_positive_reactions"
   caption="Positive reactions to the point cloud top-down view were great artifacts to convince internally and externally."
 />
 
-<ProjectImageWithCaption
-  name="fg_surr_system_diagram"
+<ProjectVideo
+  name="fg_surr_16_think_aloud_failures"
   caption="Negative reactions to the initial prototypes the team had created showed that we needed to change direction"
 />
 
@@ -201,8 +202,8 @@ an X server). SDL2 handing an OpenGL context to a specific commit of VTK built
 for EGL ended up being the solution. The app ran with little latency at ~30FPS,
 and was ready to be used in trucks.
 
-<ProjectImageWithCaption
-  name="fg_surr_system_diagram"
+<ProjectImage
+  name="fg_surr_17_coding"
   caption="Writing production code running on our embedded hardware"
 />
 
@@ -211,10 +212,7 @@ regarding the 3D scene. _Early on in the code, I built the ability to change
 parameters (camera angles, color palettes, etc..) with a config file, or with
 key presses in real time._
 
-<ProjectImageWithCaption
-  name="fg_surr_system_diagram"
-  caption="Display parameters"
-/>
+<ProjectImage name="fg_surr_18_display_parameters" />
 
 ## User tests on the job
 
@@ -225,16 +223,16 @@ usage over a few hours, and gathered their feedback on various parameters I user
 tested during the sessions._ I would install the display at the beginning of the
 route, and take it back at the end.
 
-<ProjectImageWithCaption
-  name="fg_surr_system_diagram"
+<ProjectImage
+  name="fg_surr_19_session_setup"
   caption="Setup used for user test ride-alongs"
 />
 
 Drivers had overwhelmingly positive reactions to these initial sessions, and
 confirmed we were going into the right direction.
 
-<ProjectImageWithCaption
-  name="fg_surr_system_diagram"
+<ProjectImage
+  name="fg_surr_20_user_test_stats"
   caption="Results from initial ride-alongs with displays"
 />
 
@@ -242,8 +240,8 @@ User tests also showed drivers wanted to see further out on the back of their
 vehicles, and see more of the roof of cars. _Using these insights, we adapted
 our sensors locations to reduce blind-spots and improve coverage._
 
-<ProjectImageWithCaption
-  name="fg_surr_system_diagram"
+<ProjectImage
+  name="fg_surr_21_sensor_placement_iterations"
   caption="Evolution of sensor placements"
 />
 
@@ -253,12 +251,12 @@ User tests revealed drivers needed customization of camera angles and zooms. _To
 add buttons and toggles in preparation for launch of the display, I built a full
 UI toolkit with event capture and bubbling between SDL and VTK._
 
-<ProjectImageWithCaption name="fg_surr_system_diagram" caption="" />
+<ProjectImage name="fg_surr_22_ui_diagram" />
 
 The display being a safety critical system, I also ensured it would be resilient
 to startup, alerts and issues drivers would encounter.
 
-<ProjectImageWithCaption name="fg_surr_system_diagram" caption="" />
+<ProjectImage name="fg_surr_23_safety_overlays" />
 
 ## Diary study
 
@@ -270,8 +268,8 @@ study with drivers via text messages, where I would ask them to text about
 interesting or frustrating situations with the display. I also asked them to
 fill a mobile survey periodically._
 
-<ProjectImageWithCaption
-  name="fg_surr_system_diagram"
+<ProjectImage
+  name="fg_surr_24_analytics_methods"
   caption="Research methods I used after launch"
 />
 
@@ -279,8 +277,8 @@ _The diary study revealed areas of improvement, for instance regarding the
 display appearance in different weather conditions._ Sunny days caused glare on
 the display, while rainy days caused the point cloud colors were too dark.
 
-<ProjectImageWithCaption
-  name="fg_surr_system_diagram"
+<ProjectImage
+  name="fg_surr_25_display_glare_feedback"
   caption="The diary study prompted us to add an anti-glare screen onto the display"
 />
 
@@ -289,9 +287,9 @@ software. _In the winter of 2020, the system was installed on 15 vehicles._ For
 the future, we had a solid product roadmap informed by an intimate understanding
 of user needs.
 
-<ProjectImageWithCaption
-  name="fg_surr_system_diagram"
-  caption="Display product roadmap in Airtable"
+<ProjectImage
+  name="fg_surr_26_blurred_roadmap"
+  caption="Surround View 360° product roadmap in Airtable"
 />
 
 </ProjectWrapperBelowTitles>

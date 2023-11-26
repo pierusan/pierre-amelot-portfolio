@@ -298,3 +298,4 @@ move them to `app/_common/components` directory.
 - Click on images in project cards on mobile?
 - Fix html color on top overscroll on mobile
 - ToC on mobile could also contain nav to go to the other projects
+- Consider eager loading of images

@@ -78,7 +78,6 @@ export function RemoteVideo({
         }`}
         title="Vimeo video player"
         allow="autoplay; fullscreen; picture-in-picture"
-        allowFullScreen
         className={cn('border-0')}
         style={{ aspectRatio: `${width}/${height}` }}
       ></iframe>

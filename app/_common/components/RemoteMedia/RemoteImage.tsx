@@ -106,7 +106,7 @@ export function RemoteImage({
 }: {
   name: RemoteImageName;
   // Make sizes required for good practice
-  sizes: NextImageProps['sizes'];
+  sizes: NonNullable<NextImageProps['sizes']>;
 } & Omit<
   NextImageProps,
   'src' | 'alt' | 'width' | 'height' | 'blurDataUrl' | 'sizes'

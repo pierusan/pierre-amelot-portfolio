@@ -8,7 +8,10 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       <h1
         className={cn(
           className,
-          'col-span-full mb-8 text-heading-md md:mb-4 md:text-heading-lg [&+p]:col-span-full'
+          'col-span-full [&+p]:col-span-full',
+          'text-heading-md md:text-heading-lg',
+          'mb-8 md:mb-4',
+          '[text-wrap:balance] [&+p]:[text-wrap:balance]'
         )}
         {...rest}
       >

@@ -46,7 +46,7 @@ export function ProjectCard({
           href={`/${projectKey}` as Route}
         >
           <header className="flex flex-col gap-3xs pb-2xs md:pb-sm">
-            <h2 className="pb-[0.75rem] text-heading-sm md:pb-0 md:text-heading-md ">
+            <h2 className="pb-[0.75rem] text-heading-sm [text-wrap:balance] md:pb-0 md:text-heading-md">
               {project.title}
             </h2>
             <p className="text-body-md">{project.subtitle}</p>

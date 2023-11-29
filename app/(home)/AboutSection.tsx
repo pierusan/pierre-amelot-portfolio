@@ -1,6 +1,6 @@
 import { type ReactNode } from 'react';
 import { cn } from '@/cn';
-import { Icon } from '@/components/Icon';
+import { Icon, type IconName } from '@/components/Icon';
 import { RemoteImage, type RemoteImageName } from '@/components/RemoteMedia';
 
 // https://tailwindcss.com/docs/content-configuration#dynamic-class-names
@@ -19,6 +19,11 @@ type TimelineItem = {
   paragraphs: ReactNode[];
 };
 
+const yearsAsEngineer = Math.floor(
+  (Date.now().valueOf() - new Date('2017-08-01').valueOf()) /
+    (1000 * 60 * 60 * 24 * 365)
+);
+
 const timelineItems: TimelineItem[] = [
   {
     name: 'Ouster',
@@ -28,7 +33,7 @@ const timelineItems: TimelineItem[] = [
     duration: '4yrs',
     roles: [
       <TimelineRole key={'seniorUx'}>
-        Senior ux Engineer &lt; Product Design Lead &lt; Embedded ui/ui engineer
+        Senior ux Engineer | Product Design Lead | Embedded ui/ui engineer
       </TimelineRole>,
     ],
     paragraphs: [
@@ -93,8 +98,8 @@ const timelineItems: TimelineItem[] = [
       <TimelineParagraph key="columbia">
         After developing Unity packages to connect the Microsoft HoloLens to the
         Leap Motion Controller, I created a music exploration AR experience
-        using Spotify Web API. This project was carried out in 2016 while I was
-        interning for 4 months with Pr. Steven Feiner at Columbia University.
+        hooked to Spotify. This project was carried out during my internship
+        with Pr. Steven Feiner at Columbia University.
       </TimelineParagraph>,
     ],
   },
@@ -132,6 +137,7 @@ function TimelineRole({ children }: { children?: ReactNode }) {
 function Timeline() {
   return (
     <section className={cn('flex max-w-[35rem] flex-col gap-[3rem]')}>
+      <h2 className={cn('mb-[-1rem] text-heading-sm md:hidden')}>Timeline</h2>
       {timelineItems.map((item) => (
         <article
           key={item.name}
@@ -193,32 +199,31 @@ function AboutParagraphs() {
       <AboutPicture
         className={`float-right ${twWidthProfileImage} pb-md pl-md`}
       />
-      I grew up
-      <p>in Paris, France, and studying maths and physics. I love to code.</p>
       <p>
-        Generally speaking, I love the quick feedback cycle that . And I have
-        been fascinated about how great products come into the world, and how
-        complicated science can
+        It&apos;s been {yearsAsEngineer} years that I am a software engineer,
+        and I am{' '}
+        <b>
+          <i>not</i>
+        </b>{' '}
+        running out of steam!
       </p>
       <p>
-        Generally speaking, I love the quick feedback cycle that . And I have
-        been fascinated about how great products come into the world, and how
-        complicated science can
+        Coding satisfies my cravings for problem-solving and math exercises. I
+        love how much knowledge is publicly available at various levels of
+        abstraction (networking protocols, UI libraries, productivity tips,
+        etc.).
       </p>
       <p>
-        Generally speaking, I love the quick feedback cycle that . And I have
-        been fascinated about how great products come into the world, and how
-        complicated science can
+        I&apos;m also social, and product design has brought a human element to
+        my work. Being close to users gives a deeper meaning to the code I
+        write. I love the quick feedback cycle that software product creation
+        allows for. Build, test, iterate, repeat!
       </p>
       <p>
-        Generally speaking, I love the quick feedback cycle that . And I have
-        been fascinated about how great products come into the world, and how
-        complicated science can
-      </p>
-      <p>
-        Generally speaking, I love the quick feedback cycle that . And I have
-        been fascinated about how great products come into the world, and how
-        complicated science can
+        My curiosity also led me to explore cultures and languages [🇯🇵🇺🇸]. My
+        wife Kate is American and mixing habits and opinions is important to me.
+        Since we&apos;re at the emoji stage, let me throw a couple more: 🎾 🥾
+        🏃.
       </p>
     </article>
   );
@@ -230,11 +235,31 @@ function Subscription({
   url,
   highlights,
 }: {
-  type: 'youtube' | 'podcast';
+  type: 'youtube' | 'podcast' | 'blog';
   name: string;
   url: string;
   highlights?: { type: 'playlist' | 'episode'; name: string; url: string }[];
 }) {
+  let iconName: IconName = 'article';
+  switch (type) {
+    case 'youtube': {
+      iconName = 'youtube';
+      break;
+    }
+    case 'podcast': {
+      iconName = 'podcasts';
+      break;
+    }
+    case 'blog': {
+      iconName = 'article';
+      break;
+    }
+    default: {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const _exhaustiveCheck: never = type;
+    }
+  }
+
   return (
     <li className={cn('flex flex-col')}>
       <a
@@ -246,8 +271,7 @@ function Subscription({
           '[&:hover>span]:underline'
         )}
       >
-        {type === 'youtube' && <Icon name="youtube" size="1.25rem" />}
-        {type === 'podcast' && <Icon size="1.25rem" name="podcasts" />}
+        <Icon name={iconName} size="1.25rem" />
         <span>{name}</span>
       </a>
       {highlights && (
@@ -322,6 +346,16 @@ function Resources() {
               url: 'https://open.spotify.com/episode/0EHnBpR6lBlEoq9jYLRwGr?si=clHu9ZrtRfKb0RjZm67kUQ',
             },
           ]}
+        />
+        <Subscription
+          type="blog"
+          name="Josh Comeau"
+          url="https://www.joshwcomeau.com/"
+        />
+        <Subscription
+          type="blog"
+          name="Growth Design"
+          url="https://growth.design/"
         />
       </ul>
     </article>

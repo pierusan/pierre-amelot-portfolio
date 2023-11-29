@@ -4,6 +4,7 @@ import PodcastsIconSVG from '@material-design-icons/svg/filled/podcasts.svg';
 import BookmarkIconSVG from '@material-design-icons/svg/outlined/bookmark_border.svg';
 import ListIconSVG from '@material-design-icons/svg/filled/list.svg';
 import TocSVG from '@material-design-icons/svg/filled/toc.svg';
+import FeedSVG from '@material-design-icons/svg/filled/feed.svg';
 // Radix
 import {
   ArrowUpIcon,
@@ -15,7 +16,7 @@ import {
   LinkedInLogoIcon,
 } from '@radix-ui/react-icons';
 // Phosphor
-import { TerminalWindow } from '@phosphor-icons/react/dist/ssr/index';
+import { TerminalWindow, Article } from '@phosphor-icons/react/dist/ssr/index';
 // Lucide
 import { Palette } from 'lucide-react';
 // Feather
@@ -24,9 +25,10 @@ import { Layout } from 'react-feather';
 import YoutubeIconSVG from './svgs/YoutubeIcon.svg';
 
 const materialIcons = {
-  podcasts: PodcastsIconSVG,
   bookmark: BookmarkIconSVG,
+  feed: FeedSVG,
   list: ListIconSVG,
+  podcasts: PodcastsIconSVG,
   toc: TocSVG,
 } as const;
 
@@ -40,7 +42,10 @@ const radixIcons = {
   pinRight: PinRightIcon,
 } as const;
 
-const phosphorIcons = { terminalWindow: TerminalWindow } as const;
+const phosphorIcons = {
+  article: Article,
+  terminalWindow: TerminalWindow,
+} as const;
 
 const lucideIcons = { palette: Palette } as const;
 

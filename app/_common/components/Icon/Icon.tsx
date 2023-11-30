@@ -16,7 +16,14 @@ import {
   LinkedInLogoIcon,
 } from '@radix-ui/react-icons';
 // Phosphor
-import { TerminalWindow, Article } from '@phosphor-icons/react/dist/ssr/index';
+import {
+  Article,
+  Notepad,
+  Strategy,
+  TerminalWindow,
+  UserFocus,
+  UsersThree,
+} from '@phosphor-icons/react/dist/ssr/index';
 // Lucide
 import { Palette } from 'lucide-react';
 // Feather
@@ -44,7 +51,11 @@ const radixIcons = {
 
 const phosphorIcons = {
   article: Article,
+  notepad: Notepad,
+  strategy: Strategy,
   terminalWindow: TerminalWindow,
+  userFocus: UserFocus,
+  usersThree: UsersThree,
 } as const;
 
 const lucideIcons = { palette: Palette } as const;

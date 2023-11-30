@@ -292,7 +292,8 @@ move them to `app/_common/components` directory.
 - Mobile header blur like floating-ui website?
 - Talk about dependabot in Readme
 - Use <picture> for mobile?
-- Background and cards like Linear and Next-Video
+- Background and cards like Linear and Next-Video. Hover effect like
+  https://www.youtube.com/watch?v=htGfnF1zN4g
 - Rotate scene on mobile touch
 - Add little custom cursors on mobile somewhere?
 - Click on images in project cards on mobile?

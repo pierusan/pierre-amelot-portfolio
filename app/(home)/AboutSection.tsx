@@ -209,9 +209,9 @@ function AboutParagraphs() {
       </p>
       <p>
         Coding satisfies my cravings for problem-solving and math exercises. I
-        love how much knowledge is publicly available at various levels of
-        abstraction (networking protocols, UI libraries, productivity tips,
-        etc.).
+        love how much knowledge is publicly available in this field, at various
+        levels of abstraction (networking protocols, UI libraries, productivity
+        tips, etc.).
       </p>
       <p>
         I&apos;m also social, and product design has brought a human element to
@@ -237,7 +237,7 @@ function Subscription({
 }: {
   type: 'youtube' | 'podcast' | 'blog';
   name: string;
-  url: string;
+  url?: string;
   highlights?: { type: 'playlist' | 'episode'; name: string; url: string }[];
 }) {
   let iconName: IconName = 'article';
@@ -262,18 +262,25 @@ function Subscription({
 
   return (
     <li className={cn('flex flex-col')}>
-      <a
-        href={url}
-        target="_blank"
-        rel="noreferrer"
-        className={cn(
-          'flex items-center gap-xs text-body-md',
-          '[&:hover>span]:underline'
-        )}
-      >
-        <Icon name={iconName} size="1.25rem" />
-        <span>{name}</span>
-      </a>
+      {url ? (
+        <a
+          href={url}
+          target="_blank"
+          rel="noreferrer"
+          className={cn(
+            'flex items-center gap-xs text-body-md',
+            '[&:hover>span]:underline'
+          )}
+        >
+          <Icon name={iconName} size="1.25rem" />
+          <span>{name}</span>
+        </a>
+      ) : (
+        <div className={cn('flex items-center gap-xs text-body-md')}>
+          <Icon name={iconName} size="1.25rem" />
+          <span>{name}</span>
+        </div>
+      )}
       {highlights && (
         <ul className={cn('flex flex-col gap-[0.125rem]', 'pl-[2rem] pt-3xs')}>
           {highlights.map(
@@ -336,14 +343,64 @@ function Resources() {
           url="https://www.youtube.com/@CodeAesthetic"
         />
         <Subscription
+          type="youtube"
+          name="Coding Garden"
+          url="https://www.youtube.com/@CodingGarden"
+        />
+        <Subscription
           type="podcast"
-          name="Design Better Podcast"
+          name="Design Better"
           url="https://open.spotify.com/show/59RliaMdeDAkEgp9nj1Mkj"
           highlights={[
             {
               type: 'episode',
-              name: 'Marty Cagan',
+              name: 'Marty Cagan: Understanding product management and Agile',
               url: 'https://open.spotify.com/episode/0EHnBpR6lBlEoq9jYLRwGr?si=clHu9ZrtRfKb0RjZm67kUQ',
+            },
+          ]}
+        />
+        <Subscription
+          type="podcast"
+          name="Masters of Scale"
+          url="https://open.spotify.com/show/1bJRgaFZHuzifad4IAApFR?si=27d795800d45412a"
+          highlights={[
+            {
+              type: 'episode',
+              name: 'Sam Altman: Customer love is all you need',
+              url: 'https://open.spotify.com/episode/5FXJwdLenciEJRDEh39hiy?si=38da0bc6b638462a',
+            },
+          ]}
+        />
+        <Subscription
+          type="podcast"
+          name="Lenny's podcast"
+          url="https://open.spotify.com/show/2dR1MUZEHCOnz1LVfNac0j?si=994aba20935c4c0b"
+          highlights={[
+            {
+              type: 'episode',
+              name: 'Shishir Mehrotra: The rituals of great teams',
+              url: 'https://open.spotify.com/episode/2EWVDzqhkxvLvEioAUE5kh?si=8e2006e2d5424e71',
+            },
+            {
+              type: 'episode',
+              name: "Brian Chesky's new playbook for Airbnb",
+              url: 'https://open.spotify.com/episode/7pa9sM2MSwmI2pQNDYYei9?si=0b87d235a5c74fb3',
+            },
+          ]}
+        />
+        <Subscription
+          type="podcast"
+          name="How I built this"
+          url="https://open.spotify.com/show/6E709HRH7XaiZrMfgtNCun?si=59275e3fcf834463"
+        />
+        <Subscription
+          type="podcast"
+          name="One-off episodes"
+          highlights={[
+            {
+              type: 'episode',
+              name: 'John Carmack on the Lex Fridman podcast',
+              url: 'https://open.spotify.com/episode/3LddnZjkpflldHXnRZ0rrw?si=3f1daa8fb32144cb',
             },
           ]}
         />

@@ -221,9 +221,9 @@ function AboutParagraphs() {
       </p>
       <p>
         My curiosity also led me to explore cultures and languages [🇯🇵🇺🇸]. My
-        wife Kate is American and mixing habits and opinions is important to me.
-        Since we&apos;re at the emoji stage, let me throw a couple more: 🎾 🥾
-        🏃.
+        wife Kate is American and shaking up my habits and opinions is important
+        to me. Since we&apos;re at the emoji stage, let me throw in a couple
+        more: 🎾 🥾 🏃.
       </p>
     </article>
   );
@@ -346,6 +346,17 @@ function Resources() {
           type="youtube"
           name="Coding Garden"
           url="https://www.youtube.com/@CodingGarden"
+        />
+        <Subscription
+          type="youtube"
+          name="One-off videos"
+          highlights={[
+            {
+              type: 'episode',
+              name: 'Stanford Business - Brian Chesky: Designing a 10-star experience',
+              url: 'https://youtu.be/V6h_EDcj12k',
+            },
+          ]}
         />
         <Subscription
           type="podcast"

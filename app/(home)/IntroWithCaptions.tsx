@@ -308,6 +308,8 @@ export function IntroWithCaptions({ className }: { className?: string }) {
           // smaller screens, center the text and have captions overlayed on top
           'md:mx-auto xl:mx-0',
           'text-main [&:not(:has(span[data-open="true"]))_span]:text-main-strong',
+          '[&:not(:has(span[data-open="true"]))_span]:underline',
+          // '[@media(hover:none){&:not(:has(span[data-open="true"]))_span}]:underline',
           '[&:has(span[data-open="true"])]:text-main-subtle [&:has(span[data-open="true"])_span[data-open="true"]]:text-main',
           // Place scroll CTA at the bottom of the screen
           'flex flex-col justify-between gap-[3rem]',
@@ -334,7 +336,9 @@ export function IntroWithCaptions({ className }: { className?: string }) {
               className={cn(
                 'max-w-paragraph-md [grid-area:paragraphs]',
                 'text-body-md sm:text-body-lg',
-                'flex flex-col gap-lg'
+                // '[&&]:leading-8',
+                '[&&]:leading-[1.6]',
+                'flex flex-col gap-[3rem]'
               )}
               ref={introContentRef}
             >

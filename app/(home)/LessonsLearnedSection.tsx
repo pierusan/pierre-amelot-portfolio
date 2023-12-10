@@ -72,7 +72,7 @@ export function LessonsLearnedSection({ className }: { className?: string }) {
       <LessonsLearnedTitle icon="terminalWindow">Code</LessonsLearnedTitle>
       <LessonsLearnedUl>
         <li>
-          Setting up a CI pipeline with linting and testing early will help
+          Setting up a CI pipeline early with linting and testing will help
           reduce tech debt accumulation and sloppiness at crunch time
         </li>
         <li>
@@ -148,8 +148,10 @@ export function LessonsLearnedSection({ className }: { className?: string }) {
           move forward
         </li>
         <li>
-          Measure usage as early as possible to never lose touch with users
+          Talk to users and measure usage as early as possible. Never lose touch
+          with them.
         </li>
+        <li>Everyone at the company should talk to users to build empathy</li>
         <li>
           Remember the basics of interviews 101: observe users and/or ask
           specifics | ask why, they are the master you are the apprentice | no
@@ -162,8 +164,8 @@ export function LessonsLearnedSection({ className }: { className?: string }) {
       </LessonsLearnedTitle>
       <LessonsLearnedUl>
         <li>
-          Detailed roadmaps in the future conflict with a healthy design
-          process. Leave room for uncertainty and change
+          Detailed roadmaps far into the future conflict with a healthy design
+          process. Leave room for uncertainty, discovery, and change
           {/* Now/Next/Later framework proved successful in the past, 
           or thinking about a roadmap like a flowchart also helps */}
         </li>
@@ -175,7 +177,7 @@ export function LessonsLearnedSection({ className }: { className?: string }) {
           Visual artifacts help distill the big picture. Kanban boards
           (Now/Next/Later), and Gantt charts are simple but do the job
         </li>
-        <li>Trust the double diamond process</li>
+        <li>Trust the proven double diamond process</li>
       </LessonsLearnedUl>
 
       <LessonsLearnedTitle icon="usersThree">

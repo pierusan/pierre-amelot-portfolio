@@ -217,7 +217,7 @@ function AboutParagraphs() {
         I&apos;m also social, and product design has brought a human element to
         my work. Being close to users gives a deeper meaning to the code I
         write. I love the quick feedback cycle that software product creation
-        allows for. Build, test, iterate, repeat!
+        allows for. Ideate, build, test, repeat!
       </p>
       <p>
         My curiosity also led me to explore cultures and languages [🇯🇵🇺🇸]. My

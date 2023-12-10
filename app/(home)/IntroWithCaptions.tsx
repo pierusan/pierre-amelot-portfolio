@@ -56,8 +56,8 @@ function RolesParagraph() {
       <CaptionedText
         caption={
           <p>
-            My background brings a mix of computer science and UX design /
-            research. I studied both academically (at Ecole Polytechnique and
+            My background brings a mix of computer science and UX (design & user
+            research). I studied both academically (at Ecole Polytechnique and
             Carnegie Mellon University) and practiced them professionally since
             2017.
           </p>

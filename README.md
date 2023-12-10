@@ -289,14 +289,16 @@ move them to `app/_common/components` directory.
 - Add date, title, and company to project?
 - Fix gap, padding, etc... in tailwind theme
 - Explain CSS modules for animations
-- Mobile header blur like floating-ui website?
+- Mobile header blur like floating-ui website, Sweep, storybook, or crate
 - Talk about dependabot in Readme
 - Use <picture> for mobile?
 - Background and cards like Linear and Next-Video. Hover effect like
-  https://www.youtube.com/watch?v=htGfnF1zN4g
+  https://www.youtube.com/watch?v=htGfnF1zN4g.
 - Rotate scene on mobile touch
 - Add little custom cursors on mobile somewhere?
 - Click on images in project cards on mobile?
 - Fix html color on top overscroll on mobile
 - ToC on mobile could also contain nav to go to the other projects
 - Consider eager loading of images
+- Interactive Double Diamond process. Talk about the value of design thinking
+  and the slide deck that I created.

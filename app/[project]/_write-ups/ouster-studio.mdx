@@ -1,3 +1,4 @@
+import { ProjectParagraphWithImage } from '../ProjectParagraphWithImage';
 import { ProjectImage } from '../ProjectImage';
 import { ProjectVideo } from '../ProjectVideo';
 import { ProjectWrapperBelowTitles } from '../ProjectPage';
@@ -8,8 +9,378 @@ Unifying Ouster Lidar ecosystem of visualizers
 
 <ProjectWrapperBelowTitles project={props.project}>
 
-## Coming Soon
+[Ouster lidars](https://ouster.com) set themselves apart through their
+multi-layer high-resolution data, well suited to classify objects and build
+maps. First-time customers try to see it for themselves before purchasing a
+lidar. They evaluate the data quality with Ouster Studio, a GUI visualizer.
 
-Coming Soon ...
+<ProjectImage
+  name="oust_studio_1_high_res_data"
+  caption="Data from a single lidar on the roof of a car, seen as 2D images and 3D point cloud"
+  priority
+/>
+
+Ouster Studio's development had been outsourced. Its UI was clunky and failed to
+highlight Ouster's strengths, leading to missed sales opportunities. _In 2022, I
+re-designed and implemented Ouster Studio's UI._
+{/* , and to a high number of long-term lidar loans (expensive for the company). */}
+
+<ProjectImage
+  name="oust_studio_3_old_ui"
+  caption="Before: outsourced to a third-party"
+/>
+
+<ProjectImage
+  name="oust_studio_2_redesign_home"
+  caption="After: UI I re-designed"
+/>
+
+<ProjectVideo
+  name="oust_studio_27_release_demo"
+  caption="2023 initial public release with a minimal set of features. Play me in full screen!"
+/>
+
+Bringing Ouster Studio's development in-house unlocked a new vision for all the
+visualizers used by customers and internal teams. _I created a unified set of
+looks and interactions, and designed a seamless integration between tools._ This
+took the form of a light Figma design system and a React component library for
+web and Electron apps.
+
+<ProjectImage
+  name="oust_studio_4_components_design_system"
+  caption="Some of the elements I designed for Ouster visualizers design system"
+/>
+
+## Uncovering insights
+
+At the project inception I turned to PMs, field application engineers, product
+marketers, and customer success. They had extensive knowledge of customer
+workflows and pain points during and after sales. Their observations were
+unanimous: Ouster Studio was clunky, expensive to maintain, and communication
+with the third-party developers was not smooth, often leading to bugs or delays
+in the visualizer releases.
+
+<ProjectImage
+  name="oust_studio_5_interviews"
+  caption="Internal interviews with PMs, field engineers, and product marketers"
+/>
+
+From these interviews, I mapped out user journeys and described the core
+features customers needed when evaluating lidars with a GUI.
+
+<ProjectImage
+  name="oust_studio_6_touchpoints_sales_process"
+  caption="Touchpoints of Ouster Studio in the sales process"
+/>
+
+<ProjectImage
+  name="oust_studio_7_tasks"
+  caption="Common steps involved in evaluating a lidar"
+/>
+
+<ProjectImage
+  name="oust_studio_8_features_for_eval"
+  caption="Visualizer features needed to evaluate a lidar"
+/>
+
+I also conducted a
+[usability heuristic](https://www.nngroup.com/articles/ten-usability-heuristics/)
+evaluation to identify pitfalls that a redesign should avoid. <i>Visibility of
+system status</i>, <i>Recognition rather than recall</i>, or <i>Aesthetic and
+minimalistic design</i> were some principles that had been neglected in the old
+UI.
+
+<ProjectImage
+  name="oust_studio_9_usability_issues"
+  caption="Some of the usability issues I identified in the old Ouster Studio"
+/>
+
+## Unification opportunity
+
+{/* Visualization is a critical step of customers' but also of Ouster's internal teams' processes. */}
+
+At Ouster, multiple visualizers had grown organically across engineering teams
+over time, scattering the user experience and duplicating efforts. After
+observing some internal teams workflows, it appeared their point cloud analysis
+and data recording needs could be met by a new Ouster Studio. It had potential
+to become a one-stop shop inside the company.
+
+{/* To visualize live sensors, test engineers built custom Python tools, firmware */}
+{/* engineers used Ouster SDK's OpenGL visualizer, customers used Ouster Studio for */}
+{/* certain workflows and Ouster SDK for others, robotics engineers used RViz, and */}
+{/* solution teams were building their own UIs with domain-specific features. */}
+
+{/* I talked to various teams to understand what might make Ouster Studio their */}
+{/* one-stop shop. Some teams reported to me that they could make the new Ouster */}
+{/* Studio their one-stop shop */}
+
+{/* Precise inspection of 2D images, data analytics for each point in the point */}
+{/* cloud, or slicing recordings by file size were some of the needs that emerged. */}
+
+The web-based [Data App](/ouster-data-app) (for data storage and sharing) and
+domain-specific solutions had to remain separate from Ouster Studio though, but
+they could still benefit from a unified UX. Selecting points, measuring,
+analyzing data, navigating the scene could all look, and feel the same across
+UIs. _The opportunity for reusable components and reusable 3D interactions
+emerged._
+
+<ProjectImage
+  name="oust_studio_10_libs_and_apps"
+  caption="Vision for the parts enabling a seamless experience across Ouster visualizers"
+/>
+
+Bringing Ouster Studio in-house also _unlocked a tighter integration between
+tools_. Ouster Studio could facilitate uploading data to the Data App right
+after recording. The Data App could expose lists of sample data for Ouster
+Studio to view and download.
+
+{/* The need for reusable a component library and a 3D visualization library also */}
+{/* emerged. This would allow the solutions team to build domain-specific UIs while */}
+{/* keeping the look and the interactions consistent with Ouster Studio. The */}
+{/* [Data App](/ouster-data-app) (web app used for retrieval and sharing of lidar */}
+{/* data), would also benefit from the improvements brought by libraries. */}
+
+{/* Through the [Data App project](/ouster-data-app), internal workflows involving */}
+{/* storage, replay, and sharing of lidar data had mostly been moved to the cloud. */}
+{/* Many Storing and sharing data online would have to work separately from the */}
+{/* data-intensive live visualization a a sensor connected to the network (before */}
+{/* websocket or webRTC), here lied an opportunity to unify the two UIs. */}
+
+{/* Finally, mapping and */}
+
+{/* Out of this research came a couple of findings: */}
+
+{/* - The visualization page for Ouster Studio and the Data App could be almost the */}
+{/* same, with tools like measurement, point selection, CSV export, being useful */}
+{/* for both UIs */}
+
+{/* Combine as many of these workflows into one, and define guidelines to create a */}
+{/* unique look-and-feel for */}
+
+## Inspirations
+
+There already are many visualizers out in the world, some for generic 3D data,
+some for 3D point clouds, some for lidars specifically. I took the time to
+_catalogue some of them for visual and interaction inspirations._
+
+<ProjectImage
+  name="oust_studio_11_inspirations"
+  caption="A catalogue of 3D visualizers screenshots I kept in Notion for inspiration"
+/>
+
+Spline design impressed me with its clean sidebars. Blender v3 camera controls
+were simple yet intuitive, and the footer reminded users of mouse navigation
+events. Navvis brought a clever magnifying glass to precisely select points.
+Figma tab system for its Electron app showed an efficient use of space in a
+clear design.
+
+<ProjectImage
+  name="oust_studio_12_interesting_interactions"
+  caption="Interesting interactions and layout I used as inspiration for the redesign"
+/>
+
+## Low-fidelity wireframes
+
+After the research phase, I started _sketching out ideas_ building on the
+research insights I gathered, on my knowledge maintaining the Data App, and on
+inspirations.
+
+<ProjectImage
+  name="oust_studio_13_initial_sketches"
+  caption="Notebook sketches I used to brainstorm ideas and layouts"
+/>
+
+I moved to rough low-fidelity wireframes using a
+[Figma template](https://www.figma.com/community/file/887892609124245416) and
+turned it into a clickable prototype.
+
+<ProjectVideo
+  name="oust_studio_14_low_fidelity_prototype"
+  caption="Figma prototype of the low-fidelity wireframes I showed in design critique sessions"
+/>
+
+On these screens, _I ran design critique sessions_ with engineers, PMs, FAEs,
+customer support, and management. I made sure to include international
+team-members in Asia and Europe. The rich conversations revealed confusing
+elements or wordings. Some suggestions led to new ideas: a tab system to play
+multiple data sources simultaneously, lidar nicknames to differentiate them in a
+multi-sensor system, or a button to share diagnostics with support when alerts
+are triggered.
+
+I wish I could have run user tests with customers, but due to product and time
+restrictions I had to make do with internal users and stakeholders this time.
+Check out my [Fleetguide 360°](/fleetguide-surround-view) project if you're
+curious about my process interacting with users.
+
+## Design System
+
+To plan for a UI library with reusable components, I created a small design
+system. Building on industry best practices (from
+[Asana](https://www.youtube.com/watch?v=ylDed18OVdY) or
+[Figma](https://www.youtube.com/watch?v=b0BsybgcaI8)), I defined design tokens
+working across light and dark theme to suit various visualizers.
+
+<ProjectImage
+  name="oust_studio_15_primary_tokens"
+  caption="Primary design tokens I derived from ouster brand colors"
+/>
+
+<ProjectImage
+  name="oust_studio_16_semantic_design_tokens"
+  caption="Color semantic design tokens"
+/>
+
+As I was creating screens, I also generated components with their variants in
+the design system and I refined the tokens.
+
+<ProjectImage
+  name="oust_studio_17_components_design_system"
+  caption="Some of the basic components I extracted into the design system for reuse"
+/>
+
+<ProjectImage
+  name="oust_studio_18_components_light_and_dark"
+  caption="Semantic tokens made switching between light and dark theme instant"
+/>
+
+## High-fidelity prototype
+
+As a final step before the code, I built high-fidelity screens for Ouster Studio
+v2, as well as Data App v2 (whose visualizer page was almost the exact same UI
+as Ouster Studio). I regularly shared screenshots and Figma prototype links on
+the company Slack to advertise progress, solicit feedback, and prepare the
+company for the upcoming changes.
+
+<ProjectVideo
+  name="oust_studio_19_high_fidelity_prototype"
+  caption="Figma prototype of the high-fidelity screens. Play me in full screen!"
+/>
+
+<ProjectImage
+  name="oust_studio_20_figma_prototype_behind_scenes"
+  caption="Figma prototype - behind the scenes"
+/>
+
+Let me call out some UX interactions which I believe where novel and interesting
+for a lidar visualizer.
+
+<ProjectImage
+  name="oust_studio_21_novel_interactions_config"
+  caption="Novel interactions: connecting to and configuring a sensor"
+/>
+
+<ProjectImage
+  name="oust_studio_22_novel_interactions_viz"
+  caption="Novel interactions: visualizing Ouster lidar data"
+/>
+
+## React Component Library
+
+It was finally time to code! _I built from scratch the component library_ that
+would power Ouster Studio, Data App, and other Ouster solutions.
+
+<ProjectParagraphWithImage imageName="logo_vite" imageWidth="3rem">
+  For dev and build tooling, I chose [Vite](https://vitejs.dev/). I love its
+  smart performant decisions (like serving file over native ESM in development
+  or leaving type checking to the IDE), opinionated support of Typescript and
+  CSS modules, clear and exhaustive docs, config flexibility and simple plugin
+  system, and its leverage of the Rollup ecosystem for builds.
+
+{/* I wrote a simple plugin to import bundled CSS into the library entrypoint (as a */}
+{/* convenience for app builders) and it felt like a breeze. */}
+
+</ProjectParagraphWithImage>
+
+<ProjectParagraphWithImage imageName="logo_chakra_ui" imageWidth="3rem">
+  To build accessible UI elements without reinventing the wheel, I decided to
+  use [Chakra UI](https://chakra-ui.com/). I chose it for its first-class
+  support of semantic tokens and for its style props (CSS co-located with the
+  component without dealing with long strings). If I were to do it again, I
+  would probably steer clear of runtime style injection and go with
+  Tailwind/Radix (like this portfolio) or PandaCSS/Zag, but the team had been
+  using styled-components so this was somewhat familiar to us.
+</ProjectParagraphWithImage>
+
+<ProjectParagraphWithImage
+  imageName="logo_storybook"
+  imageWidth="2.5rem"
+  imageClassName="mx-[0.25rem]"
+>
+  I used [Storybook](https://storybook.js.org/) to document the components and
+  showcase their behavior. I found it to be a nice way to broadcast the library
+  to teammates, other engineering teams, and product managers.
+</ProjectParagraphWithImage>
+
+<ProjectImage
+  name="oust_studio_23_storybook_design_system"
+  caption="Storybook docs and stories for some of the design system components"
+/>
+
+In addition to classic design system elements, I incorporated components that
+integrated with our internal 3D visualization library, like a playbar, panels
+and headers.
+
+<ProjectImage
+  name="oust_studio_24_storybook_webviz"
+  caption="Stories for components used in tandem with Ouster 3D viz library"
+/>
+
+I broke each component down into stories to test that they rendered without
+errors, and leveraged
+[Storybook play function](https://storybook.js.org/docs/writing-tests/interaction-testing)
+to add long overdue interaction tests.
+
+<ProjectImage
+  name="oust_studio_25_interaction_test"
+  caption="Playbar interaction tests"
+/>
+
+I created a Storybook addon to switch between light and dark theme using Chakra
+UI semantic token support.
+
+<ProjectImage
+  name="oust_studio_26_storybook_theme_switch_addon"
+  caption="Custom addon I created to toggle between light and dark theme with Chakra UI"
+/>
+
+<ProjectParagraphWithImage
+  imageName="logo_gitlab"
+  imageWidth="3rem"
+  imageClassName="mr-[0.25rem]"
+>
+  I built the library CI/CD pipeline with Gitlab CI. The pipeline formats,
+  lints, builds, tests, and deploys the library. It runs Jest and Storybook
+  tests (on three browsers - chromium, firefox, and webkit), and deploys
+  Storybook to an internal URL. If the package version is bumped, it publishes a
+  prerelease to Ouster internal package registry for open PRs. On merge to
+  master, it publishes the release version.
+</ProjectParagraphWithImage>
+
+## Ouster Studio v2.0.0 release
+
+To quickly get the redesigned UI in the hands of users, the scope of the initial
+version 2 release was limited to basic features like connecting to a sensor,
+visualizing, recording, replaying, and exporting data.
+
+_I left my job at Ouster before the 2.0.0 release, but still wrote almost all of
+the front-end code for it._ I also lent a hand on the Rxjs data render pipeline,
+on the Electron BrowserWindow initialization, and on the communication between
+the main process (which talks to the sensor through the C++ Ouster SDK compiled
+to WASM), and the renderer process. Try out the latest Ouster Studio release by
+downloading it [here](https://ouster.com/downloads).
+
+<ProjectVideo
+  name="oust_studio_27_release_demo"
+  caption="File replay Demo with Ouster Studio version 2.0.0. Play me in full screen!"
+/>
+
+The new 2D image panel lets users inspect the data in a new light. They can dive
+deeper into the image to understand and diagnose situations when the lidar might
+not produce a range value for a given pixel (like black cars or windshields!).
+
+<ProjectVideo
+  name="oust_studio_28_release_2d_image_dive"
+  caption="The new 2D image panel in public release 2.0.0. Play me in full screen!"
+/>
 
 </ProjectWrapperBelowTitles>

@@ -1,6 +1,6 @@
 import { type ReactNode } from 'react';
 import { cn } from '@/cn';
-import { Icon } from '@/components/Icon';
+import { Icon, type IconName } from '@/components/Icon';
 import { RemoteImage, type RemoteImageName } from '@/components/RemoteMedia';
 
 // https://tailwindcss.com/docs/content-configuration#dynamic-class-names
@@ -19,6 +19,11 @@ type TimelineItem = {
   paragraphs: ReactNode[];
 };
 
+const yearsAsEngineer = Math.floor(
+  (Date.now().valueOf() - new Date('2017-08-01').valueOf()) /
+    (1000 * 60 * 60 * 24 * 365)
+);
+
 const timelineItems: TimelineItem[] = [
   {
     name: 'Ouster',
@@ -28,7 +33,7 @@ const timelineItems: TimelineItem[] = [
     duration: '4yrs',
     roles: [
       <TimelineRole key={'seniorUx'}>
-        Senior ux Engineer &lt; Product Design Lead &lt; Embedded ui/ui engineer
+        Senior ux Engineer | Product Design Lead | Embedded ui/ui engineer
       </TimelineRole>,
     ],
     paragraphs: [
@@ -93,8 +98,8 @@ const timelineItems: TimelineItem[] = [
       <TimelineParagraph key="columbia">
         After developing Unity packages to connect the Microsoft HoloLens to the
         Leap Motion Controller, I created a music exploration AR experience
-        using Spotify Web API. This project was carried out in 2016 while I was
-        interning for 4 months with Pr. Steven Feiner at Columbia University.
+        hooked to Spotify. This project was carried out during my internship
+        with Pr. Steven Feiner at Columbia University.
       </TimelineParagraph>,
     ],
   },
@@ -132,6 +137,7 @@ function TimelineRole({ children }: { children?: ReactNode }) {
 function Timeline() {
   return (
     <section className={cn('flex max-w-[35rem] flex-col gap-[3rem]')}>
+      <h2 className={cn('mb-[-1rem] text-heading-sm md:hidden')}>Timeline</h2>
       {timelineItems.map((item) => (
         <article
           key={item.name}
@@ -193,32 +199,31 @@ function AboutParagraphs() {
       <AboutPicture
         className={`float-right ${twWidthProfileImage} pb-md pl-md`}
       />
-      I grew up
-      <p>in Paris, France, and studying maths and physics. I love to code.</p>
       <p>
-        Generally speaking, I love the quick feedback cycle that . And I have
-        been fascinated about how great products come into the world, and how
-        complicated science can
+        It&apos;s been {yearsAsEngineer} years that I am a software engineer,
+        and I am{' '}
+        <b>
+          <i>not</i>
+        </b>{' '}
+        running out of steam!
       </p>
       <p>
-        Generally speaking, I love the quick feedback cycle that . And I have
-        been fascinated about how great products come into the world, and how
-        complicated science can
+        Coding satisfies my cravings for problem-solving and math exercises. I
+        love how much knowledge is publicly available in this field, at various
+        levels of abstraction (networking protocols, UI libraries, productivity
+        tips, etc.).
       </p>
       <p>
-        Generally speaking, I love the quick feedback cycle that . And I have
-        been fascinated about how great products come into the world, and how
-        complicated science can
+        I&apos;m also social, and product design has brought a human element to
+        my work. Being close to users gives a deeper meaning to the code I
+        write. I love the quick feedback cycle that software product creation
+        allows for. Ideate, build, test, repeat!
       </p>
       <p>
-        Generally speaking, I love the quick feedback cycle that . And I have
-        been fascinated about how great products come into the world, and how
-        complicated science can
-      </p>
-      <p>
-        Generally speaking, I love the quick feedback cycle that . And I have
-        been fascinated about how great products come into the world, and how
-        complicated science can
+        My curiosity also led me to explore cultures and languages [🇯🇵🇺🇸]. My
+        wife Kate is American and shaking up my habits and opinions is important
+        to me. Since we&apos;re at the emoji stage, let me throw in a couple
+        more: 🎾 🥾 🏃.
       </p>
     </article>
   );
@@ -230,26 +235,52 @@ function Subscription({
   url,
   highlights,
 }: {
-  type: 'youtube' | 'podcast';
+  type: 'youtube' | 'podcast' | 'blog';
   name: string;
-  url: string;
+  url?: string;
   highlights?: { type: 'playlist' | 'episode'; name: string; url: string }[];
 }) {
+  let iconName: IconName = 'article';
+  switch (type) {
+    case 'youtube': {
+      iconName = 'youtube';
+      break;
+    }
+    case 'podcast': {
+      iconName = 'podcasts';
+      break;
+    }
+    case 'blog': {
+      iconName = 'article';
+      break;
+    }
+    default: {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const _exhaustiveCheck: never = type;
+    }
+  }
+
   return (
     <li className={cn('flex flex-col')}>
-      <a
-        href={url}
-        target="_blank"
-        rel="noreferrer"
-        className={cn(
-          'flex items-center gap-xs text-body-md',
-          '[&:hover>span]:underline'
-        )}
-      >
-        {type === 'youtube' && <Icon name="youtube" size="1.25rem" />}
-        {type === 'podcast' && <Icon size="1.25rem" name="podcasts" />}
-        <span>{name}</span>
-      </a>
+      {url ? (
+        <a
+          href={url}
+          target="_blank"
+          rel="noreferrer"
+          className={cn(
+            'flex items-center gap-xs text-body-md',
+            '[&:hover>span]:underline'
+          )}
+        >
+          <Icon name={iconName} size="1.25rem" />
+          <span>{name}</span>
+        </a>
+      ) : (
+        <div className={cn('flex items-center gap-xs text-body-md')}>
+          <Icon name={iconName} size="1.25rem" />
+          <span>{name}</span>
+        </div>
+      )}
       {highlights && (
         <ul className={cn('flex flex-col gap-[0.125rem]', 'pl-[2rem] pt-3xs')}>
           {highlights.map(
@@ -312,16 +343,87 @@ function Resources() {
           url="https://www.youtube.com/@CodeAesthetic"
         />
         <Subscription
+          type="youtube"
+          name="Coding Garden"
+          url="https://www.youtube.com/@CodingGarden"
+        />
+        <Subscription
+          type="youtube"
+          name="One-off videos"
+          highlights={[
+            {
+              type: 'episode',
+              name: 'Stanford Business - Brian Chesky: Designing a 10-star experience',
+              url: 'https://youtu.be/V6h_EDcj12k',
+            },
+          ]}
+        />
+        <Subscription
           type="podcast"
-          name="Design Better Podcast"
+          name="Design Better"
           url="https://open.spotify.com/show/59RliaMdeDAkEgp9nj1Mkj"
           highlights={[
             {
               type: 'episode',
-              name: 'Marty Cagan',
+              name: 'Marty Cagan: Understanding product management and Agile',
               url: 'https://open.spotify.com/episode/0EHnBpR6lBlEoq9jYLRwGr?si=clHu9ZrtRfKb0RjZm67kUQ',
             },
           ]}
+        />
+        <Subscription
+          type="podcast"
+          name="Masters of Scale"
+          url="https://open.spotify.com/show/1bJRgaFZHuzifad4IAApFR?si=27d795800d45412a"
+          highlights={[
+            {
+              type: 'episode',
+              name: 'Sam Altman: Customer love is all you need',
+              url: 'https://open.spotify.com/episode/5FXJwdLenciEJRDEh39hiy?si=38da0bc6b638462a',
+            },
+          ]}
+        />
+        <Subscription
+          type="podcast"
+          name="Lenny's podcast"
+          url="https://open.spotify.com/show/2dR1MUZEHCOnz1LVfNac0j?si=994aba20935c4c0b"
+          highlights={[
+            {
+              type: 'episode',
+              name: 'Shishir Mehrotra: The rituals of great teams',
+              url: 'https://open.spotify.com/episode/2EWVDzqhkxvLvEioAUE5kh?si=8e2006e2d5424e71',
+            },
+            {
+              type: 'episode',
+              name: "Brian Chesky's new playbook for Airbnb",
+              url: 'https://open.spotify.com/episode/7pa9sM2MSwmI2pQNDYYei9?si=0b87d235a5c74fb3',
+            },
+          ]}
+        />
+        <Subscription
+          type="podcast"
+          name="How I built this"
+          url="https://open.spotify.com/show/6E709HRH7XaiZrMfgtNCun?si=59275e3fcf834463"
+        />
+        <Subscription
+          type="podcast"
+          name="One-off episodes"
+          highlights={[
+            {
+              type: 'episode',
+              name: 'John Carmack on the Lex Fridman podcast',
+              url: 'https://open.spotify.com/episode/3LddnZjkpflldHXnRZ0rrw?si=3f1daa8fb32144cb',
+            },
+          ]}
+        />
+        <Subscription
+          type="blog"
+          name="Josh Comeau"
+          url="https://www.joshwcomeau.com/"
+        />
+        <Subscription
+          type="blog"
+          name="Growth Design"
+          url="https://growth.design/"
         />
       </ul>
     </article>

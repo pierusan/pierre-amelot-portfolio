@@ -52,6 +52,8 @@ const remoteImageAltTexts = {
   hypnovr_2_params_selection: 'Hypno VR - Parameters Selection Screen',
   hypnovr_3_launch_session: 'Hypno VR - Launch Session Screen',
   hypnovr_4_monitor: 'Hypno VR - Monitoring Session Screen',
+  hypnovr_4_2_my_responsibility:
+    'Hypno VR - Diagram highlighting the system I was responsible for',
   hypnovr_5_sequence_flow_diagram: 'Hypno VR - Sequence Flow Diagram',
   hypnovr_6_sketches: 'Hypno VR - Sketches',
   hypnovr_7_wireframes: 'Hypno VR - Wireframes',
@@ -84,6 +86,41 @@ const remoteImageAltTexts = {
   oust_studio_home_3_design_system_button: 'Ouster Studio Design System Button',
   oust_studio_home_4_storybook_interaction_test:
     'Ouster Studio Storybook Interaction Test',
+  oust_studio_1_high_res_data: 'Ouster Studio High Resolution Data',
+  oust_studio_2_redesign_home: 'Ouster Studio v2 - Home Viz Page',
+  oust_studio_3_old_ui: 'Ouster Studio v2 - Old UI',
+  oust_studio_4_figma_design_system: 'Ouster Studio - Figma Design System',
+  oust_studio_4_components_design_system: 'Ouster Studio - Design System',
+  oust_studio_5_interviews: 'Ouster Studio - Internal Interviews',
+  oust_studio_6_touchpoints_sales_process:
+    'Ouster Studio - Touchpoints in Sales Process',
+  oust_studio_7_tasks: 'Ouster Studio - Double Diamond',
+  oust_studio_8_features_for_eval: 'Ouster Studio - Features for Evaluation',
+  oust_studio_9_usability_issues:
+    'Ouster Studio - Usability Issues in the old UI',
+  oust_studio_10_libs_and_apps: 'Ouster Studio - Libraries and Apps Diagram',
+  oust_studio_11_inspirations: 'Ouster Studio - All inspirations',
+  oust_studio_12_interesting_interactions:
+    'Ouster Studio - Interesting Interactions in inspirations',
+  oust_studio_13_initial_sketches: 'Ouster Studio - Initial Sketches',
+  oust_studio_15_primary_tokens: 'Ouster Studio - Primary Tokens',
+  oust_studio_16_semantic_design_tokens: 'Ouster Studio - Semantic Tokens',
+  oust_studio_17_components_design_system:
+    'Ouster Studio - Design System Components',
+  oust_studio_18_components_light_and_dark:
+    'Ouster Studio - Light and Dark Button Components',
+  oust_studio_20_figma_prototype_behind_scenes:
+    'Ouster Studio - Figma Prototype Behind the Scenes',
+  oust_studio_21_novel_interactions_config:
+    'Ouster Studio - Novel Interactions when Configuring sensors',
+  oust_studio_22_novel_interactions_viz:
+    'Ouster Studio - Novel Interactions in Viz',
+  oust_studio_23_storybook_design_system:
+    'Ouster Studio - Storybook Design System',
+  oust_studio_24_storybook_webviz: 'Ouster Studio - Storybook Webviz',
+  oust_studio_25_interaction_test: 'Ouster Studio - Interaction Tests',
+  oust_studio_26_storybook_theme_switch_addon:
+    'Ouster Studio - Storybook Theme Switch Addon',
   // Profile Pictures
   profile_pic_hiking: 'Profile Picture - Hiking',
   profile_pic_red_bg: 'Profile Picture - Red Background',
@@ -93,6 +130,10 @@ const remoteImageAltTexts = {
   logo_cmu: 'Logo - Carnegie Mellon University',
   logo_nrec: 'Logo - National Robotics Engineering Center',
   logo_ouster: 'Logo - Ouster',
+  logo_chakra_ui: 'Logo - Chakra UI',
+  logo_storybook: 'Logo - Storybook',
+  logo_vite: 'Logo - Vite',
+  logo_gitlab: 'Logo - GitLab',
 } satisfies Partial<Record<AnyRemoteImageName, string>>;
 
 export type RemoteImageName = keyof typeof remoteImageAltTexts;
@@ -106,7 +147,7 @@ export function RemoteImage({
 }: {
   name: RemoteImageName;
   // Make sizes required for good practice
-  sizes: NextImageProps['sizes'];
+  sizes: NonNullable<NextImageProps['sizes']>;
 } & Omit<
   NextImageProps,
   'src' | 'alt' | 'width' | 'height' | 'blurDataUrl' | 'sizes'

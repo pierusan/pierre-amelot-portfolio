@@ -64,6 +64,7 @@ export function RocksStackObject() {
           <meshStandardMaterial
             attach="material"
             color={rockColors.grey3}
+            // color={rockColors.grey2}
             roughness={roughness}
             metalness={metalness}
           />
@@ -95,11 +96,13 @@ export function RocksStackObject() {
           receiveShadow
           geometry={nodes.Rock3.geometry}
           position={[-9.221, 55, 0.508]}
+          // position={[-12.221, 60, 0.508]}
           rotation={[
             MathUtils.degToRad(-160.7),
             MathUtils.degToRad(38.15),
             MathUtils.degToRad(172.12),
           ]}
+          // scale={[0.85, 0.85, 0.85]}
         >
           <meshStandardMaterial
             attach="material"
@@ -115,6 +118,7 @@ export function RocksStackObject() {
           receiveShadow
           geometry={nodes.Rock2.geometry}
           position={[-5.306, 27.901, 0]}
+          // visible={false}
         >
           <meshStandardMaterial
             attach="material"
@@ -130,6 +134,7 @@ export function RocksStackObject() {
           receiveShadow
           geometry={nodes.Rock1.geometry}
           position={[0.034, 0.034, -1.286]}
+          // visible={false}
         >
           <meshStandardMaterial
             attach="material"

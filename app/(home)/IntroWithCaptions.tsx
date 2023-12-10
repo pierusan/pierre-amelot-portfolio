@@ -56,29 +56,26 @@ function RolesParagraph() {
       <CaptionedText
         caption={
           <p>
-            My background brings a mix of computer science and design, both of
-            which I studied academically (at Ecole Polytechnique and Carnegie
-            Mellon University) and practiced professionally. I have brought
-            teams this diverse background at every step of the product
-            development cycle, from initial user research to wireframes and
-            interactive prototypes, all the way to production code and
-            analytics.
+            My background brings a mix of computer science and UX (design & user
+            research). I studied both academically (at Ecole Polytechnique and
+            Carnegie Mellon University) and practiced them professionally since
+            2017.
           </p>
         }
         cursorSvgUrl={cursorDevEmoji.src}
       >
-        software engineer trained in UX design and research
+        software engineer trained in product design
       </CaptionedText>
       , and I&apos;m always eager to{' '}
       <CaptionedText
         caption={
           <p>
-            I like to dive deep into people&apos;s workflows (whether
-            they&apos;re soldiers, engineers, sales people, or garbage truck
-            drivers!). I also love learning about very technical topics (lidar
-            optics pipeline, firmware, robotic arms, or image processing
-            algorithms). What drives me everyday is learning new things, and
-            Youtube is a big part of how I improve as a developer.
+            I enjoy diving into the workflow of users - soldiers, engineers,
+            salespeople, or garbage truck drivers! I&apos;m always excited about
+            technical topics like lidar optics, firmware development, or image
+            processing algorithms. What drives me every day is learning new
+            things - Youtube and Hacker News are a big part of how I improve as
+            a developer.
           </p>
         }
         cursorSvgUrl={cursorLearnEmoji.src}
@@ -90,67 +87,53 @@ function RolesParagraph() {
   );
 }
 
-function SanFranciscoParagraph() {
+function CodingParagraph() {
   return (
     <div className={cn('relative')}>
       Over the last{' '}
       <CaptionedText
         caption={
           <p>
-            In San Francisco, I worked for Ouster, a start-up building lidar
-            sensor, as their 30th employee. When I left Ouster at the end of
-            2022, the company had grown to 300 employees and I had worked a many
-            different software projects at the company. It&apos;s in the Silicon
-            Valley that I learned to ship production software and work with a
-            team of talented software engineers.
+            Between 2018 and 2022, Ouster, the lidar startup I worked for, grew
+            from 30 to 300 employees. It&apos;s in Silicon Valley that I learned
+            to ship production code rapidly and reliably.
           </p>
         }
         cursorSvgUrl={cursorCalifornia.src}
         // cursorSvgUrl={cursorUS.src}
       >
-        4 years in San Francisco
+        5 years in San Francisco
       </CaptionedText>
-      , I designed and built 3D visualization software for a lidar company.
-    </div>
-  );
-}
-
-function CodingParagraph() {
-  return (
-    <div className={cn('relative')}>
-      Lately,{' '}
+      , I largely wrote{' '}
       <CaptionedText
         caption={
           <p>
-            As you can see with this website and other recent projects on my
-            Github, React, Next, Vite, Storybook, Chakra UI, Styled Components,
-            Electron are some of the libraries I used recently. I have also
-            built component libraries, 3D visualization library. Working on the
-            web has been a great way for me to quickly bring UX decisions to
-            life, and I have really enjoyed the developer experience and the
-            broad outreach web projects immediately have.
+            The web lets me quickly turn design ideas into reality. I recently
+            built web apps, static sites, component libraries, 3D visualization
+            libraries, and Electron apps with a mix of React, Next, Vite,
+            Storybook, Tailwind, Chakra UI, or Three.js. I also played with
+            workers and WASM in some computationally heavy contexts.
           </p>
         }
         cursorSvgUrl={cursorReact.src}
       >
         web front-end
       </CaptionedText>{' '}
-      code is mainly what I shipped, but I have also worked on{' '}
+      code, but I also worked on{' '}
       <CaptionedText
         caption={
           <p>
-            3D Graphics is what I focused on in my last years of underground.
-            After HCI grad school, I continued on this path and worked on some
-            AR and VR projects. I have always also been interested in working
-            close to hardware (headsets, lidars), and when I joined Ouster I
-            mostly wrote C++ for embedded UIs installed trucks.
+            At the start of my career, I built AR/VR experiences with Unity and
+            embedded 3D apps with C++ and OpenGL. On recent full-stack projects,
+            I maintained a Python backend with Flask, Postgres, Docker, GCP, and
+            Terraform as parts of the stack.
           </p>
         }
         cursorSvgUrl={cursorUnity.src}
       >
-        back-end, 3D, embedded UIs
+        back-end, 3D graphics, and embedded UIs
       </CaptionedText>
-      , and image processing algorithms.
+      .
     </div>
   );
 }
@@ -158,21 +141,22 @@ function CodingParagraph() {
 function UXParagraph() {
   return (
     <div className={cn('relative')}>
-      I have also owned the{' '}
+      I also owned the{' '}
       <CaptionedText
         caption={
           <p>
-            Masters of Human-Computer Interaction at Carnegie Mellon University,
-            studying a mix of prototyping, design classes, and interviewing.
-            Some of these skills could be considered the realm of consultants in
-            France.
+            I led products through various stages from initial UX research to
+            low-fidelity wireframes to interactive prototypes, all the way to
+            production code and analytics. I believe taking a user-centered
+            approach is key to building useful and usable products that drives
+            business forward.
           </p>
         }
         cursorSvgUrl={cursorDoubleDiamond.src}
       >
-        user-centered design process
+        user-centered design
       </CaptionedText>{' '}
-      of every project I worked on, no matter the product stages.
+      process of every project I worked on.
     </div>
   );
 }
@@ -184,8 +168,8 @@ function RelocationParagraph() {
       <CaptionedText
         caption={
           <p>
-            I believe climate change is the biggest challenge of our century and
-            I would really like my day-to-day job to contribute to solving it.
+            I believe climate change is the biggest challenge of our century. I
+            want my day-to-day job to contribute to solving it.
           </p>
         }
         cursorSvgUrl={cursorWarming.src}
@@ -324,6 +308,8 @@ export function IntroWithCaptions({ className }: { className?: string }) {
           // smaller screens, center the text and have captions overlayed on top
           'md:mx-auto xl:mx-0',
           'text-main [&:not(:has(span[data-open="true"]))_span]:text-main-strong',
+          '[&:not(:has(span[data-open="true"]))_span]:underline',
+          // '[@media(hover:none){&:not(:has(span[data-open="true"]))_span}]:underline',
           '[&:has(span[data-open="true"])]:text-main-subtle [&:has(span[data-open="true"])_span[data-open="true"]]:text-main',
           // Place scroll CTA at the bottom of the screen
           'flex flex-col justify-between gap-[3rem]',
@@ -350,12 +336,13 @@ export function IntroWithCaptions({ className }: { className?: string }) {
               className={cn(
                 'max-w-paragraph-md [grid-area:paragraphs]',
                 'text-body-md sm:text-body-lg',
-                'flex flex-col gap-lg'
+                // '[&&]:leading-8',
+                '[&&]:leading-[1.6]',
+                'flex flex-col gap-[3rem]'
               )}
               ref={introContentRef}
             >
               <RolesParagraph />
-              <SanFranciscoParagraph />
               <CodingParagraph />
               <UXParagraph />
               <RelocationParagraph />

@@ -97,10 +97,7 @@ UI.
 
 ## Unification opportunity
 
-<div className="hidden">
-  Visualization is a critical step of customers' but also of Ouster's internal
-  teams' processes.
-</div>
+{/* Visualization is a critical step of customers' but also of Ouster's internal teams' processes. */}
 
 At Ouster, multiple visualizers had grown organically across engineering teams
 over time, scattering the user experience and duplicating efforts. After
@@ -108,20 +105,17 @@ observing some internal teams workflows, it appeared their point cloud analysis
 and data recording needs could be met by a new Ouster Studio. It had potential
 to become a one-stop shop inside the company.
 
-<div className="hidden">
-  To visualize live sensors, test engineers built custom Python tools, firmware
-  engineers used Ouster SDK's OpenGL visualizer, customers used Ouster Studio
-  for certain workflows and Ouster SDK for others, robotics engineers used RViz,
-  and solution teams were building their own UIs with domain-specific features.
+{/* To visualize live sensors, test engineers built custom Python tools, firmware */}
+{/* engineers used Ouster SDK's OpenGL visualizer, customers used Ouster Studio for */}
+{/* certain workflows and Ouster SDK for others, robotics engineers used RViz, and */}
+{/* solution teams were building their own UIs with domain-specific features. */}
 
-I talked to various teams to understand what might make Ouster Studio their
-one-stop shop. Some teams reported to me that they could make the new Ouster
-Studio their one-stop shop
+{/* I talked to various teams to understand what might make Ouster Studio their */}
+{/* one-stop shop. Some teams reported to me that they could make the new Ouster */}
+{/* Studio their one-stop shop */}
 
-Precise inspection of 2D images, data analytics for each point in the point
-cloud, or slicing recordings by file size were some of the needs that emerged.
-
-</div>
+{/* Precise inspection of 2D images, data analytics for each point in the point */}
+{/* cloud, or slicing recordings by file size were some of the needs that emerged. */}
 
 The web-based [Data App](/ouster-data-app) (for data storage and sharing) and
 domain-specific solutions had to remain separate from Ouster Studio though, but
@@ -140,32 +134,28 @@ tools_. Ouster Studio could facilitate uploading data to the Data App right
 after recording. The Data App could expose lists of sample data for Ouster
 Studio to view and download.
 
-<div className="hidden">
-The need for reusable a component library and a 3D visualization library also
-emerged. This would allow the solutions team to build domain-specific UIs while
-keeping the look and the interactions consistent with Ouster Studio. The
-[Data App](/ouster-data-app) (web app used for retrieval and sharing of lidar
-data), would also benefit from the improvements brought by libraries.
+{/* The need for reusable a component library and a 3D visualization library also */}
+{/* emerged. This would allow the solutions team to build domain-specific UIs while */}
+{/* keeping the look and the interactions consistent with Ouster Studio. The */}
+{/* [Data App](/ouster-data-app) (web app used for retrieval and sharing of lidar */}
+{/* data), would also benefit from the improvements brought by libraries. */}
 
-Through the [Data App project](/ouster-data-app), internal workflows involving
-storage, replay, and sharing of lidar data had mostly been moved to the cloud.
-Many Storing and sharing data online would have to work separately from the
-data-intensive live visualization a a sensor connected to the network (before
-websocket or webRTC), here lied an opportunity to unify the two UIs.
+{/* Through the [Data App project](/ouster-data-app), internal workflows involving */}
+{/* storage, replay, and sharing of lidar data had mostly been moved to the cloud. */}
+{/* Many Storing and sharing data online would have to work separately from the */}
+{/* data-intensive live visualization a a sensor connected to the network (before */}
+{/* websocket or webRTC), here lied an opportunity to unify the two UIs. */}
 
-Finally, mapping and
+{/* Finally, mapping and */}
 
-Out of this research came a couple of findings:
+{/* Out of this research came a couple of findings: */}
 
-- The visualization page for Ouster Studio and the Data App could be almost the
-  same, with tools like measurement, point selection, CSV export, being useful
-  for both UIs
--
+{/* - The visualization page for Ouster Studio and the Data App could be almost the */}
+{/* same, with tools like measurement, point selection, CSV export, being useful */}
+{/* for both UIs */}
 
-Combine as many of these workflows into one, and define guidelines to create a
-unique look-and-feel for
-
-</div>
+{/* Combine as many of these workflows into one, and define guidelines to create a */}
+{/* unique look-and-feel for */}
 
 ## Inspirations
 
@@ -295,10 +285,10 @@ would power Ouster Studio, Data App, and other Ouster solutions.
   or leaving type checking to the IDE), opinionated support of Typescript and
   CSS modules, clear and exhaustive docs, config flexibility and simple plugin
   system, and its leverage of the Rollup ecosystem for builds.
-  <div className="hidden">
-    I wrote a simple plugin to import bundled CSS into the library entrypoint
-    (as a convenience for app builders) and it felt like a breeze.
-  </div>
+
+{/* I wrote a simple plugin to import bundled CSS into the library entrypoint (as a */}
+{/* convenience for app builders) and it felt like a breeze. */}
+
 </ProjectParagraphWithImage>
 
 <ProjectParagraphWithImage imageName="logo_chakra_ui" imageWidth="3rem">
@@ -386,7 +376,7 @@ downloading it [here](https://ouster.com/downloads).
 
 The new 2D image panel lets users inspect the data in a new light. They can dive
 deeper into the image to understand and diagnose situations when the lidar might
-not produce a range value for a given pixel.
+not produce a range value for a given pixel (like black cars or windshields!).
 
 <ProjectVideo
   name="oust_studio_28_release_2d_image_dive"

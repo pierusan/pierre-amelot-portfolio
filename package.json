@@ -1,6 +1,6 @@
 {
   "name": "pierre-amelot-portfolio",
-  "version": "2023.11.26",
+  "version": "2023.12.10",
   "private": true,
   "scripts": {
     "dev": "next dev",

@@ -1,6 +1,7 @@
 'use client';
 import { useControls } from 'leva';
 import { useGLTF } from '@react-three/drei';
+import { type ObjectMap } from '@react-three/fiber';
 import { type GLTF } from 'three-stdlib';
 import { MathUtils, Mesh } from 'three';
 import { animationIds } from '@/constants';
@@ -11,15 +12,16 @@ if (typeof window !== 'undefined') {
   useGLTF.preload(rocksStackGLTFUrl);
 }
 
-type RocksGLTF = GLTF & {
-  nodes: {
-    Rock1: Mesh;
-    Rock2: Mesh;
-    Rock3: Mesh;
-    Rock4: Mesh;
-    Rock5: Mesh;
+type RocksGLTF = GLTF &
+  ObjectMap & {
+    nodes: {
+      Rock1: Mesh;
+      Rock2: Mesh;
+      Rock3: Mesh;
+      Rock4: Mesh;
+      Rock5: Mesh;
+    };
   };
-};
 
 const rockColors = {
   whiteish: '#cecece',

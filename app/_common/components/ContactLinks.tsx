@@ -32,7 +32,7 @@ function LinksList({
         </a>
       </li>
       <li>
-        <a href="https://github.com/Bierro" target="_blank" rel="noreferrer">
+        <a href="https://github.com/pierusan" target="_blank" rel="noreferrer">
           <Icon name="github" size={iconsSize} />
         </a>
       </li>

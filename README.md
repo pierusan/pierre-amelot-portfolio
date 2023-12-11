@@ -1,8 +1,8 @@
 # Overview
 
-[![Test, Build, Deploy](https://github.com/Bierro/pierre-amelot-portfolio/actions/workflows/test-build-deploy.yml/badge.svg?branch=main)](https://github.com/Bierro/pierre-amelot-portfolio/actions/workflows/test-build-deploy.yml)
-[![CodeQL](https://github.com/Bierro/pierre-amelot-portfolio/actions/workflows/github-code-scanning/codeql/badge.svg?branch=main)](https://github.com/Bierro/pierre-amelot-portfolio/actions/workflows/github-code-scanning/codeql)
-[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/Bierro/pierre-amelot-portfolio/badge)](https://securityscorecards.dev/viewer/?uri=github.com/Bierro/pierre-amelot-portfolio)
+[![Test, Build, Deploy](https://github.com/pierusan/pierre-amelot-portfolio/actions/workflows/test-build-deploy.yml/badge.svg?branch=main)](https://github.com/pierusan/pierre-amelot-portfolio/actions/workflows/test-build-deploy.yml)
+[![CodeQL](https://github.com/pierusan/pierre-amelot-portfolio/actions/workflows/github-code-scanning/codeql/badge.svg?branch=main)](https://github.com/pierusan/pierre-amelot-portfolio/actions/workflows/github-code-scanning/codeql)
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/pierusan/pierre-amelot-portfolio/badge)](https://securityscorecards.dev/viewer/?uri=github.com/pierusan/pierre-amelot-portfolio)
 
 I made this portfolio to describe my skills in development and UX, showcase
 projects I worked on, and highlight what I have been learning over the years.
@@ -50,7 +50,7 @@ I host images on a public Google Cloud bucket rather than keeping them locally.
 This lets me recreate/deploy the project on another machine or in CI without the
 hassle of Git LFS or custom download scripts. Next doesn't generate blurred
 image placeholders for remote images so I wrote
-[a script](https://github.com/Bierro/remote-images-for-next) with the
+[a script](https://github.com/pierusan/remote-images-for-next) with the
 [Plaiceholder](https://plaiceholder.co/docs) library to generate them for all
 the images in my bucket.
 

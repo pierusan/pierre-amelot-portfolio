@@ -18,7 +18,7 @@ export function LessonsLearnedTitle({
         animationClasses.homeLessonsLearnedMainContent
       )}
     >
-      <Icon className="mt-[0.25rem]" name={icon} size="2rem" />
+      <Icon className="mt-[0.25rem]" name={icon} size="1.143em" />
       <span>{children}</span>
     </h3>
   );

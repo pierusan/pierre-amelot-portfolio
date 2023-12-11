@@ -76,7 +76,7 @@ export function DesktopProjectToC({
               'xl:whitespace-nowrap'
             )}
           >
-            <Icon name="pinLeft" size="1rem" className={cn('shrink-0')} />
+            <Icon name="pinLeft" size="1.33em" className={cn('shrink-0')} />
             <p>{projects[previousProject].linkName}</p>
           </Link>
         </li>
@@ -96,7 +96,7 @@ export function DesktopProjectToC({
             </p>
             <Icon
               name="pinRight"
-              size="1rem"
+              size="1.33em"
               className={cn('lg:order-0 shrink-0 xl:order-1')}
             />
           </Link>
@@ -148,7 +148,7 @@ function MobileProjectToCList({
               'xl:whitespace-nowrap'
             )}
           >
-            <Icon name="pinLeft" size="1rem" className={cn('shrink-0')} />
+            <Icon name="pinLeft" size="1em" className={cn('shrink-0')} />
             {projects[previousProject].linkName}
           </Link>
         </li>
@@ -161,7 +161,7 @@ function MobileProjectToCList({
               'xl:whitespace-nowrap'
             )}
           >
-            <Icon name="pinRight" size="1rem" className={cn('shrink-0')} />
+            <Icon name="pinRight" size="1em" className={cn('shrink-0')} />
             {projects[nextProject].linkName}
           </Link>
         </li>

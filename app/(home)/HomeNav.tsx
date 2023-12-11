@@ -312,7 +312,7 @@ export function DesktopAboutNav({ className }: { className?: string }) {
           >
             <Icon
               name="arrowUp"
-              size="2rem"
+              size="1.6em"
               className={cn('place-items-center')}
             />
           </a>

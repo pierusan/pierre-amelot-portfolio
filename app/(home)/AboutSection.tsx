@@ -272,12 +272,12 @@ function Subscription({
             '[&:hover>span]:underline'
           )}
         >
-          <Icon name={iconName} size="1.25rem" />
+          <Icon name={iconName} size="1.25em" />
           <span>{name}</span>
         </a>
       ) : (
         <div className={cn('flex items-center gap-xs text-body-md')}>
-          <Icon name={iconName} size="1.25rem" />
+          <Icon name={iconName} size="1.25em" />
           <span>{name}</span>
         </div>
       )}
@@ -300,10 +300,10 @@ function Subscription({
                 )}
               >
                 {highlightType === 'playlist' && (
-                  <Icon name="list" size="1rem" />
+                  <Icon name="list" size="1.33em" />
                 )}
                 {highlightType === 'episode' && (
-                  <Icon name="bookmark" size="1rem" />
+                  <Icon name="bookmark" size="1.33em" />
                 )}
                 <span>{highlightName}</span>
               </a>

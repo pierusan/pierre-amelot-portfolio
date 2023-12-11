@@ -1,16 +1,19 @@
-import { type ComponentProps } from 'react';
 import Link from 'next/link';
 import { cn } from '@/cn';
-import { Icon } from '@/components/Icon';
+import {
+  Icon,
+  type BroadSVGLength,
+  type NarrowSVGLength,
+} from '@/components/Icon';
 
-function LinksList({
+function LinksList<T extends BroadSVGLength>({
   id,
   className,
   iconsSize,
 }: {
   className?: string;
   id?: string;
-  iconsSize: ComponentProps<typeof Icon>['size'];
+  iconsSize: NarrowSVGLength<T>;
 }) {
   return (
     <ol
@@ -71,7 +74,7 @@ export function MobileContactLinks({ className }: { className?: string }) {
           'flex items-center gap-sm',
           'text-details-xl text-main-subtle'
         )}
-        iconsSize={'1.25rem'}
+        iconsSize="1em"
       />
     </header>
   );
@@ -108,7 +111,7 @@ export function DesktopContactLinks({
           'flex flex-col items-end gap-sm',
           fixedSectionClassName
         )}
-        iconsSize={'1.5rem'}
+        iconsSize="1.2em"
       />
     </section>
   );

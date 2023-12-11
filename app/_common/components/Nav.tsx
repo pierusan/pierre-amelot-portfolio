@@ -77,7 +77,7 @@ export function MobileNavPopover({
             triggerClassName
           )}
         >
-          <Icon name="toc" size="1.25rem" />
+          <Icon name="toc" size="1.25em" />
         </PopoverTrigger>
         <PopoverContent
           className={cn(

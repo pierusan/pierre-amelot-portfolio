@@ -70,7 +70,7 @@ export function ProjectFooterNav({ project }: { project: WrittenProject }) {
         )}
         href={`/${previousProj}`}
       >
-        <Icon name="pinLeft" size="1.25rem" />
+        <Icon name="pinLeft" size="1.25em" />
         {projects[previousProj].linkName}
       </Link>
       <Link
@@ -82,7 +82,7 @@ export function ProjectFooterNav({ project }: { project: WrittenProject }) {
         href={`/${nextProj}`}
       >
         {projects[nextProj].linkName}
-        <Icon name="pinRight" size="1.25rem" />
+        <Icon name="pinRight" size="1.25em" />
       </Link>
     </nav>
   );

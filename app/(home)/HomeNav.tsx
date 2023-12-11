@@ -2,7 +2,12 @@ import { type CSSProperties } from 'react';
 import { ToCHighlighter } from './_gsapScrollAnimations/tocHighlight';
 import { cn } from '@/cn';
 import { Icon } from '@/components/Icon';
-import { animationClasses, navIds } from '@/constants';
+import {
+  type ProjectKey,
+  animationClasses,
+  navIds,
+  projects,
+} from '@/constants';
 import {
   DesktopLeftNav,
   DesktopVerticalLink,
@@ -42,43 +47,37 @@ function RockSVG({
 }
 
 const rockNavLinks: {
-  navLinkId: keyof typeof navIds.rocks;
-  linkName: string;
+  navLinkId: ProjectKey;
   rockEllipse: Ellipse;
   translationYInStack: number;
   translationYLessonsLearnedToMainStack: number;
 }[] = [
   {
     navLinkId: 'hypnovr',
-    linkName: 'HypnoVR',
     rockEllipse: { cx: 13, cy: 5, rx: 8, ry: 4 },
     translationYInStack: 50.5,
     translationYLessonsLearnedToMainStack: -101.5,
   },
   {
     navLinkId: 'nrec-ar',
-    linkName: 'Demining in AR',
     rockEllipse: { cx: 16, cy: 7, rx: 10.2, ry: 6 },
     translationYInStack: 32,
     translationYLessonsLearnedToMainStack: -94,
   },
   {
     navLinkId: 'ouster-data-app',
-    linkName: 'Data App',
     rockEllipse: { cx: 17, cy: 8, rx: 11, ry: 7 },
     translationYInStack: 17,
     translationYLessonsLearnedToMainStack: -82,
   },
   {
-    navLinkId: 'fleetguide-surround-view',
-    linkName: 'Surround View',
+    navLinkId: 'fleetguide-360-view',
     rockEllipse: { cx: 15, cy: 8, rx: 12, ry: 7 },
     translationYInStack: 4,
     translationYLessonsLearnedToMainStack: -67,
   },
   {
     navLinkId: 'ouster-studio',
-    linkName: 'Ouster Studio',
     rockEllipse: { cx: 17, cy: 9, rx: 16, ry: 8 },
     translationYInStack: -10,
     translationYLessonsLearnedToMainStack: -54,
@@ -113,8 +112,9 @@ function RocksStackDesktopNav() {
       {/* Hover zone */}
       <div className="absolute left-0 top-[55px] h-[134px] w-[98px] opacity-50" />
       {/* Rocks -> project nav links */}
-      {rockNavLinks.map(
-        ({ rockEllipse, navLinkId, linkName, translationYInStack }) => (
+      {rockNavLinks.map(({ rockEllipse, navLinkId, translationYInStack }) => {
+        const linkName = projects[navLinkId].linkName;
+        return (
           <li key={linkName}>
             <a
               href={`#${navIds.rocks[navLinkId]}`}
@@ -129,8 +129,8 @@ function RocksStackDesktopNav() {
               <span>{linkName}</span>
             </a>
           </li>
-        )
-      )}
+        );
+      })}
       {/* Rock stack -> Lessons Learned link */}
       <li className="mt-[1rem]">
         <a
@@ -178,14 +178,17 @@ function RocksStackMobileNav() {
       )}
     >
       {/* Rocks -> project nav links */}
-      {rockNavLinks.map(({ rockEllipse, navLinkId, linkName }) => (
-        <li key={linkName}>
-          <a href={`#${navIds.rocks[navLinkId]}`}>
-            <RockSVG translateY={0} ellipse={rockEllipse} />
-            <span>{linkName}</span>
-          </a>
-        </li>
-      ))}
+      {[...rockNavLinks].map(({ rockEllipse, navLinkId }) => {
+        const linkName = projects[navLinkId].linkName;
+        return (
+          <li key={linkName}>
+            <a href={`#${navIds.rocks[navLinkId]}`}>
+              <RockSVG translateY={0} ellipse={rockEllipse} />
+              <span>{linkName}</span>
+            </a>
+          </li>
+        );
+      })}
       {/* Rock stack -> Lessons Learned link */}
       <li className="mt-[1rem]">
         <a href={`#${navIds.rocks['lessons-learned']}`}>

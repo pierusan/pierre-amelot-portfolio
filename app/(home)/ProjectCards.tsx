@@ -20,8 +20,8 @@ export function ProjectCards({ className }: { className?: string }) {
       />
       <ProjectCard
         id={animationIds.homeProjects[1].card}
-        navId={navIds.rocks['fleetguide-surround-view']}
-        projectKey="fleetguide-surround-view"
+        navId={navIds.rocks['fleetguide-360-view']}
+        projectKey="fleetguide-360-view"
         className={cn('justify-self-start')}
       />
       <ProjectCard

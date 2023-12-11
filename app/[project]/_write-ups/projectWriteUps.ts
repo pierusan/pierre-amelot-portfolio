@@ -1,7 +1,7 @@
 import { type MDXProps } from 'mdx/types';
 import FleetguideSurroundView, {
   tableOfContents as FleetguideSurroundViewToC,
-} from './fleetguide-surround-view.mdx';
+} from './fleetguide-360-view.mdx';
 import NrecAR, { tableOfContents as NrecARToC } from './nrec-ar.mdx';
 import HypnoVR, { tableOfContents as HypnoVRToC } from './hypnovr.mdx';
 import OusterStudio, {
@@ -19,7 +19,7 @@ type ProjectMDXProps = MDXProps & { project: ProjectKey };
 type ProjectMDXContent = (props: ProjectMDXProps) => JSX.Element;
 
 export const projectWriteUps = {
-  'fleetguide-surround-view': {
+  'fleetguide-360-view': {
     content: FleetguideSurroundView as ProjectMDXContent,
     toc: FleetguideSurroundViewToC,
   },

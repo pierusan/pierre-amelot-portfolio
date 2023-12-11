@@ -5,6 +5,7 @@ import BookmarkIconSVG from '@material-design-icons/svg/outlined/bookmark_border
 import ListIconSVG from '@material-design-icons/svg/filled/list.svg';
 import TocSVG from '@material-design-icons/svg/filled/toc.svg';
 import FeedSVG from '@material-design-icons/svg/filled/feed.svg';
+import SchoolSVG from '@material-design-icons/svg/sharp/school.svg';
 // Radix https://www.radix-ui.com/icons
 import {
   ArrowUpIcon,
@@ -36,6 +37,7 @@ const materialIcons = {
   feed: FeedSVG,
   list: ListIconSVG,
   podcasts: PodcastsIconSVG,
+  school: SchoolSVG,
   toc: TocSVG,
 } as const;
 

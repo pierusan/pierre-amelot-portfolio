@@ -6,6 +6,7 @@ import { ProjectCards } from './ProjectCards';
 import { Rocks3DScene } from './_3D/Rocks3DScene';
 import { GsapPluginsRegisterer } from './_gsapScrollAnimations/GsapPluginsRegisterer';
 import { GsapDomAnimations } from './_gsapScrollAnimations/GsapDomAnimations';
+import { SchoolProjectsFooter } from './SchoolProjectsFooter';
 import { cn } from '@/cn';
 import {
   DesktopContactLinks,
@@ -53,6 +54,7 @@ export function HomePage() {
           className={cn('z-0 mt-[-100vh]')}
         />
       </MainContainer>
+      <SchoolProjectsFooter />
       <Rocks3DScene
         className={cn('z-[15]', animationClasses.homeCurtainToPull)}
       />

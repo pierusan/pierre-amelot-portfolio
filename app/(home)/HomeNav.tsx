@@ -178,7 +178,9 @@ function RocksStackMobileNav() {
       )}
     >
       {/* Rocks -> project nav links */}
-      {[...rockNavLinks].map(({ rockEllipse, navLinkId }) => {
+      {/* Reverse rocks order on mobile because users will have more of a tendency to
+          go to the ToC first but we want them to go to Ouster Studio */}
+      {[...rockNavLinks].reverse().map(({ rockEllipse, navLinkId }) => {
         const linkName = projects[navLinkId].linkName;
         return (
           <li key={linkName}>

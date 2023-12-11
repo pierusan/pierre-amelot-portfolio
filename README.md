@@ -291,7 +291,7 @@ move them to `app/_common/components` directory.
 - Explain CSS modules for animations
 - Mobile header blur like floating-ui website, Sweep, storybook, or crate
 - Talk about dependabot in Readme
-- Use <picture> for mobile?
+- Use picture HTML tag for mobile?
 - Background and cards like Linear and Next-Video. Hover effect like
   https://www.youtube.com/watch?v=htGfnF1zN4g.
 - Rotate scene on mobile touch

@@ -3,6 +3,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Space_Mono } from 'next/font/google';
 import { type ReactNode } from 'react';
+import { AsciiArtLog } from './AsciiArtLog';
 import { cn } from '@/cn';
 
 const spaceMono = Space_Mono({
@@ -29,6 +30,7 @@ export function RootLayout({ children }: { children: ReactNode }) {
           'font-mono text-body-md text-main'
         )}
       >
+        <AsciiArtLog />
         {children}
       </body>
     </html>

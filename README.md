@@ -260,45 +260,51 @@ move them to `app/_common/components` directory.
 
 </details>
 
-# TODO
+# TODO first
 
-- Code Splitting?
-- Include Figma and Spline Opengraph Preview
-- Some Storybook example and Jest example
-- Add Playwright tests
-- Suspense for the Three.js scene
-- Hits and likes like Josh Comeau's website
+- Opengraph for Linkedin
+- Include Figma and Spline Opengraph preview in readme
+- Mobile header blur like floating-ui website, Sweep, storybook, or crate
+- Product Analytics
 - Clean up this readme
-- Setup commit signing?
-- Update favicon fill based on page progress
+- Talk about dependabot in Readme
+- Explain CSS modules for animations
+- Fix camera angle on desktop
 - More interesting cards animation/design like
   https://www.depo.studio/cases/aaron-mcguire or
   https://www.aaronmcguire.design/projects/forma
-- Text animation like DepoStudio https://www.depo.studio/ for the home page
-- Product Analytics
-- Reveal the hoverable text in the homepage with a little wiggle or something
-  like Kate's CMO article
-- Time machine with previous version of the website?
-- Multiple animated arrows at the bottom of the site
-- Credits with WithPoly, Spline, and other tools
-- Add code coverage tests?
-- Add tests for custom hooks?
-- Console message: Like what you see? Reach out! with Ascii art
-- 404 page
-- Light mode?
-- Add date, title, and company to project?
-- Fix gap, padding, etc... in tailwind theme
-- Explain CSS modules for animations
-- Mobile header blur like floating-ui website, Sweep, storybook, or crate
-- Talk about dependabot in Readme
-- Use picture HTML tag for mobile?
 - Background and cards like Linear and Next-Video. Hover effect like
   https://www.youtube.com/watch?v=htGfnF1zN4g.
-- Rotate scene on mobile touch
-- Add little custom cursors on mobile somewhere?
-- Click on images in project cards on mobile?
 - Fix html color on top overscroll on mobile
-- ToC on mobile could also contain nav to go to the other projects
-- Consider eager loading of images
+- Credits with WithPoly, Spline, and other tools
+- 404 page and error page
+- Code Splitting
+- Add date, title, and company to project
+- Add little custom cursors on mobile somewhere?
+- Make 3D scene interactive on mobile
+- ToC on mobile could also contain nav to back home, or to the other projects
+- If GCP fees get crazy, move to CloudFlare registar and set URL redirect there
+
+# TODO next
+
+- Popover with more infos on what I liked about the resources
+- Rotate scene on mobile touch
+- Fix gap, padding, etc... in tailwind theme
+- Suspense for the Three.js scene
+- Some Storybook example and Jest example
+- Add tests for custom hooks?
+- Add Playwright tests
+- Add code coverage tests?
+
+# Maybe one day
+
+- Setup commit signing
+- Animate favicon fill based on page progress
 - Interactive Double Diamond process. Talk about the value of design thinking
   and the slide deck that I created.
+- Consider eager loading of images
+- Click on images in project cards on mobile?
+- Use picture HTML tag for mobile?
+- Text animation like DepoStudio https://www.depo.studio/ for the home page
+- Hits and likes like Josh Comeau's website
+- Light mode?

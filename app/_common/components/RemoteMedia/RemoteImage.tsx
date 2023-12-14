@@ -79,6 +79,18 @@ const remoteImageAltTexts = {
   oust_da_home_2_magma_range_viz: 'Ouster Data App Magma Range Visualization',
   oust_da_home_3_shortcuts: 'Ouster Data App Shortcuts',
   oust_da_home_4_landing_page: 'Ouster Data App Landing Page',
+  oust_da_1_fleetguide_calibration: 'Ouster Data App Fleetguide Calibration',
+  oust_da_3_spreadsheet: 'Ouster Data App Spreadsheet',
+  oust_da_4_upload_ux: 'Ouster Data App Upload UX',
+  oust_da_7_download: 'Ouster Data App Download',
+  oust_da_8_range_rings: 'Ouster Data App Range Rings',
+  oust_da_9_camera_type: 'Ouster Data App Camera Type',
+  oust_da_10_calibrated_reflectivity: 'Ouster Data App Calibrated Reflectivity',
+  oust_da_11_noise_suppression: 'Ouster Data App Noise Suppression',
+  oust_da_12_returns: 'Ouster Data App Dual Returns',
+  oust_da_13_2D_image_aspect_ratio: 'Ouster Data App 2D Image Aspect Ratio',
+  oust_da_14_shortcuts: 'Ouster Data App Shortcuts',
+  oust_da_15_public_link: 'Ouster Data App Public Link',
   // Ouster Studio
   oust_studio_home_1_viz_homepage: 'Ouster Studio Viz Home',
   oust_studio_home_2_low_fi_viz_recording_menu:
@@ -130,10 +142,16 @@ const remoteImageAltTexts = {
   logo_cmu: 'Logo - Carnegie Mellon University',
   logo_nrec: 'Logo - National Robotics Engineering Center',
   logo_ouster: 'Logo - Ouster',
+  // Other Logos
   logo_chakra_ui: 'Logo - Chakra UI',
+  logo_docker: 'Logo - Docker',
+  logo_flask: 'Logo - Flask',
+  logo_gitlab: 'Logo - GitLab',
+  logo_postgres: 'Logo - PostgreSQL',
+  logo_python: 'Logo - Python',
+  logo_terraform: 'Logo - Terraform',
   logo_storybook: 'Logo - Storybook',
   logo_vite: 'Logo - Vite',
-  logo_gitlab: 'Logo - GitLab',
 } satisfies Partial<Record<AnyRemoteImageName, string>>;
 
 export type RemoteImageName = keyof typeof remoteImageAltTexts;

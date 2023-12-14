@@ -1,16 +1,19 @@
 import { RemoteImageName } from '@/components/RemoteMedia';
 
+export type ProjectKey = keyof typeof projects;
+type RockNavIdKeys = ProjectKey | 'lessons-learned';
+
 // For the navigation links to scroll to the correct section id in the page
 export const navIds = {
   intro: 'intro',
   rocks: {
     'ouster-studio': 'ouster-studio',
     'ouster-data-app': 'ouster-data-app',
-    'fleetguide-surround-view': 'fleetguide-surround-view',
+    'fleetguide-360-view': 'fleetguide-360-view',
     'nrec-ar': 'nrec-ar',
     hypnovr: 'hypnovr',
     'lessons-learned': 'lessons-learned',
-  },
+  } satisfies Record<RockNavIdKeys, string>,
   about: 'about',
 };
 
@@ -95,7 +98,7 @@ export const projects = {
       'oust_studio_home_4_storybook_interaction_test',
     ],
   },
-  'fleetguide-surround-view': {
+  'fleetguide-360-view': {
     title: 'Fleetguide 360° View',
     subtitle: 'Helping truck drivers see 360°',
     linkName: 'Fleetguide 360°',
@@ -138,7 +141,7 @@ export const projects = {
   },
   'nrec-ar': {
     title: 'Demining in AR',
-    linkName: 'AR Demining',
+    linkName: 'Demining in AR',
     subtitle: "Improving military deminers' technique using metal detectors",
     badges: {
       code: ['Unity', 'C#', 'HoloLens', 'Vuforia', 'Wireshark'],
@@ -169,5 +172,3 @@ export const projects = {
     ],
   },
 } satisfies Record<string, ProjectInfo>;
-
-export type ProjectKey = keyof typeof projects;

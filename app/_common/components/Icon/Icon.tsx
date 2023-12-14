@@ -1,11 +1,12 @@
 import { type SVGProps } from 'react';
-// Material
+// Material https://fonts.google.com/icons
 import PodcastsIconSVG from '@material-design-icons/svg/filled/podcasts.svg';
 import BookmarkIconSVG from '@material-design-icons/svg/outlined/bookmark_border.svg';
 import ListIconSVG from '@material-design-icons/svg/filled/list.svg';
 import TocSVG from '@material-design-icons/svg/filled/toc.svg';
 import FeedSVG from '@material-design-icons/svg/filled/feed.svg';
-// Radix
+import SchoolSVG from '@material-design-icons/svg/sharp/school.svg';
+// Radix https://www.radix-ui.com/icons
 import {
   ArrowUpIcon,
   ArrowLeftIcon,
@@ -15,7 +16,7 @@ import {
   GitHubLogoIcon,
   LinkedInLogoIcon,
 } from '@radix-ui/react-icons';
-// Phosphor
+// Phosphor https://phosphoricons.com/
 import {
   Article,
   Notepad,
@@ -24,9 +25,9 @@ import {
   UserFocus,
   UsersThree,
 } from '@phosphor-icons/react/dist/ssr/index';
-// Lucide
+// Lucide https://lucide.dev/icons/
 import { Palette } from 'lucide-react';
-// Feather
+// Feather https://feathericons.com/
 import { Layout } from 'react-feather';
 // Custom
 import YoutubeIconSVG from './svgs/YoutubeIcon.svg';
@@ -36,6 +37,7 @@ const materialIcons = {
   feed: FeedSVG,
   list: ListIconSVG,
   podcasts: PodcastsIconSVG,
+  school: SchoolSVG,
   toc: TocSVG,
 } as const;
 
@@ -74,13 +76,23 @@ const icons = {
 } as const;
 export type IconName = keyof typeof icons;
 
-export function Icon({
+// rem units are actually not allowed on SVGs and React types for SVGs are not
+// narrow enough
+// https://developer.mozilla.org/en-US/docs/Web/API/SVGLength
+// Here we use Typescript conditional types to narrow them ourselves
+// https://stackoverflow.com/a/63549561
+export type BroadSVGLength = SVGProps<SVGSVGElement>['width'];
+type IncorrectSVGLength = `${number}rem`;
+export type NarrowSVGLength<T> = (T extends IncorrectSVGLength ? never : T) &
+  (IncorrectSVGLength extends T ? never : T); //for unions
+
+export function Icon<T extends BroadSVGLength>({
   name,
   size,
   ...svgProps
 }: {
   name: IconName;
-  size: SVGProps<SVGSVGElement>['width'];
+  size: NarrowSVGLength<T>;
 } & Omit<SVGProps<SVGSVGElement>, 'width' | 'height' | 'viewBox'>) {
   const extraProps: { viewBox?: string; fill?: string } = {};
 

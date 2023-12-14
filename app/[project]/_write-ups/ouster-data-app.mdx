@@ -1,5 +1,6 @@
 import { ProjectImage } from '../ProjectImage';
 import { ProjectVideo } from '../ProjectVideo';
+import { ProjectParagraphWithImages } from '../ProjectParagraphWithImages';
 import { ProjectWrapperBelowTitles } from '../ProjectPage';
 
 # Ouster Data App
@@ -8,8 +9,247 @@ Full-stack upgrade of internal web tool
 
 <ProjectWrapperBelowTitles project={props.project}>
 
-## Coming Soon
+As I was working on the lidar-based
+[Fleetguide safety product](/fleetguide-360-view), the team had built an
+_internal web tool to visualize data_ collected on the trucks.
 
-Coming Soon ...
+{/* It was helpful to check the health of the system (like sensors alignment or */}
+{/* dirty sensors) and capture interesting scenes for product development. */}
+
+<div className="hidden">
+  <ProjectImage
+    name="oust_da_1_fleetguide_calibration"
+    caption="At first the Data App was a review tool for Fleetguide"
+  />
+</div>
+We soon realized that this Fleetguide tool could benefit other teams at Ouster. _I
+championed the Data App throughout the organization_ and tailored it to its multi-faceted
+needs. I went on to make the _majority of the full-stack upgrades_ including data
+modeling, database migration, API updates, containerized jobs, and new visualization
+features.
+
+<ProjectVideo
+  name="oust_da_2_viz_demo"
+  caption="Visualizing 2023 sample data in the Data App (with shortcuts!). Play me in full screen!"
+/>
+
+When I left Ouster, the Data App had become a _key part of the company's
+workflows. More than 2000 recording had been uploaded._
+
+## Championing cloud workflows
+
+At the start of the project, I _talked to a dozen Ouster employees_ to
+understand how they used recorded lidar data and see if storing and playing it
+in the cloud could benefit them. The opportunities were vast:
+
+- _Marketing and sales_ could share sample data with customers in blog posts and
+  emails to highlight data quality and use cases
+- _Product_ could collaborate with customers on beta features and communicate
+  about the data right inside to data
+- _Customer success_ could have customers upload issues to better diagnose and
+  help them troubleshoot
+- _Firmware_ could collaborate among themselves and share progress to the rest
+  of Ouster while working on upgrades. They could store integration tests
+  recordings to assess point cloud quality continuously
+- _Test engineering_ could use it as a repository for their test data
+- _Field application engineering_ could review data from installations they
+  managed, and store interesting snippets from field trips
+- _Quality Assurance_ could share with manufacturing and firmware the detected
+  issues uncovered during failure analysis on long-term tests
+
+We had no PM or manager at the time (other than the CEO) so _I was in charge of
+the roadmap_. I proposed to first focus on processes <i>without</i> customers to
+validate the tool's usability and value internally, and then to gradually
+increase complexity in data access.
+
+{/* We would then gradually increase access to the outside customer, first by making */}
+{/* public data available to anyone online, then letting customers log in and upload */}
+{/* private data to Ouster, and finally give customers their own workspace of the */}
+{/* Data App, if the opportunity arose. */}
+
+## Backend updates
+
+For the first iteration of the homepage design, I opted for a simple table
+listing every uploaded recording. _A single table for all of Ouster would
+encourage browsing, increase data reuse, and advertise the tool usage._
+
+To avoid the list being overwhelming, I worked with users to define a set of
+flexible column filters. On top of expected attributes (dates, lidar info,
+firmware version), we introduced a _data category_ (like <i>internal
+test</i>,<i> sample data</i>, or <i>customer request</i>) to get why the data
+was recorded, and _tags_ (like <i>retro-reflectors</i>, <i>bicycle</i>, {/*  */}
+or <i>mining</i>) to know what's in it.
+
+For tags to surface interesting data collections, I wanted to discourage
+duplicates {/* super duper long line break to prevent prettier from adding */}
+(like <i>car</i>, <i>Car</i>, <i>vehicle</i>, <i>auto</i>, <i>aauto</i>) so I
+designed tag selectors as a dropdown instead of freeform text. I worked with
+Ouster users to create an initial taxonomy that they could extend in the UI.
+
+<ProjectVideo
+  name="oust_da_3_spreadsheet_interactions"
+  caption="The Data App homepage I designed (mocked data)"
+/>
+
+<ProjectParagraphWithImages imageNames={['logo_flask','logo_postgres']} imageWidth='2rem'>
+
+To reflect this updated domain knowledge, I developed a new data model. I
+updated the Python _Flask REST API_ with _SQLAlchemy_, and added test fixtures
+for new endpoints. I handled migrations of the _Postgres_ db with _Alembic_,
+making sure freeform tags from existing Fleetguide data would make it {/*  */}
+to the new <i>tag</i> database table. I deployed the staging and production
+systems using _Terraform_ - the Postgres db was hosted on GCP, and the Flask app
+was uploaded to _GCP Cloud Run_ as a _Docker_ container.
+
+</ProjectParagraphWithImages>
+
+I then updated the frontend home based on wireframes I had designed in Figma,
+and took the opportunity refactor the codebase to use React hooks.
+
+## Easy data uploads
+
+I designed an _upload dialog_ for Ouster employees to upload their lidar
+recordings (1 data and 1 config file) right from the Data App homepage.
+
+<ProjectVideo
+  name="oust_da_5_upload_flow"
+  caption="Data App file upload demo"
+/>
+
+The more data people uploaded, the more useful the Data App would be! Reducing
+friction here was key to the success and adoption of the tool so I spent some
+time thinking about the UX of uploading data:
+
+- Point cloud data can get very large (1GB/min as a rule of thumb) and uploads
+  are long. Progress feedback was important to avoid frustration.
+- The config file associated with every recording was often a source of
+  confusion. Users sometimes forgot it or erroneously reused files. Displaying
+  parsed information, warnings, and errors could help them check this was
+  correct file.
+- The more users categorize their data on upload, the more datasets would emerge
+  for everyone else to use. I strove to make tag selection as easy, fast, and
+  enticing as possible.
+
+<ProjectImage
+  name="oust_da_4_upload_ux"
+  caption="UX decisions for the upload flow"
+/>
+
+<ProjectParagraphWithImages
+  imageNames={['logo_python', 'logo_docker']}
+  imageWidth="2rem"
+>
+  I also contributed to the creation of a new upload data pipeline. I extracted
+  config file information to display them to the user and to ingest them the
+  database. This took the form of Python library code running on _Docker_
+  containers deployed on _Google Compute Engine_ instances and orchestrate with
+  serverless _Cloud Run_ compute platform.
+</ProjectParagraphWithImages>
+
+## Visualization upgrades
+
+While I did not have a chance to revisit the look of the 3D scene controls (for
+more on this, read my [Ouster Studio](/ouster-studio) page), I did implement
+_additions and improvements to the internal Three.js visualization library_
+powering the Data App. Some changes showcased new firmware features, and
+collaborating with the firmware team was important to design the best
+visualization strategy.
+
+<ProjectVideo
+  name="oust_da_2_viz_demo"
+  caption="Visualizing 2023 sample data in the Data App (using shortcuts). Play me in full screen!"
+/>
+
+- It was important to let users _download the data_ for the freedom to view or
+  analyze it elsewhere. I designed a simple popover with icons reminding whether
+  the file has already been downloaded.
+
+<ProjectImage name="oust_da_7_download" />
+
+- I added _range rings_ to get a sense for distances in the scene and for the
+  lidar maximum detection range. I made sure ring labels did not overlap with
+  each other and stayed readable in all camera perspectives.
+
+<ProjectImage name="oust_da_8_range_rings" />
+
+- Perspective projection is a natural way to view a 3D scene but orthographic
+  projection is better to estimate distances and objects'shapes. I made sure
+  users could _toggle between camera projections_ without resetting the camera
+  position and orientation.
+
+<ProjectImage name="oust_da_9_camera_type" />
+
+- Ouster lidar started outputting 8-bit _reflectivity_ data in firmware 2.1.
+  Points now kept the same 'color' in the scene no matter how far they were from
+  the lidar. This could improve customers' classification and mapping
+  algorithms. I modified the rendering pipeline to accurately display the
+  reflectivity data, which was not linearly mapped to the real reflectivity
+  values (due to retro-reflectors).
+
+<ProjectImage name="oust_da_10_calibrated_reflectivity" quality={100} />
+
+- For Near IR ambient light data, noise inherent to the sensor receiver silicon
+  chip (called
+  [dark count rate](<https://en.wikipedia.org/wiki/Single-photon_avalanche_diode#Dark_count_rate_(DCR)>))
+  produces artificial stripes in the rows. The SDK team had written a C++
+  algorithm to _suppress this noise_. I rewrote it for Javascript and made
+  improvements to it.
+
+<ProjectImage name="oust_da_11_noise_suppression" />
+
+- From firmware 2.2 Ouster lidars started outputting values for the _second
+  strongest return_. A second point might now be displayed for each pixel of the
+  lidar image.
+
+<ProjectImage name="oust_da_12_returns" />
+
+- To _avoid distortions in the lidar '2D' image representation_, I constrained
+  them to the sensor 'real' aspect ratio. A 360° lidar with a taller field of
+  view would now naturally mean a taller 2D image.
+
+<ProjectImage name="oust_da_13_2D_image_aspect_ratio" />
+
+- For power users, I added _keyboard shortcuts_ adapting to pc and mac. In the
+  code I enforced that a shortcut key press would always trigger a toast for
+  user feedback.
+
+<ProjectImage name="oust_da_14_shortcuts" />
+
+## Sharing data with customers
+
+Once adoption became widespread within Ouster, it was time to broaden the
+audience. The next step was to _disseminate sample data to customers_ through
+the Data App. Prospective customers would no longer need to download and install
+a software to play with point clouds. They could just click a link from a
+marketing email and start exploring.
+
+To avoid leaking Ouster private information like some of the tags or notes, I
+designed a public link generation workflow inspired by tools like Airtable.
+Anyone at Ouster could now generate a public link accessible to anyone online
+without the need for a login. However only public endpoints are fetched there,
+and private information remains protected.
+
+<ProjectImage
+  name="oust_da_15_public_link"
+  caption="I designed and implemented a UI and interactions to generate public links"
+/>
+
+_Try out sample data for yourself_:
+[OS0 sensor](https://data.ouster.dev/share/ONK2420ES2S0BF8Q),
+[OS1 sensor](https://data.ouster.dev/share/VVX59BLMFXPLVPI5),
+[OS2 sensor](https://data.ouster.dev/share/ENOD8SQUHJKQF62T).
+
+## CES VR Demo
+
+As a bonus, let me share an after-hour side project: _a VR branch of the Data
+App_. By leveraging the WebXR Device API and Three.js WebXRManager, I was able
+to turn public Data App links inside into a VR experience. Marketing got word of
+it and the demo ended up used at Ouster's 2023 CES booth. Here is a
+low-resolution screen capture I made with my Oculus Go.
+
+<ProjectVideo
+  name="oust_da_17_vr_low_res"
+  caption="low-resolution demo of my Data VR side project"
+/>
 
 </ProjectWrapperBelowTitles>

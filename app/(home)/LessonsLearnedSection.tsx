@@ -18,7 +18,7 @@ export function LessonsLearnedTitle({
         animationClasses.homeLessonsLearnedMainContent
       )}
     >
-      <Icon className="mt-[0.25rem]" name={icon} size="2rem" />
+      <Icon className="mt-[0.25rem]" name={icon} size="1.143em" />
       <span>{children}</span>
     </h3>
   );
@@ -72,10 +72,6 @@ export function LessonsLearnedSection({ className }: { className?: string }) {
       <LessonsLearnedTitle icon="terminalWindow">Code</LessonsLearnedTitle>
       <LessonsLearnedUl>
         <li>
-          Setting up a CI pipeline early with linting and testing will help
-          reduce tech debt accumulation and sloppiness at crunch time
-        </li>
-        <li>
           Sharing knowledge and tips among teammates greatly improves
           productivity in an ever evolving field. Cultivate these exchanges, in
           PR reviews and elsewhere
@@ -84,12 +80,17 @@ export function LessonsLearnedSection({ className }: { className?: string }) {
           {/* <li>Question your coding workflow</li> */}
         </li>
         <li>
-          Code is a better way to express intent than comments about code. See
-          if you can make your code more human rather than describing code in
-          human language
+          Setting up a CI pipeline early with linting and testing will help
+          reduce tech debt accumulation and sloppiness at crunch time
         </li>
         <li>
           Change will happen, so loose coupling of modules should be top of mind
+        </li>
+        {/* High cohesion, low coupling */}
+        <li>
+          Code is a better way to express intent than comments about code. See
+          if you can make your code more human rather than describing code in
+          human language
         </li>
         <li>
           Wisely choose dependencies to not regret having to deal with them
@@ -201,6 +202,10 @@ export function LessonsLearnedSection({ className }: { className?: string }) {
         <li>
           Solicit and elicit honest feedback. Check in and see how you can
           improve as a manager
+        </li>
+        <li>
+          Remember training and conferences as a way to grow and retain
+          employees
         </li>
       </LessonsLearnedUl>
     </article>

@@ -272,12 +272,12 @@ function Subscription({
             '[&:hover>span]:underline'
           )}
         >
-          <Icon name={iconName} size="1.25rem" />
+          <Icon name={iconName} size="1.25em" />
           <span>{name}</span>
         </a>
       ) : (
         <div className={cn('flex items-center gap-xs text-body-md')}>
-          <Icon name={iconName} size="1.25rem" />
+          <Icon name={iconName} size="1.25em" />
           <span>{name}</span>
         </div>
       )}
@@ -300,10 +300,10 @@ function Subscription({
                 )}
               >
                 {highlightType === 'playlist' && (
-                  <Icon name="list" size="1rem" />
+                  <Icon name="list" size="1.33em" />
                 )}
                 {highlightType === 'episode' && (
-                  <Icon name="bookmark" size="1rem" />
+                  <Icon name="bookmark" size="1.33em" />
                 )}
                 <span>{highlightName}</span>
               </a>
@@ -327,11 +327,13 @@ function Resources() {
           highlights={[
             {
               type: 'playlist',
+              // Amazing in-depth web topics of all sorts
               name: 'HTTP 203',
               url: 'https://www.youtube.com/playlist?list=PLNYkxOF6rcIAKIQFsNbV0JDws_G_bnNo9',
             },
             {
               type: 'playlist',
+              // Great CSS craftsmanship
               name: 'GUI Challenges',
               url: 'https://www.youtube.com/playlist?list=PLNYkxOF6rcIAaV1wwI9540OC_3XoIzMjQ',
             },
@@ -339,11 +341,13 @@ function Resources() {
         />
         <Subscription
           type="youtube"
+          // Touches on variable naming, dependency injection
           name="Code Aesthetic"
           url="https://www.youtube.com/@CodeAesthetic"
         />
         <Subscription
           type="youtube"
+          // REST API design. Full apps. CORS explanations
           name="Coding Garden"
           url="https://www.youtube.com/@CodingGarden"
         />
@@ -351,10 +355,31 @@ function Resources() {
           type="youtube"
           name="One-off videos"
           highlights={[
+            // How do a built a 5 star, then a 6 start, then a 7 star
+            // experience. Work your brain differently.
+            // Rolling roadmap of 2 years and it's evolving
+            // 2 releases a year, fall and spring
+            // Product management and product marketing should be closer to unlock
+            // Sometimes hard to know if a product fail because of the product or the marketing
             {
               type: 'episode',
               name: 'Stanford Business - Brian Chesky: Designing a 10-star experience',
               url: 'https://youtu.be/V6h_EDcj12k',
+            },
+            {
+              type: 'episode',
+              name: 'Figma Config - Shishir Mehrotra - Rituals of great product teams',
+              url: 'https://www.youtube.com/watch?v=veG6_hcrShE',
+            },
+            // There is a tremendous amount of craftsmanship in turning a great
+            // idea into a great product. You have to keep 5000 things in your brain about
+            // the product.
+            // When a company grows the process people come in, the great
+            // product people leave and the company stops innovating
+            {
+              type: 'episode',
+              name: 'The Lost Interview - Steve Job',
+              url: 'https://youtu.be/rDqQcmVqAm4?si=sKkuEwf3EABun050&t=2088',
             },
           ]}
         />
@@ -363,39 +388,61 @@ function Resources() {
           name="Design Better"
           url="https://open.spotify.com/show/59RliaMdeDAkEgp9nj1Mkj"
           highlights={[
+            // Feature teams vs product teams
+            // Usable: design
+            // Feasible: engineering
+            // Viable and Valuable: PM
             {
               type: 'episode',
               name: 'Marty Cagan: Understanding product management and Agile',
-              url: 'https://open.spotify.com/episode/0EHnBpR6lBlEoq9jYLRwGr?si=clHu9ZrtRfKb0RjZm67kUQ',
+              url: 'https://open.spotify.com/episode/0EHnBpR6lBlEoq9jYLRwGr',
+            },
+            {
+              type: 'episode',
+              name: 'Abigail Hart Gray: Explain design with numbers',
+              url: 'https://open.spotify.com/episode/7vMPdrc3LVxLbQThYVF5qk',
             },
           ]}
         />
         <Subscription
           type="podcast"
           name="Masters of Scale"
-          url="https://open.spotify.com/show/1bJRgaFZHuzifad4IAApFR?si=27d795800d45412a"
+          url="https://open.spotify.com/show/1bJRgaFZHuzifad4IAApFR"
           highlights={[
             {
               type: 'episode',
               name: 'Sam Altman: Customer love is all you need',
-              url: 'https://open.spotify.com/episode/5FXJwdLenciEJRDEh39hiy?si=38da0bc6b638462a',
+              url: 'https://open.spotify.com/episode/5FXJwdLenciEJRDEh39hiy',
             },
           ]}
         />
         <Subscription
           type="podcast"
           name="Lenny's podcast"
-          url="https://open.spotify.com/show/2dR1MUZEHCOnz1LVfNac0j?si=994aba20935c4c0b"
+          url="https://open.spotify.com/show/2dR1MUZEHCOnz1LVfNac0j"
           highlights={[
+            //
+            // {
+            //   type: 'episode',
+            //   name: 'Shishir Mehrotra: The rituals of great teams',
+            //   url: 'https://open.spotify.com/episode/2EWVDzqhkxvLvEioAUE5kh?si=8e2006e2d5424e71',
+            // },
+            // Don't be guided by fear or anger. Really listen to people, be
+            // their agent. Top goal and accountability buddy. Be on time.
+            // Firing almost always makes you more productive
             {
               type: 'episode',
-              name: 'Shishir Mehrotra: The rituals of great teams',
-              url: 'https://open.spotify.com/episode/2EWVDzqhkxvLvEioAUE5kh?si=8e2006e2d5424e71',
+              name: 'Matt Mochary - The great CEO within',
+              url: 'https://open.spotify.com/episode/0WC7fuAKXM22HC6ckj1JI4?si=1735fcdd508b4bb4',
             },
+            // Still so many teams are not running product correctly. Teams
+            // should be given a problem and not a feature
+            // 'Product owner' is BS
+            // PMs should always have access to users, engineers, and stakeholders
             {
               type: 'episode',
-              name: "Brian Chesky's new playbook for Airbnb",
-              url: 'https://open.spotify.com/episode/7pa9sM2MSwmI2pQNDYYei9?si=0b87d235a5c74fb3',
+              name: 'Marty Cagan: the nature of product',
+              url: 'https://open.spotify.com/episode/32RVTlEHivcD0lXafAv51I?si=025b1046524548a0',
             },
           ]}
         />
@@ -408,6 +455,7 @@ function Resources() {
           type="podcast"
           name="One-off episodes"
           highlights={[
+            // To listen
             {
               type: 'episode',
               name: 'John Carmack on the Lex Fridman podcast',
@@ -417,11 +465,13 @@ function Resources() {
         />
         <Subscription
           type="blog"
+          // Clear and smart explanations, like shadows or server components
           name="Josh Comeau"
           url="https://www.joshwcomeau.com/"
         />
         <Subscription
           type="blog"
+          // Fun use cases with good UX titbits
           name="Growth Design"
           url="https://growth.design/"
         />

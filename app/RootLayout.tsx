@@ -5,6 +5,7 @@ import { Space_Mono } from 'next/font/google';
 import { type ReactNode } from 'react';
 import { AsciiArtLog } from './AsciiArtLog';
 import { cn } from '@/cn';
+import { remoteImages } from '@/components/RemoteMedia/RemoteImage';
 
 const spaceMono = Space_Mono({
   subsets: ['latin'],
@@ -15,6 +16,7 @@ const spaceMono = Space_Mono({
   display: 'block',
 });
 
+const openGraphImage = remoteImages['opengraph-image'];
 export const metadata: Metadata = {
   title: 'Pierre Amelot',
   description: "Pierre Amelot's Portfolio",
@@ -25,6 +27,13 @@ export const metadata: Metadata = {
     url: 'https://www.pierreamelot.com',
     locale: 'en_US',
     type: 'website',
+    images: [
+      {
+        url: openGraphImage.src,
+        width: openGraphImage.width,
+        height: openGraphImage.height,
+      },
+    ],
   },
 };
 

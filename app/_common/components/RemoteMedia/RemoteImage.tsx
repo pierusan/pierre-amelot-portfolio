@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { type ComponentProps } from 'react';
 import remoteMedia from './remoteMedia.json';
 
-const remoteImages = remoteMedia.images;
+export const remoteImages = remoteMedia.images;
 
 type NextImageProps = ComponentProps<typeof Image>;
 type AnyRemoteImageName = keyof typeof remoteImages;

@@ -426,6 +426,12 @@
       "height": 2160,
       "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAFCAYAAAB4ka1VAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAsElEQVR4nAGlAFr/AAISCf87SEb/LTw//09bWf+7vb3/qqKj/6elpv9fZFz/ACsnFP+ooZ//srC5/3eEfP/2//H/6Mi9/9rIvf93gHj/ACcmGf99d3X/fHp3/zlFQP9+iYX/Yn1w/0pfV/8zPDv/AB8fGv+BeXr/hYOE/xkgHf9cXVr/Tk9O/zUxOf9BSkr/AAAIA/8ZJSb/IS0t/xYjHv82Ozr/KTIw/x8mKP8qODj/OWZTvSEI55cAAAAASUVORK5CYII="
     },
+    "opengraph-image": {
+      "src": "https://storage.googleapis.com/pierre-portfolio-assets/pierre-portfolio-v2%2Fopengraph-image.png",
+      "width": 1200,
+      "height": 630,
+      "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAECAYAAACzzX7wAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAf0lEQVR4nDXD0QrBUBzA4X+n2HHKtCubI7awU6Mt5EZ2hSu3lkd0oRUPpHiQ+bmQrz7pzTP+g2JBx6Vkhz3TcodxKeK7GeGqwG7WhMscncQ83y+u9Q0ZRoiyEa1kjJ7ESOBzrCo+TcP9UaMGfUSMRoz36ym6I8vpciYvt4hp8wUc/DOXcA9cwgAAAABJRU5ErkJggg=="
+    },
     "oust_da_10_calibrated_reflectivity": {
       "src": "https://storage.googleapis.com/pierre-portfolio-assets/pierre-portfolio-v2%2Foust_da_10_calibrated_reflectivity.png",
       "width": 4905,

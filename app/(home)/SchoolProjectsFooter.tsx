@@ -5,11 +5,11 @@ export function SchoolProjectsFooter({ className }: { className?: string }) {
   return (
     <footer
       className={cn(
-        'absolute bottom-0 right-0 flex items-end gap-xs p-md text-main-subtle',
+        'absolute bottom-0 right-0 p-md text-right text-main-subtle',
         className
       )}
     >
-      <p className={cn('inline')}>
+      <p className={cn('inline text-right')}>
         Interested in my school projects?{' '}
         <a
           target="_blank"
@@ -19,8 +19,12 @@ export function SchoolProjectsFooter({ className }: { className?: string }) {
         >
           v1.pierreamelot.com
         </a>
+        <Icon
+          className={cn('ml-3 inline shrink-0')}
+          name="school"
+          size="1.25em"
+        />
       </p>
-      <Icon className={cn('inline')} name="school" size="1.25em" />
     </footer>
   );
 }

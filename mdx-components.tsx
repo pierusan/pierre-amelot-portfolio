@@ -56,6 +56,17 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {children}
       </em>
     ),
+    ul: ({ children, className, ...rest }) => (
+      <ul
+        className={cn(
+          className,
+          'ml-[1rem] list-outside [list-style-type:circle] [&>li:not(:last-child)]:mb-4'
+        )}
+        {...rest}
+      >
+        {children}
+      </ul>
+    ),
     ...components,
   };
 }

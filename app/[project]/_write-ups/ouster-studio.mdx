@@ -1,4 +1,4 @@
-import { ProjectParagraphWithImage } from '../ProjectParagraphWithImage';
+import { ProjectParagraphWithImages } from '../ProjectParagraphWithImages';
 import { ProjectImage } from '../ProjectImage';
 import { ProjectVideo } from '../ProjectVideo';
 import { ProjectWrapperBelowTitles } from '../ProjectPage';
@@ -212,7 +212,7 @@ restrictions I had to make do with internal users and stakeholders this time.
 Check out my [Fleetguide 360°](/fleetguide-360-view) project if you're curious
 about my process interacting with users.
 
-## Design System
+## Design system
 
 To plan for a UI library with reusable components, I created a small design
 system. Building on industry best practices (from
@@ -274,12 +274,12 @@ for a lidar visualizer.
   caption="Novel interactions: visualizing Ouster lidar data"
 />
 
-## React Component Library
+## React component library
 
 It was finally time to code! _I built from scratch the component library_ that
 would power Ouster Studio, Data App, and other Ouster solutions.
 
-<ProjectParagraphWithImage imageName="logo_vite" imageWidth="3rem">
+<ProjectParagraphWithImages imageNames={["logo_vite"]} imageWidth="2.5rem">
   For dev and build tooling, I chose [Vite](https://vitejs.dev/). I love its
   smart performant decisions (like serving file over native ESM in development
   or leaving type checking to the IDE), opinionated support of Typescript and
@@ -289,9 +289,9 @@ would power Ouster Studio, Data App, and other Ouster solutions.
 {/* I wrote a simple plugin to import bundled CSS into the library entrypoint (as a */}
 {/* convenience for app builders) and it felt like a breeze. */}
 
-</ProjectParagraphWithImage>
+</ProjectParagraphWithImages>
 
-<ProjectParagraphWithImage imageName="logo_chakra_ui" imageWidth="3rem">
+<ProjectParagraphWithImages imageNames={['logo_chakra_ui']} imageWidth="2.5rem">
   To build accessible UI elements without reinventing the wheel, I decided to
   use [Chakra UI](https://chakra-ui.com/). I chose it for its first-class
   support of semantic tokens and for its style props (CSS co-located with the
@@ -299,17 +299,17 @@ would power Ouster Studio, Data App, and other Ouster solutions.
   would probably steer clear of runtime style injection and go with
   Tailwind/Radix (like this portfolio) or PandaCSS/Zag, but the team had been
   using styled-components so this was somewhat familiar to us.
-</ProjectParagraphWithImage>
+</ProjectParagraphWithImages>
 
-<ProjectParagraphWithImage
-  imageName="logo_storybook"
-  imageWidth="2.5rem"
+<ProjectParagraphWithImages
+  imageNames={['logo_storybook']}
+  imageWidth="2rem"
   imageClassName="mx-[0.25rem]"
 >
   I used [Storybook](https://storybook.js.org/) to document the components and
   showcase their behavior. I found it to be a nice way to broadcast the library
   to teammates, other engineering teams, and product managers.
-</ProjectParagraphWithImage>
+</ProjectParagraphWithImages>
 
 <ProjectImage
   name="oust_studio_23_storybook_design_system"
@@ -343,9 +343,9 @@ UI semantic token support.
   caption="Custom addon I created to toggle between light and dark theme with Chakra UI"
 />
 
-<ProjectParagraphWithImage
-  imageName="logo_gitlab"
-  imageWidth="3rem"
+<ProjectParagraphWithImages
+  imageNames={['logo_gitlab']}
+  imageWidth="2.5rem"
   imageClassName="mr-[0.25rem]"
 >
   I built the library CI/CD pipeline with Gitlab CI. The pipeline formats,
@@ -354,7 +354,7 @@ UI semantic token support.
   Storybook to an internal URL. If the package version is bumped, it publishes a
   prerelease to Ouster internal package registry for open PRs. On merge to
   master, it publishes the release version.
-</ProjectParagraphWithImage>
+</ProjectParagraphWithImages>
 
 ## Ouster Studio v2.0.0 release
 

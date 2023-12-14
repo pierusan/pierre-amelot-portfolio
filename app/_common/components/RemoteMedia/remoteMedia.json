@@ -300,6 +300,18 @@
       "height": 156,
       "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAACXBIWXMAACxLAAAsSwGlPZapAAAA30lEQVR4nFWPPUtCcRSHf0u0ZGAXVIhc2iMEl6ZyFLfCKWy41MVrcrmLYwh+AI1AfAEbw8FcIpeWLn4CQ+iFPoA4NrQET/z/0tBwOA/PAweOlPBR0sfunRBtByv+c3LKKO4hFckFEw68sWXrTNNujaPqIxv5Dq3JF+2nb8uHlQdM097pHVl3hFKXREuIFtjz+6UhWfceKdOgWJ+SPr6lfD2jNvi0fHIVYZq0ViLsvjP/gecFTJfwClRv5mj9DGnzHKfQJ+i84TVneM0Xwu4HTqGHabKvbF2gmPt/jEv4/ALBJ4acjR9ORQAAAABJRU5ErkJggg=="
     },
+    "logo_docker": {
+      "src": "https://storage.googleapis.com/pierre-portfolio-assets/pierre-portfolio-v2%2Flogo_docker.png",
+      "width": 360,
+      "height": 360,
+      "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAsklEQVR4nE2PMQrCQBBFJ57ASrCwtdbMRhGx9hAWXkMs7FW8gFgElk0kIqKNnsZLWGgTnuzCigMf5s/8Yf4XEZEpJB6+99Xb0vAIpNskiSTNMR5RFA8ks3TUslbLXY/MBpaWlqRhaUraWrBXx0Md19RyMGd25sSznzMSc2KR3UAdL3W8taA2FahlLiKJpCVDrfh4kblQm3MQb6L58EYrxupYacFSLZNo0gcIKX5u/2LG+ReCNWW363F/lgAAAABJRU5ErkJggg=="
+    },
+    "logo_flask": {
+      "src": "https://storage.googleapis.com/pierre-portfolio-assets/pierre-portfolio-v2%2Flogo_flask.png",
+      "width": 360,
+      "height": 360,
+      "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAACXBIWXMAAAsTAAALEwEAmpwYAAAArElEQVR4nFWPMQ6DMAxFc0OSM+QAnAAKUssROEMGLoDYGTKzR8oCKxKlUgj+lWkYasnyl/+zbAshhACgADTnedYAOBsAkj025bIsmOeZ8Auut5YM1G3boiiKt/c+AAhEtCeguoCyLNH3fdi2DUSEGOORgAcD1TAMUEqFdV1TH38AH4U8z3et9WGtPaZp+iT4WiFZxRhpHEfquo6MMeSc43Z2f5IBePJEytdtfgFwwtBgeUFBOQAAAABJRU5ErkJggg=="
+    },
     "logo_gitlab": {
       "src": "https://storage.googleapis.com/pierre-portfolio-assets/pierre-portfolio-v2%2Flogo_gitlab.png",
       "width": 2048,
@@ -324,11 +336,29 @@
       "height": 156,
       "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAACXBIWXMAACxLAAAsSwGlPZapAAAA00lEQVR4nGP4/uPH//X7Dv0HgSNnLvw/feU6mH3j3oP/v3//+c8A4pR2T/mf1tD5f9XOvf837jv0P7m27X/tlNlghQx///6FMMzc/tdPmfM/prLpv7J3BFjsz9+/EBNAii7dvPOfgUH8P4Os7v////+BxUAYrODdhw//dx09+Z+BV+E/g7TO/zfv3oNNgCv4+/fffwZd2/8LNm77Xz159n92G29UBUVdk//ntU8AC4JAeEn9//Y5iyFuA3lz99FT/3///g12FAh8/fb9//bDx8EmAAAEU9GgA53ckwAAAABJRU5ErkJggg=="
     },
+    "logo_postgres": {
+      "src": "https://storage.googleapis.com/pierre-portfolio-assets/pierre-portfolio-v2%2Flogo_postgres.png",
+      "width": 740,
+      "height": 740,
+      "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAACXBIWXMAAAsTAAALEwEAmpwYAAABEElEQVR4nGNgYGBgWLF2u8XctXtdZy9eabvj9I3QxfsupkyasUoHJMcwdcU2z6wFF/7XbHrwr2jV9T+pC6786z3y+X/Z8gvvZsyYr8Mwe9/V/LBZl/53H3j3e9LxD/+CJp/4M/n4x7/dB179reqZZsMwe9Uuj+S5F/8Xrb33u33vmz8pCy796T3+9f/sQ4/OWbJxsTKcXNYsUL766pP2/W//L7v07U/w5FN/ppz++f/UtSfbBBgZBcDuaFm4O2HS4i2bt524ezZ0yun/1auvvli4cV9FQkKCMEie8e/fv8wgxrajly0rtr//37j24lYQP9HsPyPYhMU/voMVTJ06lWvChlMNczadtgDxd+/ezQQAXPOOArPF+t0AAAAASUVORK5CYII="
+    },
+    "logo_python": {
+      "src": "https://storage.googleapis.com/pierre-portfolio-assets/pierre-portfolio-v2%2Flogo_python.png",
+      "width": 360,
+      "height": 360,
+      "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA/0lEQVR4nGMQavrPxMDAwGAz4aSuYeeRVo26XS165dskQGJNTU1MDByNjWAFFr0ny/Tb9t9V7znz36x2VRZIjCNsDTODZecZYeOeE0eUG/a/5y7e9oYzcdP/yauaT/3/7roEpIjBcfoNO7Wei/89utc+aF/ef7Fhfsf51zeDn/3/ZPzm11M1SQbvKTuVuYv33jx9uuz8/19uX/6/s3r4/5Hi3/83BU78P+LCwvD/fzQzD/Mnwa9vw1f+/233//8tyQv/b4oW/r8vywe2Yt26CGYQ/f+hhfP/28In/t8QmPn/prQcWOy/GNgDDHL//zMyMDCAMFjD//8tTP//i4H5AJqGc/hbTicXAAAAAElFTkSuQmCC"
+    },
     "logo_storybook": {
       "src": "https://storage.googleapis.com/pierre-portfolio-assets/pierre-portfolio-v2%2Flogo_storybook.png",
       "width": 412,
       "height": 512,
       "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAICAYAAADaxo44AAAACXBIWXMAAAsTAAALEwEAmpwYAAAA0UlEQVR4nB3MMUsCcQCG8QcKAxN1yK3FJkHaWvoCtfQBvPNOD6RFXERwCxxsawpxDHRoKqxRaHBwcxLEhoIGG0SE5GiJu/u/ofvze/BIPzrE3iyYFOCjf1pZ9fKVEI+joEpW43pX886rbjgzJVLCAn/otiX/L1yPptG8O4hsEDZs7riUfgMzaT2oQc64HIoi+6sW53q5ahotfc3un4zN3m61GLq3WxEGn0uzGIxNkZjwyHxdc6zni0a0DWqcGIe4KJPquyRmFrxb8O1w8FMmGfwDfblhjLrgY4kAAAAASUVORK5CYII="
+    },
+    "logo_terraform": {
+      "src": "https://storage.googleapis.com/pierre-portfolio-assets/pierre-portfolio-v2%2Flogo_terraform.png",
+      "width": 1803,
+      "height": 2048,
+      "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAICAYAAAA1BOUGAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA1UlEQVR4nD2OPWoCYRiEX6MEPIF3yDWCRRACiiFeIEUQoovurquugngBwVQWghALUb+4ZkXBKmAjpPQMQQsFY4rYPPIJZqr5YYYRZTMaFbkREaFLoPW6D5bvCGgtExeUyffQ4WleJaI9HRqJXUwGOZZeia1f5EvZbN4yPKbvN10jcTyKcgl7DqmhhZpVoJdjYT7wY8T/fmXaIain3gu8KItVK43/HFvP8snDrbRrhHTol2mOHejlsS7n/psDE/ezDhOHhtb9DNfnxxcom6yyKGn+EfWuTiFkcVW0g6mfAAAAAElFTkSuQmCC"
     },
     "logo_vite": {
       "src": "https://storage.googleapis.com/pierre-portfolio-assets/pierre-portfolio-v2%2Flogo_vite.png",
@@ -395,6 +425,84 @@
       "width": 3840,
       "height": 2160,
       "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAFCAYAAAB4ka1VAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAsElEQVR4nAGlAFr/AAISCf87SEb/LTw//09bWf+7vb3/qqKj/6elpv9fZFz/ACsnFP+ooZ//srC5/3eEfP/2//H/6Mi9/9rIvf93gHj/ACcmGf99d3X/fHp3/zlFQP9+iYX/Yn1w/0pfV/8zPDv/AB8fGv+BeXr/hYOE/xkgHf9cXVr/Tk9O/zUxOf9BSkr/AAAIA/8ZJSb/IS0t/xYjHv82Ozr/KTIw/x8mKP8qODj/OWZTvSEI55cAAAAASUVORK5CYII="
+    },
+    "oust_da_10_calibrated_reflectivity": {
+      "src": "https://storage.googleapis.com/pierre-portfolio-assets/pierre-portfolio-v2%2Foust_da_10_calibrated_reflectivity.png",
+      "width": 4905,
+      "height": 2724,
+      "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAECAYAAACzzX7wAAAACXBIWXMAACE4AAAhOAFFljFgAAAAj0lEQVR4nAGEAHv/AF5ldf9LUWP/GB4m/w8VGP8AAAL/PD9O/01PY/9jaHj/AISLo/+BhqP/Sk1f/x0eJ/8AAAD/LS08/7W52/+Rn7D/AA8THP8RFiL/mJm2/8LG5v9KTmX/Uk9o/0lNYv+gqsD/AGFmc/+iqsD/5u7//9jd///Q0/X/y8/t/3Z4jf9qbX//r1xJ0d2uDgcAAAAASUVORK5CYII="
+    },
+    "oust_da_11_noise_suppression": {
+      "src": "https://storage.googleapis.com/pierre-portfolio-assets/pierre-portfolio-v2%2Foust_da_11_noise_suppression.png",
+      "width": 3270,
+      "height": 3640,
+      "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAICAYAAAA1BOUGAAAACXBIWXMAABYlAAAWJQFJUiTwAAAA5klEQVR4nB3NsUrDUABA0VdCJrunBgI1gw1GQawgLQ+fuIkRDNWYTUwIBu0QkKpLFumgIFbQDk5FQf2OqptT+iXFNcMV3c52xHj8QVmWDAb3TKc/FEXBpJjw+fWNcN1FfN8nyzLyPCeOYzzPIwj2EKZpYlkWYRig1DrN5gqN+Qauu4BI0lN2OyEtuYm7tMzqmmRre4fDKEWMnl94fXtHyg0eHoecX1xy1usxfBohbNvGcRyUUkgp/z1Xr9NutxC12iyViuDvrlZn0DQNXdcxDANxc3tHlHSJkhM6+wccJcckaZer/jW/feJy1oFwIgkAAAAASUVORK5CYII="
+    },
+    "oust_da_12_returns": {
+      "src": "https://storage.googleapis.com/pierre-portfolio-assets/pierre-portfolio-v2%2Foust_da_12_returns.png",
+      "width": 3270,
+      "height": 8440,
+      "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAICAYAAAA870V8AAAACXBIWXMAABYlAAAWJQFJUiTwAAAAc0lEQVR4nAFoAJf/AGxthv+JlLz/dH6U/wBfYXL/UVZs/2Jnef8AJCMn/wYDCP8aGRv/AFheZv9hcH3/TVZe/wB3gJH/iZuy/32MnP8AY2N9/3F1mf9kan7/ALa81/+5wOr/uL/e/wD1/v//vsLb/+Xq///muTyTdoZJQgAAAABJRU5ErkJggg=="
+    },
+    "oust_da_13_2D_image_aspect_ratio": {
+      "src": "https://storage.googleapis.com/pierre-portfolio-assets/pierre-portfolio-v2%2Foust_da_13_2D_image_aspect_ratio.png",
+      "width": 3270,
+      "height": 3268,
+      "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAACXBIWXMAABYlAAAWJQFJUiTwAAAA/0lEQVR4nAXBPUsCARzA4X8Q5RTmoHF4SXG6RQdpNTSnHkTYcZdJRoLGqSl4Q1qTpRFCSy+0Cg0eOJdyWx9F+hpCv55HzotFrhsNMpkMiUQCXdcpFArYdp7B8zuSNQw8z2MymTAcfvL17TOf/+FPp1SdCmKfnlFxqrTvulyWHErlJk+DN1zXpXN7jzz0esxmv4xGY0wzT63u8vL6Qb//iOeNEUVRWFha4cCosBnfR0/lSO5ZiAiapiE37Q5Z44hWu4tp2dTrTU7MCxynxtT/QXaSu4gsEg4rBIOrRKNRAoFlQqEI5fIVcphOsx7T2NpOsRGLoaoqmhYnsqZwnLP4BxtWhC4olAaRAAAAAElFTkSuQmCC"
+    },
+    "oust_da_14_shortcuts": {
+      "src": "https://storage.googleapis.com/pierre-portfolio-assets/pierre-portfolio-v2%2Foust_da_14_shortcuts.png",
+      "width": 3270,
+      "height": 2948,
+      "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAHCAYAAAA1WQxeAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAz0lEQVR4nD2NsUrDUABFH4QsGYw8JO+F0A5pfOAQl9CWYlJslpRIPqDgX+QLdJCIdGgJuHT2WwRBcO1HOHbpcIpP6HC5cDmcK1arR8IwJE1TquqBxaLEmBuUUrRti8iyCVJe4V/6aB0SBIGNEIK6rhF5XthBSokxhjiO0Vrjuu4/UJZLlNIWGgyGth3HsYamaf4uMkZJTBRF+P4FnuedAWvouh1FUTG7u2c6mzOe5CTJNSNzy9NzhzgcYfv+wabf8fWz5/N7z+u65+Wt5/cAJ/bDYR92HEQwAAAAAElFTkSuQmCC"
+    },
+    "oust_da_15_public_link": {
+      "src": "https://storage.googleapis.com/pierre-portfolio-assets/pierre-portfolio-v2%2Foust_da_15_public_link.png",
+      "width": 3270,
+      "height": 4522,
+      "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAICAYAAADaxo44AAAACXBIWXMAABYlAAAWJQFJUiTwAAAA00lEQVR4nAHIADf/ACYnJ/8HBwf/FhYW/ysrLP8kJCX/nJ2e/wBwcnX/jIyM/3x8fP9ycm//Ozo0/6uur/8AZWls/2BfX/9WVlb/kpet/4eQs//DyNX/ADU3O/8AAAD/BAYI/0dMZf9cZYb/uLzI/wAyMzP/Hx0Y/yMjHv8uKyP/EhAD/5WVlv8Ao6e5//P4///S2P//3ub//46Tpf/BxMT/AGlrcf+JipX/bnB7/2Roc/82Nzr/qaqr/wClpqj/mZmV/5CQjP+MjIv/Z2dn//H1+P8LdW/CiQ0USgAAAABJRU5ErkJggg=="
+    },
+    "oust_da_16_airtable inspiration": {
+      "src": "https://storage.googleapis.com/pierre-portfolio-assets/pierre-portfolio-v2%2Foust_da_16_airtable%20inspiration.png",
+      "width": 3270,
+      "height": 2468,
+      "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAGCAYAAAD+Bd/7AAAACXBIWXMAABYlAAAWJQFJUiTwAAAAnElEQVR4nD2MMQ6CQBREfwx38QYmXsHeaKm3sPVWtsbYmFhTYhCEFVwQXEHc5JndwkmmmXkzMh1vEJkjskBGK+8gWCOyZDbZInF85XQ4s98dSZOMun5S1w2Vbql0hVj7Ramc6BJRPkq01ryMoWnfGGOQYRh8mCSpX1hrcXL5H8jynDAMydWdvv/QdZ0v3ZO4RVEUpLebB5VSfzvwB8w1ow0c93YmAAAAAElFTkSuQmCC"
+    },
+    "oust_da_1_fleetguide_calibration": {
+      "src": "https://storage.googleapis.com/pierre-portfolio-assets/pierre-portfolio-v2%2Foust_da_1_fleetguide_calibration.png",
+      "width": 1635,
+      "height": 398,
+      "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAACCAYAAABllJ3tAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAR0lEQVR4nGN48+btfx8fl//MDAz/CwsL/4NAdHT4f052hv9eXh7/Gf7++/c/Oizov5Ag8/+axgawgszMjP+iQiz/Q8NC/gMA1dkk3qpPJ/EAAAAASUVORK5CYII="
+    },
+    "oust_da_3_spreadsheet": {
+      "src": "https://storage.googleapis.com/pierre-portfolio-assets/pierre-portfolio-v2%2Foust_da_3_spreadsheet.png",
+      "width": 3456,
+      "height": 1924,
+      "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAECAYAAACzzX7wAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAXklEQVR4nDWMIQ4AIQwE+4E7cS+oQWBq+L+p4gEoFAowKBRqL21Ck0kn3WwppYQQApgZIuIeY3R/3g/Ue4fRWsNay33vjXMObCjnjEspBarqWGGMCaq1wrDQjnffLz/8IWIw49LbtQAAAABJRU5ErkJggg=="
+    },
+    "oust_da_4_upload_ux": {
+      "src": "https://storage.googleapis.com/pierre-portfolio-assets/pierre-portfolio-v2%2Foust_da_4_upload_ux.png",
+      "width": 3270,
+      "height": 7284,
+      "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAICAYAAADeM14FAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAgklEQVR4nCXNPQ6CQBQA4cdV5GjG3gav5E8iNiaGRCsBMauErUDRRyFU2+0BHKMW03zNSF3X3B9P5quY5SJGhmGgaW6sN1vSrEBUlfFkyi45AG/EWssxzUmSPVVl/6Bty/lUYMwF8d5jspzyaui0Rb6XV9+j2v0S5xyBBIzCkCia8QFeHWfGuF7UkwAAAABJRU5ErkJggg=="
+    },
+    "oust_da_7_download": {
+      "src": "https://storage.googleapis.com/pierre-portfolio-assets/pierre-portfolio-v2%2Foust_da_7_download.png",
+      "width": 1635,
+      "height": 333,
+      "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAACCAYAAABllJ3tAAAACXBIWXMAAAsTAAALEwEAmpwYAAAATUlEQVR4nAFCAL3/AAMGCP8mJiL/c3iR/1JXdv8NDQj/RUNB/3Z5lP+YnLr/ALu9vv/4+fn/x8fJ/6Kio/+qqq7/6uvt/6mqq/+9vb7/iocpv2HCzWoAAAAASUVORK5CYII="
+    },
+    "oust_da_8_range_rings": {
+      "src": "https://storage.googleapis.com/pierre-portfolio-assets/pierre-portfolio-v2%2Foust_da_8_range_rings.png",
+      "width": 3270,
+      "height": 2514,
+      "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAGCAYAAAD+Bd/7AAAACXBIWXMAABYlAAAWJQFJUiTwAAAAzElEQVR4nB3KQUvCcBjA4Rc9BDoRPTTcqOsuDhGCpja8TBq0kr+6HcRDVz/ArrsUrOgSRCB08OBF2FGhLyAkQSR9n/wJPudHkiTBsixsu45SisViyTC8JxpP2Wy+kXarjWmaXLQuMQyD4SCiVjtH1894fHhBHMfhVNepN+xjiKIJmlYmnzvh7XWOZFmG7/sEQUCaPvO1/UGpEZ7XY/8PEoYhhaJGpVKl0Wzidl1KWgkRIY5jZLX+xPOuue0r0vSJ99kHN8EdnSuX390fB5njX0P4X9iDAAAAAElFTkSuQmCC"
+    },
+    "oust_da_9_camera_type": {
+      "src": "https://storage.googleapis.com/pierre-portfolio-assets/pierre-portfolio-v2%2Foust_da_9_camera_type.png",
+      "width": 3270,
+      "height": 3676,
+      "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAICAYAAAA1BOUGAAAACXBIWXMAABYlAAAWJQFJUiTwAAAA80lEQVR4nAHoABf/AKmtsP9scnv/Tk9T/2xvd/+Fhpb/UVFZ/7Kzuv8ANTY3/1Jgav9ITGL/dXKb/4mLtf8XFx7/MzMy/wAsLCz/PUpW/4GJqv9oZ47/en+j/w8PFf8zMzH/AMDCx/+QmKL/qbG//5qfrv+0u8z/bG93/8jL0P8AoKOk/1lcYv9XWV3/cHF4/3Fxe/9ISkz/vb3F/wAvLzD/ExYZ/0FFW/+Dga3/ZmWI/wEBBf8zMzP/ADEwMP8LDhD/TE9s/3Jzm/85PVT/AAAA/zY2Nv8A9Pb5/7S3vv/FytD/0tbk/+Lo8/+cn6P/+fj+/52qg0RC7SqfAAAAAElFTkSuQmCC"
     },
     "oust_da_home_1_near_ir_viz_only": {
       "src": "https://storage.googleapis.com/pierre-portfolio-assets/pierre-portfolio-v2%2Foust_da_home_1_near_ir_viz_only.png",
@@ -647,6 +755,26 @@
       "src": "https://storage.googleapis.com/pierre-portfolio-assets/pierre-portfolio-v2%2Fnrec_ar_2_hololens_pitch_video.mp4",
       "width": 1280,
       "height": 720
+    },
+    "oust_da_17_vr_low_res": {
+      "src": "https://storage.googleapis.com/pierre-portfolio-assets/pierre-portfolio-v2%2Foust_da_17_vr_low_res.mp4",
+      "width": 426,
+      "height": 426
+    },
+    "oust_da_2_viz_demo": {
+      "src": "https://storage.googleapis.com/pierre-portfolio-assets/pierre-portfolio-v2%2Foust_da_2_viz_demo.mp4",
+      "width": 3456,
+      "height": 2064
+    },
+    "oust_da_3_spreadsheet_interactions": {
+      "src": "https://storage.googleapis.com/pierre-portfolio-assets/pierre-portfolio-v2%2Foust_da_3_spreadsheet_interactions.mp4",
+      "width": 1920,
+      "height": 1080
+    },
+    "oust_da_5_upload_flow": {
+      "src": "https://storage.googleapis.com/pierre-portfolio-assets/pierre-portfolio-v2%2Foust_da_5_upload_flow.mp4",
+      "width": 1920,
+      "height": 1080
     },
     "oust_studio_14_low_fidelity_prototype": {
       "src": "https://storage.googleapis.com/pierre-portfolio-assets/pierre-portfolio-v2%2Foust_studio_14_low_fidelity_prototype.mp4",

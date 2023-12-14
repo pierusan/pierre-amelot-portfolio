@@ -60,7 +60,8 @@ export function MobileContactLinks({ className }: { className?: string }) {
         'md:hidden',
         'h-header-mobile',
         'sticky top-0',
-        'border-b-[1px] border-b-action-subtle bg-[theme(gradientColorStops.bg-main-stop)] ',
+        'border-b-[1px] border-b-action-subtle',
+        'bg-[theme(gradientColorStops.bg-main-stop)bb] backdrop-blur-md',
         'flex items-center justify-between px-md',
         'text-details-lg',
         className

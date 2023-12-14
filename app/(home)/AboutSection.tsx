@@ -363,12 +363,12 @@ function Resources() {
             // Sometimes hard to know if a product fail because of the product or the marketing
             {
               type: 'episode',
-              name: 'Stanford Business - Brian Chesky: Designing a 10-star experience',
+              name: 'Brian Chesky: Designing a 10-star experience [Stanford Business]',
               url: 'https://youtu.be/V6h_EDcj12k',
             },
             {
               type: 'episode',
-              name: 'Figma Config - Shishir Mehrotra - Rituals of great product teams',
+              name: 'Shishir Mehrotra: Rituals of great product teams [Figma Config]',
               url: 'https://www.youtube.com/watch?v=veG6_hcrShE',
             },
             // There is a tremendous amount of craftsmanship in turning a great
@@ -378,8 +378,51 @@ function Resources() {
             // product people leave and the company stops innovating
             {
               type: 'episode',
-              name: 'The Lost Interview - Steve Job',
-              url: 'https://youtu.be/rDqQcmVqAm4?si=sKkuEwf3EABun050&t=2088',
+              name: 'Steve Jobs: The lost interview',
+              url: 'https://youtu.be/rDqQcmVqAm4&t=2088',
+            },
+          ]}
+        />
+        <Subscription
+          type="podcast"
+          name="Lenny's podcast"
+          url="https://open.spotify.com/show/2dR1MUZEHCOnz1LVfNac0j"
+          highlights={[
+            //
+            // {
+            //   type: 'episode',
+            //   name: 'Shishir Mehrotra: The rituals of great teams',
+            //   url: 'https://open.spotify.com/episode/2EWVDzqhkxvLvEioAUE5kh',
+            // },
+            // Don't be guided by fear or anger. Really listen to people, be
+            // their agent. Top goal and accountability buddy. Be on time.
+            // Firing almost always makes you more productive
+            {
+              type: 'episode',
+              name: 'Matt Mochary: The great CEO within',
+              url: 'https://open.spotify.com/episode/0WC7fuAKXM22HC6ckj1JI4',
+            },
+            // Opportunities Solutions tree. Start with "OUTCOME" (and not output). Opportunity is unmet need, pain point, or desire
+            // Interviews: be curious, beer with a buddy. Get stories
+            // Garbage in, garbage out if your interview questions aren't good
+            // Schedule interviews with users every week (bottom of email and customer support relations)
+            // 2 types of discovery: qualitative interviewing (or observing if possible), and assumption testing
+            // Test assumptions SUPER QUICKLY instead of dragging them out in time. Be a doer
+            // Don't always need discovery. The core discovery has to the differentiators or the key product xp
+            // The amount of discovery depends on the RISK
+            {
+              type: 'episode',
+              name: 'Teresa Torres: Opportunity solutions & continuous discovery',
+              url: 'https://open.spotify.com/episode/4JBgwsJaaZqYNkXLif0ej7',
+            },
+            // Still so many teams are not running product correctly. Teams
+            // should be given a problem and not a feature
+            // 'Product owner' is BS
+            // PMs should always have access to users, engineers, and stakeholders
+            {
+              type: 'episode',
+              name: 'Marty Cagan: the nature of product',
+              url: 'https://open.spotify.com/episode/32RVTlEHivcD0lXafAv51I',
             },
           ]}
         />
@@ -406,50 +449,8 @@ function Resources() {
         />
         <Subscription
           type="podcast"
-          name="Masters of Scale"
-          url="https://open.spotify.com/show/1bJRgaFZHuzifad4IAApFR"
-          highlights={[
-            {
-              type: 'episode',
-              name: 'Sam Altman: Customer love is all you need',
-              url: 'https://open.spotify.com/episode/5FXJwdLenciEJRDEh39hiy',
-            },
-          ]}
-        />
-        <Subscription
-          type="podcast"
-          name="Lenny's podcast"
-          url="https://open.spotify.com/show/2dR1MUZEHCOnz1LVfNac0j"
-          highlights={[
-            //
-            // {
-            //   type: 'episode',
-            //   name: 'Shishir Mehrotra: The rituals of great teams',
-            //   url: 'https://open.spotify.com/episode/2EWVDzqhkxvLvEioAUE5kh?si=8e2006e2d5424e71',
-            // },
-            // Don't be guided by fear or anger. Really listen to people, be
-            // their agent. Top goal and accountability buddy. Be on time.
-            // Firing almost always makes you more productive
-            {
-              type: 'episode',
-              name: 'Matt Mochary - The great CEO within',
-              url: 'https://open.spotify.com/episode/0WC7fuAKXM22HC6ckj1JI4?si=1735fcdd508b4bb4',
-            },
-            // Still so many teams are not running product correctly. Teams
-            // should be given a problem and not a feature
-            // 'Product owner' is BS
-            // PMs should always have access to users, engineers, and stakeholders
-            {
-              type: 'episode',
-              name: 'Marty Cagan: the nature of product',
-              url: 'https://open.spotify.com/episode/32RVTlEHivcD0lXafAv51I?si=025b1046524548a0',
-            },
-          ]}
-        />
-        <Subscription
-          type="podcast"
           name="How I built this"
-          url="https://open.spotify.com/show/6E709HRH7XaiZrMfgtNCun?si=59275e3fcf834463"
+          url="https://open.spotify.com/show/6E709HRH7XaiZrMfgtNCun"
         />
         <Subscription
           type="podcast"
@@ -458,8 +459,13 @@ function Resources() {
             // To listen
             {
               type: 'episode',
-              name: 'John Carmack on the Lex Fridman podcast',
-              url: 'https://open.spotify.com/episode/3LddnZjkpflldHXnRZ0rrw?si=3f1daa8fb32144cb',
+              name: 'John Carmack [Lex Fridman Podcast]',
+              url: 'https://open.spotify.com/episode/3LddnZjkpflldHXnRZ0rrw',
+            },
+            {
+              type: 'episode',
+              name: 'Sam Altman: Customer love is all you need [Masters of Scale]',
+              url: 'https://open.spotify.com/episode/5FXJwdLenciEJRDEh39hiy',
             },
           ]}
         />

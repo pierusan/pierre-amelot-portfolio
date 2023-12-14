@@ -17,7 +17,15 @@ const spaceMono = Space_Mono({
 
 export const metadata: Metadata = {
   title: 'Pierre Amelot',
-  description: 'Portfolio of Pierre Amelot',
+  description: "Pierre Amelot's Portfolio",
+  openGraph: {
+    title: "Pierre Amelot's Portfolio",
+    description:
+      "Read about Pierre's skills in development and UX, the projects he worked on, his personality, and the lessons he learnt over the years.",
+    url: 'https://www.pierreamelot.com',
+    locale: 'en_US',
+    type: 'website',
+  },
 };
 
 export function RootLayout({ children }: { children: ReactNode }) {

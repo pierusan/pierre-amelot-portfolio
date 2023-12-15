@@ -154,7 +154,9 @@ export function ProjectCard({
                 fill
                 name={project.mainImage}
                 sizes={projectCardMaxWidth}
-                className={cn('object-cover')}
+                className={cn(
+                  'rounded-md bg-[hsla(var(--backdrop-hue),0%,0%,0.7)] object-cover'
+                )}
               />
               {/* Preview of secondary images in the main slot, revealed on hover */}
               {project.secondaryImages.map((secondaryImageName) => (
@@ -163,7 +165,9 @@ export function ProjectCard({
                   key={secondaryImageName}
                   name={secondaryImageName}
                   sizes={projectCardMaxWidth}
-                  className={cn('object-cover')}
+                  className={cn(
+                    'rounded-md bg-[hsla(var(--backdrop-hue),0%,0%,0.7)] object-cover'
+                  )}
                 />
               ))}
             </li>
@@ -182,6 +186,9 @@ export function ProjectCard({
                     name={secondaryImageName}
                     fill
                     sizes={`calc(${projectCardMaxWidth} / 3)`}
+                    className={cn(
+                      'rounded-[0.125rem] bg-[hsla(var(--backdrop-hue),0%,0%,0.7)] object-cover'
+                    )}
                   />
                 </div>
               </li>

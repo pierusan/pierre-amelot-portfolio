@@ -1,3 +1,6 @@
+'use client';
+
+import { type MouseEventHandler, useCallback, useRef } from 'react';
 import Link from 'next/link';
 import { Route } from 'next';
 import resolveConfig from 'tailwindcss/resolveConfig';
@@ -6,10 +9,62 @@ import { Badge } from '@/components/Badge';
 import { RemoteImage } from '@/components/RemoteMedia';
 import { cn } from '@/cn';
 import tailwindConfig from '@configs/tailwind.config';
-import { ProjectKey, projects } from '@/constants';
+import { ProjectKey, projects, svgIds } from '@/constants';
 
 const projectCardMaxWidth =
   resolveConfig(tailwindConfig).theme.width['paragraph-md'];
+
+function ProjectCardBackground({ className }: { className?: string }) {
+  return (
+    <div
+      className={cn(
+        'pointer-events-none absolute inset-0 -z-10',
+        '[&>*]:absolute [&>*]:inset-0 [&>*]:rounded-[7px]',
+        className
+      )}
+      aria-hidden
+    >
+      {/* White linear gradient */}
+      <div
+        style={{
+          background:
+            'linear-gradient(rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0) 30%)',
+        }}
+      />
+
+      {/* Background color, especially for readability on small screens where the rocks will be behind */}
+      <div
+        className={cn(
+          'bg-opacity-[0.9] md:bg-opacity-[0.2]',
+          'bg-[hsl(177,61%,9%)]'
+        )}
+      />
+
+      {/* Noise fading from top to bottom */}
+      <div
+        style={{
+          maskImage: 'linear-gradient(black, transparent)',
+        }}
+      >
+        <div
+          className={cn('absolute inset-0')}
+          style={{ filter: `url(#${svgIds.noiseFilter})`, opacity: 0.15 }}
+        />
+      </div>
+
+      {/* Flashlight Hover Effect */}
+      <div
+        className={cn(
+          'opacity-0 transition-opacity duration-500 group-hover:opacity-100'
+        )}
+        style={{
+          background:
+            'radial-gradient(1000px circle at var(--mouse-x) var(--mouse-y),rgba(255,255,255,0.08),transparent 40%)',
+        }}
+      />
+    </div>
+  );
+}
 
 export function ProjectCard({
   projectKey,
@@ -24,6 +79,23 @@ export function ProjectCard({
 }) {
   const project = projects[projectKey];
 
+  const cardRef = useRef<HTMLElementTagNameMap['article']>(null);
+
+  const handleMouseMove: MouseEventHandler<HTMLAnchorElement> = useCallback(
+    (event) => {
+      const card = cardRef.current;
+      if (!card) return;
+
+      const rect = card.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
+    },
+    []
+  );
+
   return (
     // Wrap in div to better control where the navigation will scroll to thanks
     // to the padding
@@ -34,12 +106,14 @@ export function ProjectCard({
       <article
         id={id}
         className={cn(
-          'rounded-md border transition-colors',
-          'bg-action-subtle',
-          'border-action-subtle',
-          'hover:border-action-subtle-hover hover:bg-action-subtle-hover'
+          'group relative rounded-md',
+          'backdrop-blur-md',
+          'border border-[#0b5b54]' // ' border-[hsl(175,78%,20%)]',
         )}
+        ref={cardRef}
+        onMouseMove={handleMouseMove}
       >
+        <ProjectCardBackground className={cn('')} />
         <Link
           className="flex flex-col gap-md p-[1.5rem] md:p-md"
           rel="bookmark"
@@ -55,6 +129,7 @@ export function ProjectCard({
             <dl className="flex items-center gap-xs " key={tagName}>
               <dt className="text-body-xs uppercase tracking-wider md:text-details-md md:font-details">
                 {tagName}
+                {/* TODO: Switch to UX Research */}
               </dt>
               <dd className={cn('overflow-x-auto')}>
                 <ul className="flex gap-xs md:flex-wrap">
@@ -79,6 +154,9 @@ export function ProjectCard({
                 fill
                 name={project.mainImage}
                 sizes={projectCardMaxWidth}
+                className={cn(
+                  'rounded-md bg-[hsla(var(--backdrop-hue),0%,0%,0.7)] object-cover'
+                )}
               />
               {/* Preview of secondary images in the main slot, revealed on hover */}
               {project.secondaryImages.map((secondaryImageName) => (
@@ -87,6 +165,9 @@ export function ProjectCard({
                   key={secondaryImageName}
                   name={secondaryImageName}
                   sizes={projectCardMaxWidth}
+                  className={cn(
+                    'rounded-md bg-[hsla(var(--backdrop-hue),0%,0%,0.7)] object-cover'
+                  )}
                 />
               ))}
             </li>
@@ -105,6 +186,9 @@ export function ProjectCard({
                     name={secondaryImageName}
                     fill
                     sizes={`calc(${projectCardMaxWidth} / 3)`}
+                    className={cn(
+                      'rounded-[0.125rem] bg-[hsla(var(--backdrop-hue),0%,0%,0.7)] object-cover'
+                    )}
                   />
                 </div>
               </li>

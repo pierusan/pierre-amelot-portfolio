@@ -93,11 +93,10 @@ const remoteImageAltTexts = {
   oust_da_15_public_link: 'Ouster Data App Public Link',
   // Ouster Studio
   oust_studio_home_1_viz_homepage: 'Ouster Studio Viz Home',
-  oust_studio_home_2_low_fi_viz_recording_menu:
+  oust_studio_home_2_sensor_homepage: 'Ouster Studio Sensor Home',
+  oust_studio_home_3_low_fi_viz_recording_menu:
     'Ouster Studio Low Fidelity Viz Recording Menu',
-  oust_studio_home_3_design_system_button: 'Ouster Studio Design System Button',
-  oust_studio_home_4_storybook_interaction_test:
-    'Ouster Studio Storybook Interaction Test',
+  oust_studio_home_4_design_system_button: 'Ouster Studio Design System Button',
   oust_studio_1_high_res_data: 'Ouster Studio High Resolution Data',
   oust_studio_2_redesign_home: 'Ouster Studio v2 - Home Viz Page',
   oust_studio_3_old_ui: 'Ouster Studio v2 - Old UI',

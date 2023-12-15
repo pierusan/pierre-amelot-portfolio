@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { Space_Mono } from 'next/font/google';
 import { type ReactNode } from 'react';
 import { AsciiArtLog } from './AsciiArtLog';
+import { NoiseFilter } from './(home)/NoiseFilter';
 import { cn } from '@/cn';
 import { remoteImages } from '@/components/RemoteMedia/RemoteImage';
 
@@ -29,12 +30,16 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: openGraphImage.src,
+        url: new URL(openGraphImage.src),
         width: openGraphImage.width,
         height: openGraphImage.height,
       },
     ],
   },
+  // This apparently is only used in development, and is needed to remove the
+  // annoying Next.js warning
+  // https://github.com/vercel/next.js/discussions/57251
+  metadataBase: new URL('http://localhost:3000/'),
 };
 
 export function RootLayout({ children }: { children: ReactNode }) {
@@ -49,6 +54,7 @@ export function RootLayout({ children }: { children: ReactNode }) {
       >
         <AsciiArtLog />
         {children}
+        <NoiseFilter />
       </body>
     </html>
   );

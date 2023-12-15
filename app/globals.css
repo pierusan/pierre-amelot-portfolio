@@ -2,6 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  /* For variations of the complex background colors */
+  --backdrop-hue: 177;
+  --backdrop-saturation: 61%;
+  --backdrop-value-xl: 17%;
+  --backdrop-value-md: 10%;
+  --backdrop-value-sm: 8%;
+  --backdrop-value-xs: 5%;
+  --backdrop-value-2xs: 2%;
+
+  /* For Safari which doesn't keep fixed elements on overscroll */
+  background: hsl(
+    var(--backdrop-hue),
+    var(--backdrop-saturation),
+    var(--backdrop-value-sm)
+  );
+}
+
 :focus-visible {
   outline-color: currentColor;
   outline-offset: 0.25rem;

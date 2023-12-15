@@ -262,22 +262,15 @@ move them to `app/_common/components` directory.
 
 # TODO first
 
-- Fix camera angle on desktop
 - Product Analytics
-- Background and cards like Linear and Next-Video. Hover effect like
-  https://www.youtube.com/watch?v=htGfnF1zN4g.
-- More interesting cards animation/design like
-  https://www.depo.studio/cases/aaron-mcguire or
-  https://www.aaronmcguire.design/projects/forma
 - Clean up this readme. Talk about dependabot. Explain CSS modules for
   animations
 - Credits with WithPoly, Spline, and other tools
-- Fix html color on top overscroll on mobile?
+- Make 3D scene interactive on mobile
 - 404 page and error page
 - Code Splitting
 - Add date, title, and company to project
 - Explore adding little custom cursors on mobile somewhere
-- Make 3D scene interactive on mobile
 - ToC on mobile could also contain nav to back home, or to the other projects
 - If GCP fees get crazy, move to CloudFlare registar and set URL redirect there
 

@@ -7,17 +7,20 @@ import { Grid, PerspectiveCamera } from '@react-three/drei';
 // with this change: https://github.com/vercel/next.js/pull/57784. Monitor the
 // thread and bring it back later if a fix appears.
 // import { Perf } from 'r3f-perf';
-import { MathUtils, PCFSoftShadowMap } from 'three';
+import { PCFSoftShadowMap } from 'three';
 import { RocksAnimation } from './RocksAnimation';
 import { RocksLighting } from './RocksLighting';
 import { RocksStackObject } from './RocksStackObject';
 import { TurnTableMouseControlled } from './TurnTableMouseControlled';
-import { CameraAnimation } from './CameraAnimation';
+import {
+  CameraAnimation,
+  initialDesktopCameraTransform,
+} from './CameraAnimation';
 import { cn } from '@/cn';
 import { animationIds } from '@/constants';
 
 // Set to true to debug and edit the scene
-const showSceneControls = false;
+const showSceneControls = true;
 
 export function Rocks3DScene({ className }: { className?: string }) {
   const {
@@ -27,8 +30,12 @@ export function Rocks3DScene({ className }: { className?: string }) {
     show: showDebugCamera,
   } = useControls('Debug Camera', {
     show: false,
-    position: [-1, 1.15, 2],
-    rotation: [MathUtils.degToRad(-21.23), 0, 0],
+    position: initialDesktopCameraTransform.position.toArray(),
+    rotation: initialDesktopCameraTransform.rotation.toArray().slice(0, 3) as [
+      number,
+      number,
+      number,
+    ],
     fov: { value: 60, min: 10, max: 100, step: 1 },
   });
   const { show: showGrid } = useControls('Grid', { show: false });
@@ -42,7 +49,7 @@ export function Rocks3DScene({ className }: { className?: string }) {
       className={cn('fixed top-0 h-screen w-screen', className)}
     >
       <Canvas shadows={{ type: PCFSoftShadowMap }} camera={{ fov: 60 }}>
-        <TurnTableMouseControlled speedX={1} speedY={0.2}>
+        <TurnTableMouseControlled speedX={1.25} speedY={0.05}>
           <RocksStackObject />
           <RocksLighting />
           {showGrid && (

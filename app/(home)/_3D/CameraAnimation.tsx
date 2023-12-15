@@ -13,12 +13,18 @@ type CameraKeyFrame = Transform & { startTs?: number; duration: number };
 
 const nCards = animationIds.homeProjects.length;
 
+// TODO: Use array to reuse in Rocks3DScene debug camera
+
 const baseCameraVector = new Vector3(0, 1.15, 2);
 const baseCameraRotation = new Euler(MathUtils.degToRad(-21.23), 0, 0); // Look down
 
-const initialDesktopCameraTransform: Transform = {
-  position: baseCameraVector.clone().add(new Vector3(-1, 0, 0)), // Rocks on the right of the screen
-  rotation: baseCameraRotation.clone(),
+export const initialDesktopCameraTransform: Transform = {
+  position: baseCameraVector.clone().add(new Vector3(-1.1, 0.1, 0)), // Rocks on the right of the screen
+  rotation: new Euler(
+    baseCameraRotation.x,
+    baseCameraRotation.y,
+    baseCameraRotation.z - MathUtils.degToRad(8) // Now that rocks are on the right, roll the camera a bit to make them appear level
+  ),
 };
 
 const initialMobileCameraTransform: Transform = {

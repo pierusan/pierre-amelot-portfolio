@@ -56,6 +56,10 @@ export const animationClasses = {
   navHighlightedOnScroll: 'anim-nav-highlight-on-scroll',
 };
 
+export const svgIds = {
+  noiseFilter: 'svg-noise-filter',
+};
+
 export type ProjectInfo = {
   title: string;
   subtitle: string;

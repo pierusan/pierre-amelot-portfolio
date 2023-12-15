@@ -93,7 +93,7 @@ function RocksStackDesktopNav() {
         // Only reveal the nav menu and its content when the hover zone is hovered
         '[&:hover>div:first-child]:hidden [&>div:first-child]:pointer-events-auto',
         'pointer-events-none hover:pointer-events-auto',
-        'transition-colors hover:bg-[theme(gradientColorStops.bg-main-stop)]',
+        'transition-colors hover:bg-[hsl(var(--backdrop-hue),var(--backdrop-saturation),var(--backdrop-value-md))]',
         '[&:hover_span]:opacity-100 [&_span]:opacity-0 [&_span]:transition-opacity',
         // When the nav menu is revealed, move the rocks back out of the stack
         // and inside their nav link element

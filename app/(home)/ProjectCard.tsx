@@ -6,7 +6,7 @@ import { Badge } from '@/components/Badge';
 import { RemoteImage } from '@/components/RemoteMedia';
 import { cn } from '@/cn';
 import tailwindConfig from '@configs/tailwind.config';
-import { ProjectKey, projects } from '@/constants';
+import { ProjectKey, projects, svgIds } from '@/constants';
 
 const projectCardMaxWidth =
   resolveConfig(tailwindConfig).theme.width['paragraph-md'];
@@ -35,11 +35,53 @@ export function ProjectCard({
         id={id}
         className={cn(
           'rounded-md border transition-colors',
-          'bg-action-subtle',
-          'border-action-subtle',
-          'hover:border-action-subtle-hover hover:bg-action-subtle-hover'
+          'relative backdrop-blur-md',
+          'border-[#0b5b54]' // ' border-[hsl(175,78%,20%)]',
         )}
       >
+        {/* Complex Background */}
+        <div
+          className={cn(
+            'pointer-events-none absolute inset-0 -z-10',
+            '[&>*]:absolute [&>*]:inset-0 [&>*]:rounded-[7px]'
+          )}
+        >
+          {/* White linear gradient */}
+          <div
+            style={{
+              background:
+                'linear-gradient(rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0) 30%)',
+            }}
+          />
+          {/* Background color, especially for readability on small screens where the rocks will be behind */}
+          <div
+            className={cn(
+              'bg-opacity-[0.9] md:bg-opacity-[0.2]',
+              'bg-[hsl(177,61%,9%)]'
+            )}
+          />
+          {/* Noise fading from top to bottom */}
+          <div
+            style={{
+              // maskImage: 'linear-gradient(black, black)',
+              maskImage: 'linear-gradient(black, transparent)',
+            }}
+          >
+            <div
+              className={cn('absolute inset-0')}
+              style={{ filter: `url(#${svgIds.noiseFilter})`, opacity: 0.15 }}
+            />
+          </div>
+
+          {/* Radial light coming from within */}
+          {/* <div
+            style={{
+              background:
+                'radial-gradient(ellipse 50% 50% at 50% 70%,hsla(177,61%,25%,0.6),hsla(177,61%,25%,0))',
+              opacity: 0.8,
+            }}
+          /> */}
+        </div>
         <Link
           className="flex flex-col gap-md p-[1.5rem] md:p-md"
           rel="bookmark"
@@ -55,6 +97,7 @@ export function ProjectCard({
             <dl className="flex items-center gap-xs " key={tagName}>
               <dt className="text-body-xs uppercase tracking-wider md:text-details-md md:font-details">
                 {tagName}
+                {/* TODO: Switch to UX Research */}
               </dt>
               <dd className={cn('overflow-x-auto')}>
                 <ul className="flex gap-xs md:flex-wrap">

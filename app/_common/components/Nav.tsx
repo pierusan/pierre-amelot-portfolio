@@ -72,7 +72,7 @@ export function MobileNavPopover({
           className={cn(
             'fixed -right-[1px] bottom-[20vh]',
             'rounded-l-sm p-3xs',
-            'border border-action-subtle bg-[theme(gradientColorStops.bg-main-stop)]',
+            'border border-action-subtle bg-[hsl(var(--backdrop-hue),var(--backdrop-saturation),var(--backdrop-value-xs))]',
             'text-main-subtle',
             triggerClassName
           )}
@@ -81,7 +81,7 @@ export function MobileNavPopover({
         </PopoverTrigger>
         <PopoverContent
           className={cn(
-            'border-action-subtle bg-[theme(gradientColorStops.bg-main-stop)]',
+            'border-action-subtle bg-[hsl(var(--backdrop-hue),var(--backdrop-saturation),var(--backdrop-value-sm))]',
             className
           )}
           sideOffset={2}

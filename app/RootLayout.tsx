@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { Space_Mono } from 'next/font/google';
 import { type ReactNode } from 'react';
 import { AsciiArtLog } from './AsciiArtLog';
+import { NoiseFilter } from './(home)/NoiseFilter';
 import { cn } from '@/cn';
 import { remoteImages } from '@/components/RemoteMedia/RemoteImage';
 
@@ -49,6 +50,7 @@ export function RootLayout({ children }: { children: ReactNode }) {
       >
         <AsciiArtLog />
         {children}
+        <NoiseFilter />
       </body>
     </html>
   );

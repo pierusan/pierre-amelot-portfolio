@@ -61,7 +61,7 @@ export function MobileContactLinks({ className }: { className?: string }) {
         'h-header-mobile',
         'sticky top-0',
         'border-b-[1px] border-b-action-subtle',
-        'bg-[theme(gradientColorStops.bg-main-stop)bb] backdrop-blur-md',
+        'bg-[hsla(var(--backdrop-hue),var(--backdrop-saturation),var(--backdrop-value-xs),0.7)] backdrop-blur-md',
         'flex items-center justify-between px-md',
         'text-details-lg',
         className

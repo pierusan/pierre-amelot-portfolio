@@ -112,13 +112,6 @@ export default {
     minWidth: ({ theme }) => ({
       ...theme('width'),
     }),
-    gradientColorStops: {
-      'bg-main-start': '#0C312F',
-      // 'bg-main-stop': '#092523', // Original
-      'bg-main-stop': '#051513',
-      'bg-strong-start': '#0E4E4A',
-      'bg-strong-stop': '#093431',
-    },
     fontSize: {
       'heading-lg': [
         '3.125rem', // 50px

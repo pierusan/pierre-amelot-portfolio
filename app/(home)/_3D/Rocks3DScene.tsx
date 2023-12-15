@@ -20,7 +20,7 @@ import { cn } from '@/cn';
 import { animationIds } from '@/constants';
 
 // Set to true to debug and edit the scene
-const showSceneControls = true;
+const showSceneControls = false;
 
 export function Rocks3DScene({ className }: { className?: string }) {
   const {

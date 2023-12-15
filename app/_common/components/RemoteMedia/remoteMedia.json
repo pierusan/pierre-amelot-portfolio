@@ -686,9 +686,9 @@
     },
     "oust_studio_home_1_viz_homepage": {
       "src": "https://storage.googleapis.com/pierre-portfolio-assets/pierre-portfolio-v2%2Foust_studio_home_1_viz_homepage.png",
-      "width": 2596,
-      "height": 1676,
-      "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAFCAYAAAB4ka1VAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAqklEQVR4nB3DPwsBYQDA4XclVxacDp3/75tLuBguH4BN7IwWNnH5BAYlyiLJpzCKMhgwMdp8AtkMP+WpR+QsG6nyXC5X9vsDj/v9fzgYoWkaIp5QKMvmeDozXyx5vt58vrDarBBCIAq2gx4x0U1J110z2d5wZzuq9RZppRBSFQmGDJKyQqc3pdEeU2v28fkDeLw+hLQckpkSRjSFHo4RiaaJmXnCRpZSucEP+zpQ8BcVKMAAAAAASUVORK5CYII="
+      "width": 3200,
+      "height": 1800,
+      "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAFCAYAAAB4ka1VAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAqElEQVR4nAXBywoBYRiA4W9ho8T8aH6MQamZaZiwsqCcStkqK4eFKyBLh7gAuQ3JQhYuyMLaTim9nkf8ZpO4SjKZzFhvtuz3BxaLFZ7jomwb0W4JpVKcL1du9zvP15vP90ev20ZCISQbVDG1TTimGc0P7I4P5ssTrh+gHQfJ+AGGMolETVr9KY3uGK/SQUQwcnmkUKvjeXVSlkMiaaHTRQxlUQ4GVDtD/pFbRzsSCDdWAAAAAElFTkSuQmCC"
     },
     "oust_studio_home_2_low_fi_viz_recording_menu": {
       "src": "https://storage.googleapis.com/pierre-portfolio-assets/pierre-portfolio-v2%2Foust_studio_home_2_low_fi_viz_recording_menu.png",
@@ -696,11 +696,29 @@
       "height": 1738,
       "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAFCAYAAAB4ka1VAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAhUlEQVR4nDVMOwoCMRCdM3gND7wRdSwSEbKIQ8CIWAhuCtfCTaM5g1qtF3iyoxYP3p/qeo1SCkII8N6jqgystYgxKqdze8G162DMVDGbM4yZgJm/hZQScs66Zl6o6dwSgy8iIJEN+v79K7Deb+MOj+cLt3sBObdC05w0/N8Pen84gkZjfAApjXi8xaLRBwAAAABJRU5ErkJggg=="
     },
+    "oust_studio_home_2_sensor_homepage": {
+      "src": "https://storage.googleapis.com/pierre-portfolio-assets/pierre-portfolio-v2%2Foust_studio_home_2_sensor_homepage.png",
+      "width": 3200,
+      "height": 1800,
+      "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAFCAYAAAB4ka1VAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAqUlEQVR4nAXBzQoBUQCA0VtKFOOvrp9IzWRkcZUMZmGFSJqFQmIxkRmZGmU7z2CvvIhH8CjegOXnHPH5fdms1iilcByHaxgyGo/wPY/X+424RRGqaSKlpGWaHHZbqpUK+VSa/clD+NcQU9fJZbMUi5LFdMLQtqmWymyPR4R7DtDiKeKxBJmkht21mM+mDCwLN7gglnuXWrmGoTeQhRJ63aCtOti9Pvfngz8i8kcWRw2ejQAAAABJRU5ErkJggg=="
+    },
     "oust_studio_home_3_design_system_button": {
       "src": "https://storage.googleapis.com/pierre-portfolio-assets/pierre-portfolio-v2%2Foust_studio_home_3_design_system_button.png",
       "width": 1792,
       "height": 1004,
       "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAECAYAAACzzX7wAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAiklEQVR4nBXMPQrCMACA0UwdRbdKhRRb4w9iDiCCexJX6xJ16GQEPYNQ3bQnEaH3cRfv8InvAE8kSY/D8cpi6djuzxi3phvHZNkIvzshlBpTlneqW8PnC6/mTafdYjKdc6meiFSm5HmO1pqi2GDtivg/9DOsdQgpJTOtMcZQ1w9CCERRhBoM8d7zA+3CPLyUTuAhAAAAAElFTkSuQmCC"
+    },
+    "oust_studio_home_3_low_fi_viz_recording_menu": {
+      "src": "https://storage.googleapis.com/pierre-portfolio-assets/pierre-portfolio-v2%2Foust_studio_home_3_low_fi_viz_recording_menu.png",
+      "width": 3200,
+      "height": 1800,
+      "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAFCAYAAAB4ka1VAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAeklEQVR4nB2NSwrDMAxEtekBSgLBS9fY9P6XqfFHAich+65CaTNFeqDFiMcMzSFA2fYdYwyUUsDM9pu8B7mULNTW7ZgFr5zxOU/MwYOWGE1gEbTW0ZlNVFyKILUUrWfuEBGbU5b4BN39A9f3h5yzNdTacRwrZHuDbg5/Ta58yOXV85YAAAAASUVORK5CYII="
+    },
+    "oust_studio_home_4_design_system_button": {
+      "src": "https://storage.googleapis.com/pierre-portfolio-assets/pierre-portfolio-v2%2Foust_studio_home_4_design_system_button.png",
+      "width": 3200,
+      "height": 1800,
+      "blurDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAFCAYAAAB4ka1VAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAn0lEQVR4nB3MsQqCUABA0bdYUzxweUnqM0WJJBqkrU1rL8W1z6i1EqKhuaLoQ9rCr2mtD7hh64VzhWVZlOWKVquNlBLTNDEMA609quqE0DrgeHhyOdd8vvCq39i9LtFgwnpzQzQHpSxcL2KcpAxHU6TsYNsu6bxAeLpPkiTk+YLH/cp+t6VBgR9QFEuEUuoffN8njmPCMEQIgWM7ZNmMH85kRPyPYRbUAAAAAElFTkSuQmCC"
     },
     "oust_studio_home_4_storybook_interaction_test": {
       "src": "https://storage.googleapis.com/pierre-portfolio-assets/pierre-portfolio-v2%2Foust_studio_home_4_storybook_interaction_test.png",

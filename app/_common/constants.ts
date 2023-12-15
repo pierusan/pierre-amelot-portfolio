@@ -97,9 +97,9 @@ export const projects = {
     },
     mainImage: 'oust_studio_home_1_viz_homepage',
     secondaryImages: [
-      'oust_studio_home_2_low_fi_viz_recording_menu',
-      'oust_studio_home_3_design_system_button',
-      'oust_studio_home_4_storybook_interaction_test',
+      'oust_studio_home_2_sensor_homepage',
+      'oust_studio_home_3_low_fi_viz_recording_menu',
+      'oust_studio_home_4_design_system_button',
     ],
   },
   'fleetguide-360-view': {

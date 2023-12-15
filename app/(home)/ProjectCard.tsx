@@ -152,18 +152,18 @@ export function ProjectCard({
             <li className={cn('relative col-span-3 aspect-video')}>
               <RemoteImage
                 fill
-                objectFit="cover"
                 name={project.mainImage}
                 sizes={projectCardMaxWidth}
+                className={cn('object-cover')}
               />
               {/* Preview of secondary images in the main slot, revealed on hover */}
               {project.secondaryImages.map((secondaryImageName) => (
                 <RemoteImage
                   fill
-                  objectFit="cover"
                   key={secondaryImageName}
                   name={secondaryImageName}
                   sizes={projectCardMaxWidth}
+                  className={cn('object-cover')}
                 />
               ))}
             </li>

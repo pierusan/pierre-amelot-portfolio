@@ -5,6 +5,7 @@ import { useLayoutEffect, useMemo } from 'react';
 import { registerCurtainLiftAnimation } from './curtainLift';
 import { registerToCHighlightAnimation } from './tocHighlight';
 import { registerLessonsLearnedRevealAnimation } from './lessonsLearnedReveal';
+import { registerCardsEntranceAnimation } from './cardsEntrance';
 import { useMobileFirstBreakpoint } from '@/hooks/useMobileFirstBreakpoint';
 import { useAnimationStore } from '@/store';
 
@@ -40,6 +41,8 @@ export function GsapDomAnimations() {
 
   useLayoutEffect(() => {
     const gsapContext = gsap.context(() => {
+      registerCardsEntranceAnimation();
+
       const cleanupLessonsLearned = registerLessonsLearnedRevealAnimation(
         isSmallScreen,
         setLessonsLearnedSubtitleScaleDownTl,

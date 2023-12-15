@@ -263,10 +263,6 @@ move them to `app/_common/components` directory.
 # TODO first
 
 - Product Analytics
-- Hover effect like https://www.youtube.com/watch?v=htGfnF1zN4g.
-- More interesting cards animation/design like
-  https://www.depo.studio/cases/aaron-mcguire or
-  https://www.aaronmcguire.design/projects/forma
 - Clean up this readme. Talk about dependabot. Explain CSS modules for
   animations
 - Credits with WithPoly, Spline, and other tools

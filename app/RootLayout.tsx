@@ -10,7 +10,8 @@ import { cn } from '@/cn';
 import { remoteImages } from '@/components/RemoteMedia/RemoteImage';
 
 const vercelEnvironment = process.env.VERCEL_ENV;
-console.log('VERCEL_ENV:', vercelEnvironment);
+const isProduction = vercelEnvironment === 'production';
+const isPreview = vercelEnvironment === 'preview';
 
 const spaceMono = Space_Mono({
   subsets: ['latin'],
@@ -56,16 +57,18 @@ export function RootLayout({ children }: { children: ReactNode }) {
           'font-mono text-body-md text-main'
         )}
       >
-        <p className={cn('relative z-40')}>VERCEL_ENV: {vercelEnvironment}</p>
         <AsciiArtLog />
         {children}
         <NoiseFilter />
       </body>
-      <Script
-        async
-        src="/stats/script.js"
-        data-website-id="817aa10d-c906-457c-9e34-5625c31661be"
-      />
+      {/* TODO: Remove isPreview when analytics events have been set */}
+      {(isProduction || isPreview) && (
+        <Script
+          async
+          src="/stats/script.js"
+          data-website-id="817aa10d-c906-457c-9e34-5625c31661be"
+        />
+      )}
     </html>
   );
 }

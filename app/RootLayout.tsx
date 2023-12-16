@@ -2,6 +2,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Space_Mono } from 'next/font/google';
+import Script from 'next/script';
 import { type ReactNode } from 'react';
 import { AsciiArtLog } from './AsciiArtLog';
 import { NoiseFilter } from './(home)/NoiseFilter';
@@ -56,6 +57,11 @@ export function RootLayout({ children }: { children: ReactNode }) {
         {children}
         <NoiseFilter />
       </body>
+      <Script
+        async
+        src="/stats/script.js"
+        data-website-id="817aa10d-c906-457c-9e34-5625c31661be"
+      />
     </html>
   );
 }

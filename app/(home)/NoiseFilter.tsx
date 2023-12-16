@@ -15,8 +15,11 @@ export function NoiseFilter() {
         <filter id={svgIds.noiseFilter}>
           <feTurbulence
             type="fractalNoise"
-            baseFrequency="6.29"
-            numOctaves="6"
+            // We keep baseFrequency and numOctaves low because it seems to be
+            // too computationally expensive on mobile and the texture isn't
+            // fully rendered
+            baseFrequency="1.09"
+            numOctaves="1"
             stitchTiles="stitch"
           ></feTurbulence>
         </filter>

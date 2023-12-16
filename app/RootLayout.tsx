@@ -9,6 +9,9 @@ import { NoiseFilter } from './(home)/NoiseFilter';
 import { cn } from '@/cn';
 import { remoteImages } from '@/components/RemoteMedia/RemoteImage';
 
+const vercelEnvironment = process.env.VERCEL_ENV;
+console.log('VERCEL_ENV:', vercelEnvironment);
+
 const spaceMono = Space_Mono({
   subsets: ['latin'],
   variable: '--font-space-mono',
@@ -53,6 +56,7 @@ export function RootLayout({ children }: { children: ReactNode }) {
           'font-mono text-body-md text-main'
         )}
       >
+        <p className={cn('relative z-40')}>VERCEL_ENV: {vercelEnvironment}</p>
         <AsciiArtLog />
         {children}
         <NoiseFilter />

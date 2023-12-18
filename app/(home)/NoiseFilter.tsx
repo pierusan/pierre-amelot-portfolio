@@ -7,7 +7,7 @@ export function NoiseFilter() {
   return (
     <span
       className={cn(
-        'absolute m-[-1px] h-[1px] w-[1px] overflow-hidden whitespace-nowrap border-0 p-0'
+        'pointer-events-none absolute m-[-1px] h-[1px] w-[1px] overflow-hidden whitespace-nowrap border-0 p-0'
       )}
       style={{ clip: 'rect(0px, 0px, 0px, 0px)', overflowWrap: 'normal' }}
     >

@@ -61,7 +61,7 @@ export function RootLayout({ children }: { children: ReactNode }) {
         {children}
         <NoiseFilter />
       </body>
-      {/* TODO: Remove isPreview when analytics events have been set */}
+      {/* Leave analytics on preview URLs for now for testing (knowing that sessions can be filtered by hostname) */}
       {(isProduction || isPreview) && (
         <Script
           async

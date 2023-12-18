@@ -68,11 +68,12 @@ export function CaptionedText({
       setIsCaptionOpen(open);
 
       if (open && !hasEverOpened.current) {
+        umami.track('Read Caption', { caption: children });
         incrementNumberOfCaptionsHovered();
         hasEverOpened.current = true;
       }
     },
-    [incrementNumberOfCaptionsHovered]
+    [incrementNumberOfCaptionsHovered, children]
   );
 
   const canHover = useCanHover();

@@ -124,6 +124,7 @@ function RocksStackDesktopNav() {
                 // Needed so that the link highlighter can use z-index on it
                 'relative'
               )}
+              data-umami-event={`Scroll to ${linkName}`}
             >
               <RockSVG translateY={translationYInStack} ellipse={rockEllipse} />
               <span>{linkName}</span>
@@ -141,6 +142,7 @@ function RocksStackDesktopNav() {
             // Needed so that the link highlighter can use z-index on it
             'relative'
           )}
+          data-umami-event={`Scroll to Lessons Learned`}
         >
           <div className={cn('relative')}>
             {rockNavLinks.map(
@@ -184,7 +186,10 @@ function RocksStackMobileNav() {
         const linkName = projects[navLinkId].linkName;
         return (
           <li key={linkName}>
-            <a href={`#${navIds.rocks[navLinkId]}`}>
+            <a
+              href={`#${navIds.rocks[navLinkId]}`}
+              data-umami-event={`Scroll to ${linkName}`}
+            >
               <RockSVG translateY={0} ellipse={rockEllipse} />
               <span>{linkName}</span>
             </a>
@@ -193,7 +198,10 @@ function RocksStackMobileNav() {
       })}
       {/* Rock stack -> Lessons Learned link */}
       <li className="mt-[1rem]">
-        <a href={`#${navIds.rocks['lessons-learned']}`}>
+        <a
+          href={`#${navIds.rocks['lessons-learned']}`}
+          data-umami-event={`Scroll to Lessons Learned`}
+        >
           <div
             className={cn(
               'relative',
@@ -272,6 +280,7 @@ export function MobileHomeNav({ className }: { className?: string }) {
           <a
             className={cn('block p-2xs pl-[3.125rem]')}
             href={`#${navIds.intro}`}
+            data-umami-event={`Scroll to Intro`}
           >
             Intro
           </a>
@@ -283,6 +292,7 @@ export function MobileHomeNav({ className }: { className?: string }) {
           <a
             className={cn('block p-2xs pl-[3.125rem]')}
             href={`#${navIds.about}`}
+            data-umami-event={`Scroll to About`}
           >
             About
           </a>
@@ -309,6 +319,7 @@ export function DesktopAboutNav({ className }: { className?: string }) {
               'grid p-md transition-colors hover:text-main-subtle active:text-main'
             )}
             href={`#${navIds.rocks['lessons-learned']}`}
+            data-umami-event={`Scroll to Lessons Learned`}
           >
             <Icon
               name="arrowUp"

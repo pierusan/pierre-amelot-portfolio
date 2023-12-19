@@ -18,15 +18,29 @@ export function DesktopVerticalLink({
   className?: string;
   href: ComponentProps<typeof Link>['href'];
 }) {
+  const classNames = cn(
+    'rotate-180 p-md uppercase [writing-mode:vertical-lr]',
+    'transition-colors hover:text-main active:text-main-strong',
+    className
+  );
+
+  // When the link is just a page fragment to scroll to, no need to prefetch the
+  // page and use next/link, which would also cause an umami page view tracking
+  // event which we don't want
+  if (href.toString().startsWith('#')) {
+    return (
+      <a
+        className={classNames}
+        href={href.toString()}
+        data-umami-event={`Scroll to ${linkName}`}
+      >
+        {linkName}
+      </a>
+    );
+  }
+
   return (
-    <Link
-      className={cn(
-        'rotate-180 p-md uppercase [writing-mode:vertical-lr]',
-        'transition-colors hover:text-main active:text-main-strong',
-        className
-      )}
-      href={href}
-    >
+    <Link className={classNames} href={href}>
       {linkName}
     </Link>
   );

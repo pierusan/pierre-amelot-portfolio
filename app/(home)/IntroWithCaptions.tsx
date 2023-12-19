@@ -174,7 +174,7 @@ function RelocationParagraph() {
         }
         cursorSvgUrl={cursorWarming.src}
       >
-        climate change attenuation
+        climate change mitigation
       </CaptionedText>
       .
     </div>

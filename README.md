@@ -262,7 +262,6 @@ move them to `app/_common/components` directory.
 
 # TODO first
 
-- Product Analytics
 - Clean up this readme. Talk about dependabot. Explain CSS modules for
   animations
 - Credits with WithPoly, Spline, and other tools

@@ -16,6 +16,7 @@ export function SchoolProjectsFooter({ className }: { className?: string }) {
           rel="noreferrer"
           className={cn('underline transition-colors hover:text-main')}
           href="https://v1.pierreamelot.com"
+          data-umami-event="Open School Projects"
         >
           v1.pierreamelot.com
         </a>

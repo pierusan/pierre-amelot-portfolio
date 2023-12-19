@@ -271,6 +271,9 @@ function Subscription({
             'flex items-center gap-xs text-body-md',
             '[&:hover>span]:underline'
           )}
+          data-umami-event="Open Resource"
+          data-umami-event-resource={name}
+          data-umami-event-resource-type={iconName}
         >
           <Icon name={iconName} size="1.25em" />
           <span>{name}</span>
@@ -298,6 +301,9 @@ function Subscription({
                   'flex items-center gap-[0.5rem] text-body-sm',
                   '[&:hover>span]:underline'
                 )}
+                data-umami-event="Open Resource"
+                data-umami-event-resource={highlightName}
+                data-umami-event-resource-type={iconName}
               >
                 {highlightType === 'playlist' && (
                   <Icon name="list" size="1.33em" />

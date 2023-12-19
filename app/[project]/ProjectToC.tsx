@@ -44,6 +44,7 @@ export function DesktopProjectToC({
                 'transition-all',
                 'group hover:text-main [&.in-view]:text-main'
               )}
+              data-umami-event={`Scroll to ${value}`}
             >
               <div
                 className={cn(
@@ -132,6 +133,7 @@ function MobileProjectToCList({
                 'xl:whitespace-nowrap',
                 ' [&.in-view]:text-main'
               )}
+              data-umami-event={`Scroll to ${value}`}
             >
               {value}
             </a>

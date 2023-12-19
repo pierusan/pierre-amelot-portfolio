@@ -30,12 +30,18 @@ function LinksList<T extends BroadSVGLength>({
           rel="noreferrer"
           // If ever want to switch copy to "Resume"
           // className="before:content-['CV'] sm:before:content-['Resume']"
+          data-umami-event="Open CV"
         >
           CV
         </a>
       </li>
       <li>
-        <a href="https://github.com/pierusan" target="_blank" rel="noreferrer">
+        <a
+          href="https://github.com/pierusan"
+          target="_blank"
+          rel="noreferrer"
+          data-umami-event="Open Github"
+        >
           <Icon name="github" size={iconsSize} />
         </a>
       </li>
@@ -44,6 +50,7 @@ function LinksList<T extends BroadSVGLength>({
           href="https://www.linkedin.com/in/pierre-amelot-ba6a77107/"
           target="_blank"
           rel="noreferrer"
+          data-umami-event="Open LinkedIn"
         >
           <Icon name="linkedin" size={iconsSize} />
         </a>

@@ -2,11 +2,16 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Space_Mono } from 'next/font/google';
+import Script from 'next/script';
 import { type ReactNode } from 'react';
 import { AsciiArtLog } from './AsciiArtLog';
 import { NoiseFilter } from './(home)/NoiseFilter';
 import { cn } from '@/cn';
 import { remoteImages } from '@/components/RemoteMedia/RemoteImage';
+
+const vercelEnvironment = process.env.VERCEL_ENV;
+const isProduction = vercelEnvironment === 'production';
+const isPreview = vercelEnvironment === 'preview';
 
 const spaceMono = Space_Mono({
   subsets: ['latin'],
@@ -56,6 +61,14 @@ export function RootLayout({ children }: { children: ReactNode }) {
         {children}
         <NoiseFilter />
       </body>
+      {/* Leave analytics on preview URLs for now for testing (knowing that sessions can be filtered by hostname) */}
+      {(isProduction || isPreview) && (
+        <Script
+          async
+          src="/stats/script.js"
+          data-website-id="817aa10d-c906-457c-9e34-5625c31661be"
+        />
+      )}
     </html>
   );
 }
